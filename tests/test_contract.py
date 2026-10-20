@@ -113,3 +113,25 @@ def test_model_misconfiguration_fails_closed(tmp_path):
     with pytest.raises(ValueError, match="AML_API_KEY"):
         Settings(data_dir=tmp_path)
 
+
+def test_health_does_not_wait_for_busy_add_slot(tmp_path):
+    async def exercise():
+        app = create_app(Settings(data_dir=tmp_path, api_key="test", max_concurrency=1))
+        started, release = asyncio.Event(), asyncio.Event()
+        async def slow_add(req):
+            started.set()
+            await release.wait()
+        app.state.engine.add = slow_add
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test",
+                                     headers={"Authorization": "Bearer test"}) as http:
+            pending = asyncio.create_task(http.post("/add", json=add_body()))
+            try:
+                await asyncio.wait_for(started.wait(), timeout=2)
+                health = await asyncio.wait_for(http.get("/health"), timeout=0.5)
+                assert health.status_code == 200
+            finally:
+                release.set()
+                await pending
+                await app.state.engine.models.close()
+    asyncio.run(exercise())
+

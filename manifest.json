@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "source_sha256": {
+    "aml_memory/__init__.py": "a7833154ef22876fa19e1ec8355064aea30a04319390cb28d4b11b33a9b1de38",
+    "aml_memory/api.py": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+    "aml_memory/config.py": "ec94bbaae40de715af77701f15c383b4722eb06e81f2ea391edf45f3d670fa77",
+    "aml_memory/engine.py": "c5239f60e9ffec870a17672b38b41fd6b2899be1c4ee312b77225a0b65281138",
+    "aml_memory/models.py": "e6728bc43232f3e5ed8a9b05b8fff342ad131a2317191bda99851dfa5b46474c",
+    "aml_memory/schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+    "aml_memory/store.py": "bba086bb1cf0b28fbe1e2207d363483bf05d83c3784b6c7d9001b5cb973a279a",
+    "aml_memory/text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+    "tools/manifest.py": "a4993ba4c7b1044c90c5ffddb4221e22d55c7857c7007aa752d635cd17bb90ac",
+    "tools/preflight.py": "367da9f25954fafd33fe3033c0d5e6310ef87f7e38150630d4987f6a753a8e7a",
+    "tools/public_eval.py": "394ea47316ff712fb035456350b7f8d9b049be8457d4309d67b3544b913bd3ba"
+  },
+  "dependencies": {
+    "fastapi": "0.151.0",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1",
+    "numpy": "2.5.4"
+  },
+  "academic_embedding": "text-embedding-v4",
+  "academic_llm": "gpt-4o-mini",
+  "default_mode": "lexical",
+  "formal_submission": false
+}

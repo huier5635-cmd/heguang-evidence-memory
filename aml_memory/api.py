@@ -39,6 +39,9 @@ def create_app(settings=None):
 
     @app.middleware("http")
     async def gate(request: Request, call_next):
+        if request.url.path == "/health":
+            # Health checks must not queue behind long synchronous Add requests.
+            return await call_next(request)
         if request.url.path != "/health":
             if settings.api_key:
                 auth = request.headers.get("authorization", "")
