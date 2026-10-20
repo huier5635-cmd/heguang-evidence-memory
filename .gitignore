@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+data/
+*.sqlite3*
+*.key
+*.pem
+__pycache__/
+.pytest_cache/
+*.egg-info/
+run-*.json
+
