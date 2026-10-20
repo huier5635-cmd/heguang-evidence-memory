@@ -60,5 +60,12 @@
   },
   "production_changed": false,
   "official_runs": 0,
-  "real_model_calls": 0
+  "real_model_calls": 0,
+  "cloud_validation": {
+    "report": "runtime-cloud-validation.json",
+    "tests_passed": 24,
+    "source_files_verified": 14,
+    "sqlite_version": "3.45.1",
+    "synthetic_tcp_probe": "pass"
+  }
 }

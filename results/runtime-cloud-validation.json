@@ -1,0 +1,68 @@
+{
+  "cloud_os": "Linux-6.8.0-63-generic-x86_64-with-glibc2.39",
+  "sqlite": "3.45.1",
+  "verified_source_files": 14,
+  "local_candidate_commit": "fa7b0ac4468376d976b6871ba6b60e56a4092bd9",
+  "tests_passed": 24,
+  "reports": {
+    "baseline": {
+      "source_version": "0.1.1",
+      "transport": "local TCP HTTP/1.1 Uvicorn",
+      "active_adds_held": 1,
+      "max_concurrency": 1,
+      "queued_uploads": 6,
+      "synthetic_text_bytes_per_upload": 4194304,
+      "queued_body_bytes_consumed_before_release": 25166484,
+      "queued_uploads_consumed": 6,
+      "python_traced_current_bytes": 52094403,
+      "python_traced_peak_bytes": 52372646,
+      "health_status_while_busy": 200,
+      "health_ms_while_busy": 14.992,
+      "observation_seconds": 0.474,
+      "completed_adds_after_release": 7,
+      "all_http_200": true,
+      "real_model_calls": 0,
+      "official_runs": 0,
+      "production_changed": false,
+      "api_source_sha256": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+      "limitations": "Synthetic ingress only; Add implementation mocked. Python traced allocations are not RSS, process total memory, reverse-proxy behavior or Full capacity."
+    },
+    "candidate": {
+      "source_version": "0.1.2.dev1",
+      "transport": "local TCP HTTP/1.1 Uvicorn",
+      "active_adds_held": 1,
+      "max_concurrency": 1,
+      "queued_uploads": 6,
+      "synthetic_text_bytes_per_upload": 4194304,
+      "queued_body_bytes_consumed_before_release": 0,
+      "queued_uploads_consumed": 0,
+      "python_traced_current_bytes": 1059728,
+      "python_traced_peak_bytes": 2093358,
+      "health_status_while_busy": 200,
+      "health_ms_while_busy": 13.085,
+      "observation_seconds": 0.307,
+      "completed_adds_after_release": 7,
+      "all_http_200": true,
+      "real_model_calls": 0,
+      "official_runs": 0,
+      "production_changed": false,
+      "api_source_sha256": "db6d8f98ae0ddd8f77e53f4a7b64c8edd51ed2585dc6f10325c8b1054e7455ad",
+      "limitations": "Synthetic ingress only; Add implementation mocked. Python traced allocations are not RSS, process total memory, reverse-proxy behavior or Full capacity."
+    }
+  },
+  "public_health": {
+    "status": "ok",
+    "version": "0.1.1",
+    "mode": "lexical"
+  },
+  "services_active": [
+    "active",
+    "active",
+    "active"
+  ],
+  "production_changed": false,
+  "real_model_calls": 0,
+  "official_runs": 0,
+  "recorded_at_utc": "2026-10-20T17:15:40Z",
+  "evidence_source": "Successful server Workbench stdout observed via browser UI; complete aggregate JSON copied from visible terminal text."
+}
