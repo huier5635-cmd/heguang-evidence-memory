@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "heguang-evidence-memory"
-version = "0.1.2.dev1"
+version = "0.1.2.dev2"
 description = "Source-preserving Add/Search prototype for Agent Memory Challenge"
 requires-python = ">=3.11"
 dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "httpx>=0.27,<1", "numpy>=2,<3"]

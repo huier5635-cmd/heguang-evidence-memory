@@ -1,0 +1,296 @@
+{
+  "scope": "Isolated synthetic 100k-message/50k-doc SQL diagnostic, no production database",
+  "sqlite": "3.45.1",
+  "plans": {
+    "words": {
+      "baseline": [
+        [
+          7,
+          0,
+          0,
+          "SCAN words VIRTUAL TABLE INDEX 0:M1"
+        ],
+        [
+          12,
+          0,
+          0,
+          "SEARCH docs USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          26,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ],
+      "covering": [
+        [
+          7,
+          0,
+          0,
+          "SCAN words VIRTUAL TABLE INDEX 0:M1"
+        ],
+        [
+          12,
+          0,
+          0,
+          "SEARCH docs USING COVERING INDEX docs_lookup (doc_rowid=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    "trigrams": {
+      "baseline": [
+        [
+          7,
+          0,
+          0,
+          "SCAN trigrams VIRTUAL TABLE INDEX 0:M1"
+        ],
+        [
+          12,
+          0,
+          0,
+          "SEARCH docs USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          26,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ],
+      "covering": [
+        [
+          7,
+          0,
+          0,
+          "SCAN trigrams VIRTUAL TABLE INDEX 0:M1"
+        ],
+        [
+          12,
+          0,
+          0,
+          "SEARCH docs USING COVERING INDEX docs_lookup (doc_rowid=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    }
+  },
+  "cases": [
+    {
+      "table": "words",
+      "query_class": "unique",
+      "limit": 5,
+      "exact_ids_and_order": true,
+      "result_count": 2,
+      "array_sha256": "d9cf332a3c85ca8eb416ba048214729aa4b7e8da095ae0a7a9326bdb69b959d3",
+      "baseline_ms": [
+        0.363,
+        0.115
+      ],
+      "covering_ms": [
+        0.11,
+        0.084
+      ]
+    },
+    {
+      "table": "words",
+      "query_class": "unique",
+      "limit": 400,
+      "exact_ids_and_order": true,
+      "result_count": 2,
+      "array_sha256": "d9cf332a3c85ca8eb416ba048214729aa4b7e8da095ae0a7a9326bdb69b959d3",
+      "baseline_ms": [
+        0.127,
+        0.054
+      ],
+      "covering_ms": [
+        0.099,
+        0.087
+      ]
+    },
+    {
+      "table": "words",
+      "query_class": "broad",
+      "limit": 5,
+      "exact_ids_and_order": true,
+      "result_count": 5,
+      "array_sha256": "fc182032d6eaac7d96349bc3c2e51390326afff1f8700b5480d840453b673af4",
+      "baseline_ms": [
+        2829.354,
+        2186.543
+      ],
+      "covering_ms": [
+        140.831,
+        113.744
+      ]
+    },
+    {
+      "table": "words",
+      "query_class": "broad",
+      "limit": 400,
+      "exact_ids_and_order": true,
+      "result_count": 400,
+      "array_sha256": "16b8b470660e74f8e14a960ff7689497543e9a1a1952f0cfb5e08606bfbb0796",
+      "baseline_ms": [
+        2298.994,
+        2050.028
+      ],
+      "covering_ms": [
+        124.797,
+        123.212
+      ]
+    },
+    {
+      "table": "words",
+      "query_class": "topic",
+      "limit": 5,
+      "exact_ids_and_order": true,
+      "result_count": 5,
+      "array_sha256": "f5e1aecca2ff1ac26c1cf265680d54b6633e674bfc9ad177618b5981312fd2ba",
+      "baseline_ms": [
+        2248.861,
+        2083.513
+      ],
+      "covering_ms": [
+        82.504,
+        79.057
+      ]
+    },
+    {
+      "table": "words",
+      "query_class": "topic",
+      "limit": 400,
+      "exact_ids_and_order": true,
+      "result_count": 400,
+      "array_sha256": "8f89114583a4c56dd2395ebcd2d20b5e1cb3894fe263a64a77bb21285cd3ed14",
+      "baseline_ms": [
+        2280.376,
+        2172.519
+      ],
+      "covering_ms": [
+        73.738,
+        73.501
+      ]
+    },
+    {
+      "table": "trigrams",
+      "query_class": "unique",
+      "limit": 5,
+      "exact_ids_and_order": true,
+      "result_count": 5,
+      "array_sha256": "a7ffaf9bb16eb8026e8341ddd3d3ea4dbef8fd8febd55835fed555a1c09c4bb8",
+      "baseline_ms": [
+        2480.936,
+        1964.837
+      ],
+      "covering_ms": [
+        225.51,
+        141.059
+      ]
+    },
+    {
+      "table": "trigrams",
+      "query_class": "unique",
+      "limit": 400,
+      "exact_ids_and_order": true,
+      "result_count": 400,
+      "array_sha256": "98cd9b2c4bf2aab8a789d67ee904f3726055dfc99b55b89c9bf0ec1383603b05",
+      "baseline_ms": [
+        2440.197,
+        2023.042
+      ],
+      "covering_ms": [
+        153.76,
+        137.903
+      ]
+    },
+    {
+      "table": "trigrams",
+      "query_class": "broad",
+      "limit": 5,
+      "exact_ids_and_order": true,
+      "result_count": 5,
+      "array_sha256": "a605290df1e6df64a452f7cfdbca6defa81405dee24b60f6507b017f22b8ac6a",
+      "baseline_ms": [
+        2628.37,
+        1768.285
+      ],
+      "covering_ms": [
+        798.558,
+        789.749
+      ]
+    },
+    {
+      "table": "trigrams",
+      "query_class": "broad",
+      "limit": 400,
+      "exact_ids_and_order": true,
+      "result_count": 400,
+      "array_sha256": "1dfed320ea8871707c24a5de2a67dc421459827af178684374d11382c3e3f55f",
+      "baseline_ms": [
+        1873.175,
+        1742.929
+      ],
+      "covering_ms": [
+        749.492,
+        740.142
+      ]
+    },
+    {
+      "table": "trigrams",
+      "query_class": "topic",
+      "limit": 5,
+      "exact_ids_and_order": true,
+      "result_count": 5,
+      "array_sha256": "a605290df1e6df64a452f7cfdbca6defa81405dee24b60f6507b017f22b8ac6a",
+      "baseline_ms": [
+        2193.371,
+        1959.109
+      ],
+      "covering_ms": [
+        297.548,
+        191.485
+      ]
+    },
+    {
+      "table": "trigrams",
+      "query_class": "topic",
+      "limit": 400,
+      "exact_ids_and_order": true,
+      "result_count": 400,
+      "array_sha256": "1dfed320ea8871707c24a5de2a67dc421459827af178684374d11382c3e3f55f",
+      "baseline_ms": [
+        2400.3,
+        1908.666
+      ],
+      "covering_ms": [
+        219.125,
+        218.103
+      ]
+    }
+  ],
+  "added_index_bytes": 0,
+  "before_database_bytes": 397123584,
+  "after_database_bytes": 397123584,
+  "elapsed_seconds": 50.636,
+  "source_application_changed": false,
+  "production_changed": false,
+  "real_model_calls": 0,
+  "official_runs": 0,
+  "limitations": "One synthetic corpus, same DB with a new covering index; baseline forced NOT INDEXED to preserve the original rowid table-access plan. AB/BA order, two timings per case. These are SQL ID-array results, not end-to-end Search arrays, public retrieval quality, real models or official Full capacity.",
+  "added_index_bytes_measurement": "Database file-size delta only; zero means existing free pages were reused, not a zero-size index.",
+  "logical_index_bytes_after_bulk_build": 2420736,
+  "logical_index_bytes_after_incremental_ingestion": 2736128
+}

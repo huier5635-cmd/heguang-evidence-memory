@@ -1,0 +1,8 @@
+{
+  "returncode": 2,
+  "stop_reason": "wall_time_guard",
+  "worker_reaped": true,
+  "elapsed_seconds": 2.221,
+  "real_model_calls": 0,
+  "production_changed": false
+}
