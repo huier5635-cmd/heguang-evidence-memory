@@ -1,6 +1,6 @@
 # Heguang Evidence Memory
 
-可复现的 Agent Memory Challenge Add/Search 研究原型。当前已完成本地运行、契约检查及公开数据检索诊断；**已在零元试用服务器完成内部合成接口预检；尚未验证公网接口、未获赛事 Key、未提交正式 Full，也没有官方排名或获奖成绩**。
+可复现的 Agent Memory Challenge Add/Search 研究原型。当前已完成本地运行、契约检查及公开数据检索诊断；**已在零元试用服务器验证公网 HTTPS 与带密钥合成读写，学术榜接口审核申请已提交；赛事 Key、模型资源和资格确认仍待完成，未提交正式 Full，也没有官方排名或获奖成绩**。
 
 ## 中文学习文档
 
