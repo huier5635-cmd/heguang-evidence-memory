@@ -1,0 +1,75 @@
+{
+  "database": "isolated synthetic scale test only",
+  "sqlite": "3.45.1",
+  "queries": {
+    "words": {
+      "plan": [
+        [
+          7,
+          0,
+          0,
+          "SCAN words VIRTUAL TABLE INDEX 0:M1"
+        ],
+        [
+          12,
+          0,
+          0,
+          "SEARCH docs USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          26,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ],
+      "matched_docs": 50000
+    },
+    "trigrams": {
+      "plan": [
+        [
+          7,
+          0,
+          0,
+          "SCAN trigrams VIRTUAL TABLE INDEX 0:M1"
+        ],
+        [
+          12,
+          0,
+          0,
+          "SEARCH docs USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          26,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ],
+      "matched_docs": 50000
+    }
+  },
+  "table_bytes": {
+    "docs": 205299712,
+    "docs_request": 913408,
+    "messages": 68440064,
+    "messages_session": 2420736,
+    "meta": 4096,
+    "sqlite_autoindex_docs_1": 2461696,
+    "sqlite_autoindex_meta_1": 4096,
+    "sqlite_autoindex_writes_1": 4096,
+    "sqlite_schema": 4096,
+    "sqlite_sequence": 4096,
+    "trigrams_config": 4096,
+    "trigrams_data": 92307456,
+    "trigrams_docsize": 659456,
+    "trigrams_idx": 110592,
+    "words_config": 4096,
+    "words_data": 21094400,
+    "words_docsize": 643072,
+    "words_idx": 36864,
+    "writes": 16384
+  },
+  "mutation": false,
+  "interpretation": "Current plan reads docs through INTEGER PRIMARY KEY and uses a temporary sort. Extra table I/O and sorting are hypotheses for the cliff, not a causal performance proof."
+}

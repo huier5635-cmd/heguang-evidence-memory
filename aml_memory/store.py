@@ -56,6 +56,7 @@ class Store:
                 end_seq INTEGER, content TEXT, text TEXT, vector BLOB, added_at REAL
             );
             CREATE INDEX IF NOT EXISTS docs_request ON docs(request_id);
+            CREATE INDEX IF NOT EXISTS docs_lookup ON docs(doc_rowid, id);
             CREATE INDEX IF NOT EXISTS messages_session ON messages(session_id, seq);
             CREATE VIRTUAL TABLE IF NOT EXISTS words USING fts5(text, content='', contentless_delete=1);
             CREATE VIRTUAL TABLE IF NOT EXISTS trigrams USING fts5(text, content='', contentless_delete=1);
@@ -111,7 +112,7 @@ class Store:
             return []
         expression = " OR ".join('"' + token.replace('"', '""') + '"' for token in tokens)
         return [r[0] for r in db.execute(
-            f"SELECT docs.id FROM {table} JOIN docs ON docs.rowid={table}.rowid "
+            f"SELECT docs.id FROM {table} JOIN docs INDEXED BY docs_lookup ON docs.rowid={table}.rowid "
             f"WHERE {table} MATCH ? ORDER BY bm25({table}), docs.id LIMIT ?",
             (expression, limit))]
 

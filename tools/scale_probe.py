@@ -1,0 +1,292 @@
+"""Bounded Linux-only, synthetic HTTP capacity diagnostic, no model calls.
+
+Starts its own localhost-only lexical service and writes only under a fresh
+work directory. Never run this against the public competition service. These
+results concern synthetic engine/HTTP scale, not answer quality or Full capacity.
+"""
+import argparse
+import asyncio
+import hashlib
+import json
+import os
+import platform
+import random
+import shutil
+import socket
+import sqlite3
+import statistics
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+import httpx
+
+MIB = 1024 * 1024
+TOPICS = ("astronomy", "cooking", "gardening", "photography", "bicycles", "literature", "travel", "music")
+DETAILS = ("a copper telescope", "a blue kitchen notebook", "a silver garden spade", "a wooden camera case",
+           "a green bicycle basket", "an orange library card", "a violet hiking jacket", "a small brass instrument")
+
+
+def percentile(values, p):
+    return round(sorted(values)[max(0, int((len(values) - 1) * p))], 3) if values else None
+
+
+def marker(index):
+    return "needle" + hashlib.sha256(f"synthetic-scale-v1:{index}".encode()).hexdigest()[:20]
+
+
+def text(index):
+    topic = index % len(TOPICS)
+    return (f"{marker(index)}. synthetic speaker recorded {DETAILS[topic]} for {TOPICS[topic]}. "
+            f"the appointment is day {index % 28 + 1} of month {index % 12 + 1}. "
+            "the original notebook retains the exact item, the meeting place and the follow up plan. "
+            f"later the speaker discussed {TOPICS[(topic + 3) % len(TOPICS)]} at the local community centre.")
+
+
+def resident_bytes(pid):
+    try:
+        for line in Path(f"/proc/{pid}/status").read_text().splitlines():
+            if line.startswith("VmRSS:"):
+                return int(line.split()[1]) * 1024
+    except (FileNotFoundError, ProcessLookupError):
+        return 0
+    return 0
+
+
+def available_bytes():
+    for line in Path("/proc/meminfo").read_text().splitlines():
+        if line.startswith("MemAvailable:"):
+            return int(line.split()[1]) * 1024
+    raise RuntimeError("Linux MemAvailable unavailable")
+
+
+def disk_bytes(root):
+    size = 0
+    for path in root.glob("*.sqlite3*"):
+        try:
+            size += path.stat().st_size
+        except FileNotFoundError:
+            # Closing SQLite's last connection may remove its WAL mid-sample.
+            continue
+    return size
+
+
+async def run(args):
+    if sys.platform != "linux":
+        raise RuntimeError("This diagnostic uses Linux /proc for actual worker RSS")
+    root = args.work_dir.resolve()
+    root.mkdir(parents=True, exist_ok=False)
+    data = root / "synthetic-data"
+    source = args.source.resolve()
+    if not (source / "aml_memory/api.py").is_file():
+        raise RuntimeError("Missing candidate source")
+    started = time.perf_counter()
+    records = []
+    health_ms, health_errors = [], 0
+    peak_rss, min_available, peak_disk = 0, available_bytes(), 0
+    stop_reason = None
+    finished = asyncio.Event()
+    guard_tripped = asyncio.Event()
+
+    # Use a fresh local port; the workload never addresses the public service.
+    with socket.socket() as reserved:
+        reserved.bind(("127.0.0.1", 0))
+        port = reserved.getsockname()[1]
+    env = os.environ.copy()
+    env.update({"AML_MODE": "lexical", "AML_API_KEY": "local-synthetic-scale", "AML_DATA_DIR": str(data),
+                "AML_MAX_CONCURRENCY": "1", "AML_WINDOW_STRIDE": "2", "AML_COMPACT_HEADERS": "0",
+                "AML_BRIDGE_WEIGHT": "0.15", "PYTHONPATH": str(source)})
+    log = (root / "worker.log").open("w", encoding="utf-8")
+    worker = subprocess.Popen([sys.executable, "-m", "uvicorn", "aml_memory.api:create_app", "--factory",
+                               "--host", "127.0.0.1", "--port", str(port), "--workers", "1",
+                               "--no-access-log", "--log-level", "warning", "--timeout-graceful-shutdown", "5"],
+                              cwd=source, env=env, stdout=log, stderr=subprocess.STDOUT)
+    print(json.dumps({"event": "started", "controller_pid": os.getpid(), "worker_pid": worker.pid,
+                      "max_messages": args.stages[-1], "wall_limit_seconds": args.seconds}), flush=True)
+
+    async def observe_resources():
+        nonlocal peak_rss, min_available, peak_disk, stop_reason
+        while not finished.is_set():
+            rss = resident_bytes(worker.pid)
+            free = available_bytes()
+            size = disk_bytes(data)
+            peak_rss, min_available, peak_disk = max(peak_rss, rss), min(min_available, free), max(peak_disk, size)
+            cause = None
+            if rss > args.worker_rss_mib * MIB:
+                cause = "worker_rss_guard"
+            elif free < args.available_mib * MIB:
+                cause = "host_available_memory_guard"
+            elif size > args.disk_mib * MIB:
+                cause = "synthetic_database_disk_guard"
+            elif shutil.disk_usage(root).free < 2 * 1024 ** 3:
+                cause = "host_disk_reserve_guard"
+            elif time.perf_counter() - started > args.seconds:
+                cause = "wall_time_guard"
+            if cause:
+                stop_reason = cause
+                guard_tripped.set()
+                if worker.poll() is None:
+                    worker.terminate()
+                return
+            await asyncio.sleep(0.025)
+
+    async def resource_guard():
+        nonlocal stop_reason
+        try:
+            await observe_resources()
+        except Exception as exc:
+            # An observer failure must not silently remove the workload limit.
+            stop_reason = "resource_observer_failure:" + type(exc).__name__
+            guard_tripped.set()
+            if worker.poll() is None:
+                worker.terminate()
+
+    headers = {"Authorization": "Bearer local-synthetic-scale"}
+    observer = asyncio.create_task(resource_guard())
+    ingested, add_requests, source_chars, request_bytes = 0, 0, 0, 0
+
+    async def watch_health(http):
+        nonlocal health_errors
+        while not finished.is_set():
+            tick = time.perf_counter()
+            try:
+                result = await http.get("/health", timeout=2)
+                if result.status_code != 200:
+                    health_errors += 1
+                else:
+                    health_ms.append((time.perf_counter() - tick) * 1000)
+            except httpx.HTTPError:
+                health_errors += 1
+            await asyncio.sleep(0.1)
+
+    heartbeat = None
+    try:
+        async with httpx.AsyncClient(base_url=f"http://127.0.0.1:{port}", headers=headers,
+                                     timeout=httpx.Timeout(120, connect=3), trust_env=False) as http:
+            async with asyncio.timeout(15):
+                while True:
+                    if worker.poll() is not None:
+                        raise RuntimeError("Isolated worker exited during startup")
+                    try:
+                        health = await http.get("/health", timeout=1)
+                        if health.status_code == 200:
+                            assert health.json()["mode"] == "lexical"
+                            version = health.json()["version"]
+                            break
+                    except httpx.HTTPError:
+                        pass
+                    await asyncio.sleep(0.1)
+            heartbeat = asyncio.create_task(watch_health(http))
+            for target in args.stages:
+                latencies, bulk_bytes = [], []
+                while ingested < target:
+                    if guard_tripped.is_set():
+                        raise RuntimeError("Resource guard stopped the isolated worker")
+                    count = min(args.batch_messages, target - ingested)
+                    messages = [{"role": "user" if i % 2 == 0 else "assistant", "content": text(i)}
+                                for i in range(ingested, ingested + count)]
+                    body = {"request_id": f"scale-{add_requests}", "user_id": "synthetic-scale-v1",
+                            "session_id": f"session-{add_requests // 4}", "messages": messages}
+                    wire = json.dumps(body, ensure_ascii=False, separators=(",", ":")).encode()
+                    tick = time.perf_counter()
+                    response = await http.post("/add", content=wire, headers={"Content-Type": "application/json"})
+                    response.raise_for_status()
+                    assert response.json() == {"success": True, **{key: body[key] for key in ("request_id", "user_id", "session_id")}}
+                    latencies.append((time.perf_counter() - tick) * 1000)
+                    bulk_bytes.append(len(wire))
+                    source_chars += sum(len(item["content"]) for item in messages)
+                    request_bytes += len(wire)
+                    ingested += count
+                    add_requests += 1
+
+                searches = {"unique_marker": [], "broad_topic": []}
+                marker_hits = 0
+                randomizer = random.Random(20261021 + target)
+                for kind in searches:
+                    for q in range(args.queries_per_class):
+                        index = randomizer.randrange(ingested)
+                        query = marker(index) if kind == "unique_marker" else "speaker notebook appointment local plan"
+                        tick = time.perf_counter()
+                        response = await http.post("/search", json={"user_id": "synthetic-scale-v1", "query": query, "top_k": 100})
+                        response.raise_for_status()
+                        searches[kind].append((time.perf_counter() - tick) * 1000)
+                        rows = response.json()["data"]
+                        assert len(rows) <= 100
+                        if kind == "unique_marker":
+                            marker_hits += any(marker(index) in row["content"] for row in rows)
+                # Read only the isolated test database after all writes finish.
+                files = list(data.glob("*.sqlite3"))
+                assert len(files) == 1
+                db = sqlite3.connect(files[0])
+                try:
+                    counts = {table: db.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+                              for table in ("messages", "docs", "writes")}
+                    assert counts["messages"] == ingested and counts["writes"] == add_requests
+                    assert db.execute("PRAGMA quick_check").fetchone()[0] == "ok"
+                finally:
+                    db.close()
+                record = {"messages": ingested, "documents": counts["docs"], "add_requests_total": add_requests,
+                          "source_text_characters_total": source_chars, "http_request_bytes_total": request_bytes,
+                          "stage_add_requests": len(latencies), "add_p50_ms": percentile(latencies, 0.5),
+                          "add_p95_ms": percentile(latencies, 0.95), "max_add_body_bytes": max(bulk_bytes),
+                          "searches_per_class": args.queries_per_class, "unique_marker_hits_at_100": marker_hits,
+                          "search_ms": {kind: {"p50": percentile(values, 0.5), "p95": percentile(values, 0.95)} for kind, values in searches.items()},
+                          "database_and_wal_bytes": disk_bytes(data), "worker_rss_bytes_at_stage_end": resident_bytes(worker.pid),
+                          "worker_peak_rss_bytes_so_far": peak_rss, "health_success_samples_so_far": len(health_ms),
+                          "health_errors_so_far": health_errors, "elapsed_seconds": round(time.perf_counter() - started, 3)}
+                records.append(record)
+                print(json.dumps({"event": "stage_complete", **record}), flush=True)
+                (root / "progress.json").write_text(json.dumps(records, indent=2) + "\n")
+            stop_reason = "completed_requested_stages"
+    except Exception as exc:
+        stop_reason = stop_reason or "probe_failure:" + type(exc).__name__
+        print(json.dumps({"event": "stopped", "reason": stop_reason}), flush=True)
+    finally:
+        finished.set()
+        try:
+            await asyncio.gather(observer, *([heartbeat] if heartbeat else []), return_exceptions=True)
+        finally:
+            if worker.poll() is None:
+                worker.terminate()
+            try:
+                await asyncio.to_thread(worker.wait, 10)
+            except subprocess.TimeoutExpired:
+                worker.kill()
+                await asyncio.to_thread(worker.wait, 5)
+            log.close()
+
+    report = {"purpose": "Bounded synthetic end-to-end lexical HTTP capacity diagnostic", "platform": platform.platform(),
+              "application_version": locals().get("version"), "source_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted((source / "aml_memory").glob("*.py"))},
+              "requested_stages_messages": args.stages, "batch_messages": args.batch_messages, "stages": records,
+              "stop_reason": stop_reason, "elapsed_seconds": round(time.perf_counter() - started, 3),
+              "peak_worker_rss_bytes": peak_rss, "minimum_host_available_bytes": min_available,
+              "peak_database_and_wal_bytes": peak_disk, "health_success_samples": len(health_ms),
+              "health_errors": health_errors, "health_p95_ms": percentile(health_ms, 0.95), "health_max_ms": round(max(health_ms), 3) if health_ms else None,
+              "guards": {"worker_rss_mib": args.worker_rss_mib, "available_memory_floor_mib": args.available_mib,
+                         "database_disk_mib": args.disk_mib, "wall_seconds": args.seconds},
+              "production_changed": False, "real_model_calls": 0, "official_runs": 0,
+              "limitations": "Synthetic text, one user, one sequential write stream, lexical mode, Top100. Actual sampled worker RSS excludes controller, proxy, OS and other services. No dense vectors/model effects, adversarial workload, actual private corpus, crash recovery or official Full capacity proof."}
+    (root / "result.json").write_text(json.dumps(report, indent=2) + "\n")
+    print(json.dumps({"event": "finished", "stop_reason": stop_reason, "stages": len(records), "messages": ingested,
+                      "peak_worker_rss_bytes": peak_rss, "health_errors": health_errors, "result": str(root / "result.json")}), flush=True)
+    return 0 if stop_reason == "completed_requested_stages" else 2
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, required=True)
+    parser.add_argument("--work-dir", type=Path, required=True, help="Fresh, isolated test directory; never the production data path")
+    parser.add_argument("--stages", type=int, nargs="+", default=[1000, 10000, 50000, 100000])
+    parser.add_argument("--batch-messages", type=int, default=1000)
+    parser.add_argument("--queries-per-class", type=int, default=10)
+    parser.add_argument("--seconds", type=int, default=360)
+    parser.add_argument("--worker-rss-mib", type=int, default=384)
+    parser.add_argument("--available-mib", type=int, default=192)
+    parser.add_argument("--disk-mib", type=int, default=512)
+    arguments = parser.parse_args()
+    if sorted(set(arguments.stages)) != arguments.stages or not arguments.stages or arguments.stages[0] < 1:
+        parser.error("Stages must be positive and strictly increasing")
+    if not 1 <= arguments.batch_messages <= 10000 or not 1 <= arguments.queries_per_class <= 100:
+        parser.error("Batch/query configuration outside diagnostic bounds")
+    sys.exit(asyncio.run(run(arguments)))

@@ -1,0 +1,159 @@
+{
+  "purpose": "Bounded synthetic end-to-end lexical HTTP capacity diagnostic",
+  "platform": "Linux-6.8.0-63-generic-x86_64-with-glibc2.39",
+  "application_version": "0.1.2.dev1",
+  "source_sha256": {
+    "__init__.py": "9c713bc5257478ba73e5bc804a08b0b5b91db84280f0c420cd21020fd63f975f",
+    "api.py": "db6d8f98ae0ddd8f77e53f4a7b64c8edd51ed2585dc6f10325c8b1054e7455ad",
+    "config.py": "ec94bbaae40de715af77701f15c383b4722eb06e81f2ea391edf45f3d670fa77",
+    "engine.py": "db96c88b2d913a0b8047646708ba41d4d0060e9145c728923937b83257e6b2f8",
+    "models.py": "b40840798d4bee2baca82c8fab319151a52ee09f437c5765f7f7be072067005a",
+    "schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+    "store.py": "7a0f663a483afd80793e54f34df8ed00cc8dde8819d6afa5d6b96f978b30b157",
+    "text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f"
+  },
+  "requested_stages_messages": [
+    1000,
+    10000,
+    50000,
+    100000
+  ],
+  "batch_messages": 1000,
+  "stages": [
+    {
+      "messages": 1000,
+      "documents": 500,
+      "add_requests_total": 1,
+      "source_text_characters_total": 284675,
+      "http_request_bytes_total": 316268,
+      "stage_add_requests": 1,
+      "add_p50_ms": 728.31,
+      "add_p95_ms": 728.31,
+      "max_add_body_bytes": 316268,
+      "searches_per_class": 10,
+      "unique_marker_hits_at_100": 10,
+      "search_ms": {
+        "unique_marker": {
+          "p50": 16.47,
+          "p95": 18.835
+        },
+        "broad_topic": {
+          "p50": 24.747,
+          "p95": 27.888
+        }
+      },
+      "database_and_wal_bytes": 4055040,
+      "worker_rss_bytes_at_stage_end": 74235904,
+      "worker_peak_rss_bytes_so_far": 75792384,
+      "health_success_samples_so_far": 11,
+      "health_errors_so_far": 0,
+      "elapsed_seconds": 1.941
+    },
+    {
+      "messages": 10000,
+      "documents": 5000,
+      "add_requests_total": 10,
+      "source_text_characters_total": 2846782,
+      "http_request_bytes_total": 3162712,
+      "stage_add_requests": 9,
+      "add_p50_ms": 793.839,
+      "add_p95_ms": 815.869,
+      "max_add_body_bytes": 316276,
+      "searches_per_class": 10,
+      "unique_marker_hits_at_100": 10,
+      "search_ms": {
+        "unique_marker": {
+          "p50": 41.947,
+          "p95": 47.944
+        },
+        "broad_topic": {
+          "p50": 120.267,
+          "p95": 121.425
+        }
+      },
+      "database_and_wal_bytes": 41545728,
+      "worker_rss_bytes_at_stage_end": 76697600,
+      "worker_peak_rss_bytes_so_far": 76697600,
+      "health_success_samples_so_far": 94,
+      "health_errors_so_far": 0,
+      "elapsed_seconds": 10.897
+    },
+    {
+      "messages": 50000,
+      "documents": 25000,
+      "add_requests_total": 50,
+      "source_text_characters_total": 14233924,
+      "http_request_bytes_total": 15813624,
+      "stage_add_requests": 40,
+      "add_p50_ms": 852.545,
+      "add_p95_ms": 961.583,
+      "max_add_body_bytes": 316281,
+      "searches_per_class": 10,
+      "unique_marker_hits_at_100": 10,
+      "search_ms": {
+        "unique_marker": {
+          "p50": 120.914,
+          "p95": 129.735
+        },
+        "broad_topic": {
+          "p50": 520.218,
+          "p95": 544.494
+        }
+      },
+      "database_and_wal_bytes": 201023488,
+      "worker_rss_bytes_at_stage_end": 71577600,
+      "worker_peak_rss_bytes_so_far": 76697600,
+      "health_success_samples_so_far": 484,
+      "health_errors_so_far": 0,
+      "elapsed_seconds": 53.648
+    },
+    {
+      "messages": 100000,
+      "documents": 50000,
+      "add_requests_total": 100,
+      "source_text_characters_total": 28467851,
+      "http_request_bytes_total": 31627301,
+      "stage_add_requests": 50,
+      "add_p50_ms": 791.236,
+      "add_p95_ms": 890.398,
+      "max_add_body_bytes": 316281,
+      "searches_per_class": 10,
+      "unique_marker_hits_at_100": 10,
+      "search_ms": {
+        "unique_marker": {
+          "p50": 2527.573,
+          "p95": 2594.954
+        },
+        "broad_topic": {
+          "p50": 5154.419,
+          "p95": 5462.91
+        }
+      },
+      "database_and_wal_bytes": 397123584,
+      "worker_rss_bytes_at_stage_end": 60133376,
+      "worker_peak_rss_bytes_so_far": 76697600,
+      "health_success_samples_so_far": 1604,
+      "health_errors_so_far": 0,
+      "elapsed_seconds": 189.917
+    }
+  ],
+  "stop_reason": "completed_requested_stages",
+  "elapsed_seconds": 190.147,
+  "peak_worker_rss_bytes": 76697600,
+  "minimum_host_available_bytes": 312754176,
+  "peak_database_and_wal_bytes": 409854224,
+  "health_success_samples": 1604,
+  "health_errors": 0,
+  "health_p95_ms": 5.333,
+  "health_max_ms": 239.474,
+  "guards": {
+    "worker_rss_mib": 384,
+    "available_memory_floor_mib": 192,
+    "database_disk_mib": 512,
+    "wall_seconds": 360
+  },
+  "production_changed": false,
+  "real_model_calls": 0,
+  "official_runs": 0,
+  "limitations": "Synthetic text, one user, one sequential write stream, lexical mode, Top100. Actual sampled worker RSS excludes controller, proxy, OS and other services. No dense vectors/model effects, adversarial workload, actual private corpus, crash recovery or official Full capacity proof."
+}
