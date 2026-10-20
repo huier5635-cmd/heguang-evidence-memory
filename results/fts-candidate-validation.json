@@ -1,0 +1,115 @@
+{
+  "purpose": "isolated contentless FTS storage candidate validation",
+  "baseline_commit": "26a922f02119988d9d891800371c170ba116629c",
+  "sqlite_version": "3.53.1",
+  "production_changed": false,
+  "real_model_calls": 0,
+  "official_runs": 0,
+  "source_sha256": {
+    "baseline": {
+      "aml_memory\\api.py": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+      "aml_memory\\config.py": "ec94bbaae40de715af77701f15c383b4722eb06e81f2ea391edf45f3d670fa77",
+      "aml_memory\\engine.py": "078f2fbdc339a420ca3c3a78efdc8c11ad96ec2d5923c2915a27934c1c023ebd",
+      "aml_memory\\models.py": "b40840798d4bee2baca82c8fab319151a52ee09f437c5765f7f7be072067005a",
+      "aml_memory\\schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+      "aml_memory\\store.py": "2fbd917cc94f1f44c27f4a26f892cea53b5b2a5a4326400b3ade6b8752fa2f5c",
+      "aml_memory\\text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+      "aml_memory\\__init__.py": "de9740f69fc6c8e9903694aaa2678071caf41707ea576fda55fd4fbcd3fde6b7"
+    },
+    "candidate": {
+      "aml_memory\\api.py": "d1930cc31f1193d80e3dcb95c41cb24a5b2732005bc4e6809638460059fb1ede",
+      "aml_memory\\config.py": "93dd36b9a0a84effc51cb457b55170aa0ec027388db8eee3d85c84dc8b26e6df",
+      "aml_memory\\engine.py": "b849b5fe34d04169f9697dbb92f64dc73322581877e483f1217ea859b81a28d3",
+      "aml_memory\\models.py": "21c24fe6c891464af4361fcf4285dfc0c9288ea7f7f6663434463d1d1c6f00ae",
+      "aml_memory\\schema.py": "90076b23e0f6de23c35da65682dbee97e443da7f84eea4331e675e0d239e6d75",
+      "aml_memory\\store.py": "7e5689f85ceb34dee8bf5ff05892ad84b938aed50d6e461ddb4461a797479a0a",
+      "aml_memory\\text.py": "008acd3d56769f267143e52c6f9bf0533bec5babed2c17c4f5ab567b51d82448",
+      "aml_memory\\__init__.py": "fd5237d06ad4358b649140e582b5d19dbefa7cdfed8cb00e21c69b2ae5312390"
+    }
+  },
+  "lifecycle_checks": [
+    "mixed_age_purge",
+    "remaining_evidence",
+    "reopen_persistence",
+    "retry_after_reopen",
+    "add_after_purge",
+    "partial_fts_failure_rollback",
+    "cross_version_array_equivalence"
+  ],
+  "public_regression": [
+    {
+      "dataset": "locomo-original",
+      "dataset_sha256": "553cd5a15e25f2ceccc6ed185221eba645080c93e5b91087560a91aa5961f365",
+      "samples": 10,
+      "add_requests": 399,
+      "messages": 5882,
+      "search_queries": 1973,
+      "top_k": 100,
+      "exact_array_matches": 1973,
+      "database_integrity": "ok",
+      "documents": {
+        "baseline": 3011,
+        "candidate": 3011
+      },
+      "database_bytes_including_wal": {
+        "baseline": 33476608,
+        "candidate": 21450752
+      },
+      "elapsed_seconds": 77.219
+    },
+    {
+      "dataset": "locomo-refined",
+      "dataset_sha256": "42c737807ed2ee64e1a903fe40b66c149a0c083255e83df7424cec85fe5323b1",
+      "samples": 10,
+      "add_requests": 399,
+      "messages": 5882,
+      "search_queries": 1375,
+      "top_k": 100,
+      "exact_array_matches": 1375,
+      "database_integrity": "ok",
+      "documents": {
+        "baseline": 3011,
+        "candidate": 3011
+      },
+      "database_bytes_including_wal": {
+        "baseline": 33476608,
+        "candidate": 21450752
+      },
+      "elapsed_seconds": 57.0
+    }
+  ],
+  "limitations": "Related public LoCoMo datasets, lexical mode, one local development machine. Exact equivalence on these inputs does not establish held-out answer quality, real model performance, crash recovery or Full capacity.",
+  "canonical_text_sha256": {
+    "baseline": {
+      "aml_memory/api.py": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+      "aml_memory/config.py": "ec94bbaae40de715af77701f15c383b4722eb06e81f2ea391edf45f3d670fa77",
+      "aml_memory/engine.py": "078f2fbdc339a420ca3c3a78efdc8c11ad96ec2d5923c2915a27934c1c023ebd",
+      "aml_memory/models.py": "b40840798d4bee2baca82c8fab319151a52ee09f437c5765f7f7be072067005a",
+      "aml_memory/schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+      "aml_memory/store.py": "2fbd917cc94f1f44c27f4a26f892cea53b5b2a5a4326400b3ade6b8752fa2f5c",
+      "aml_memory/text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+      "aml_memory/__init__.py": "de9740f69fc6c8e9903694aaa2678071caf41707ea576fda55fd4fbcd3fde6b7"
+    },
+    "candidate": {
+      "aml_memory/api.py": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+      "aml_memory/config.py": "ec94bbaae40de715af77701f15c383b4722eb06e81f2ea391edf45f3d670fa77",
+      "aml_memory/engine.py": "db96c88b2d913a0b8047646708ba41d4d0060e9145c728923937b83257e6b2f8",
+      "aml_memory/models.py": "b40840798d4bee2baca82c8fab319151a52ee09f437c5765f7f7be072067005a",
+      "aml_memory/schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+      "aml_memory/store.py": "7a0f663a483afd80793e54f34df8ed00cc8dde8819d6afa5d6b96f978b30b157",
+      "aml_memory/text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+      "aml_memory/__init__.py": "de9740f69fc6c8e9903694aaa2678071caf41707ea576fda55fd4fbcd3fde6b7"
+    }
+  },
+  "server_validation": {
+    "os": "Ubuntu 24.04",
+    "sqlite": "3.45.1",
+    "tests_passed": 19,
+    "elapsed_seconds": 2.23,
+    "model_calls": "mock only",
+    "candidate_remote_directory": "isolated from running app",
+    "canonical_source_hashes_verified": true,
+    "verified_modules": 8
+  },
+  "source_hash_explanation": "Raw file hashes preserve original local line endings. canonical_text_sha256 uses LF-normalized UTF-8 source; all 8 cloud-tested module byte hashes exactly matched candidate canonical_text_sha256. Apart from engine.py and store.py, candidate module source text matches the baseline."
+}

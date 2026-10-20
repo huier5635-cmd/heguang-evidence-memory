@@ -32,9 +32,9 @@ def test_research_batches_unique_source_and_maps_tags_only_to_quoted_windows(tmp
         await engine.add(req)  # Retried Add must not call a model again.
         assert len(calls) == 1
         db = engine.store.connect("one")
-        indexed = list(db.execute("SELECT id FROM words WHERE words MATCH 'astronomy'"))
+        indexed = list(db.execute("SELECT docs.id FROM words JOIN docs ON docs.rowid=words.rowid WHERE words MATCH 'astronomy'"))
         assert len(indexed) == 2  # Two source windows contain message 9.
-        assert not list(db.execute("SELECT id FROM words WHERE words MATCH 'inventedkeyword'"))
+        assert not list(db.execute("SELECT docs.id FROM words JOIN docs ON docs.rowid=words.rowid WHERE words MATCH 'inventedkeyword'"))
         assert all("astronomy" not in row[0] for row in db.execute("SELECT content FROM docs"))
         db.close()
         await engine.models.close()

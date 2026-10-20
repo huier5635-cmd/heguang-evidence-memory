@@ -1,4 +1,5 @@
 FROM python:3.12-slim
+RUN python -c "import sqlite3; assert sqlite3.sqlite_version_info >= (3,43,0), 'SQLite 3.43+ required'"
 WORKDIR /app
 COPY requirements.lock /app/requirements.lock
 RUN pip install --no-cache-dir -r requirements.lock && useradd -m -u 10001 memory

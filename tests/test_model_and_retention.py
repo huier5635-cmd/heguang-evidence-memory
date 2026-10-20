@@ -70,6 +70,37 @@ def test_retention_removes_expired_content_and_search_index(tmp_path):
     asyncio.run(exercise())
 
 
+def test_retention_vacuum_preserves_live_fts_doc_mapping(tmp_path):
+    async def exercise():
+        engine = Engine(Settings(data_dir=tmp_path, api_key="test"))
+        old = AddRequest(request_id="old", user_id="tenant", session_id="old-session",
+                         messages=[{"role": "user", "content": "Obsoletequasar belongs to Talia."}])
+        live = AddRequest(request_id="live", user_id="tenant", session_id="live-session",
+                          messages=[{"role": "user", "content": "Freshsupernova belongs to Talia."}])
+        await engine.add(old)
+        await engine.add(live)
+        db = engine.store.connect("tenant")
+        live_id, live_rowid = db.execute(
+            "SELECT id, doc_rowid FROM docs WHERE request_id='live'").fetchone()
+        assert db.execute("SELECT rowid FROM docs WHERE id=?", (live_id,)).fetchone()[0] == live_rowid
+        with db:
+            for table in ("docs", "messages", "writes"):
+                db.execute(f"UPDATE {table} SET added_at=? WHERE request_id='old'", (time.time() - 30 * 86400,))
+        db.close()
+        engine.store.purge_expired(29)
+        reopened = Engine(Settings(data_dir=tmp_path, api_key="test"))
+        docs, ranked = reopened.store.candidates("tenant", "Freshsupernova", [], 10)
+        assert list(docs) == [live_id]
+        assert ranked[0][0] == [live_id]
+        assert reopened.store.candidates("tenant", "Obsoletequasar", [], 10)[1][0][0] == []
+        db = reopened.store.connect("tenant")
+        assert db.execute("SELECT doc_rowid FROM docs WHERE id=?", (live_id,)).fetchone()[0] == live_rowid
+        db.close()
+        await engine.models.close()
+        await reopened.models.close()
+    asyncio.run(exercise())
+
+
 def test_every_source_message_is_indexed_across_media_and_long_boundaries(tmp_path):
     for stride in (2, 4):
         engine = Engine(Settings(data_dir=tmp_path / str(stride), api_key="test", window_stride=stride))

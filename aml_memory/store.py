@@ -33,6 +33,8 @@ class Store:
         return self.root / (hashlib.sha256(user_id.encode()).hexdigest() + ".sqlite3")
 
     def connect(self, user_id, create=True):
+        if sqlite3.sqlite_version_info < (3, 43, 0):
+            raise RuntimeError("SQLite >= 3.43 is required for contentless-delete FTS5")
         path = self.path(user_id)
         if not create and not path.exists():
             return None
@@ -49,13 +51,14 @@ class Store:
                 content TEXT, text TEXT, role TEXT, timestamp INTEGER, added_at REAL
             );
             CREATE TABLE IF NOT EXISTS docs (
-                id TEXT PRIMARY KEY, request_id TEXT, session_id TEXT, start_seq INTEGER,
+                doc_rowid INTEGER PRIMARY KEY, id TEXT UNIQUE NOT NULL,
+                request_id TEXT, session_id TEXT, start_seq INTEGER,
                 end_seq INTEGER, content TEXT, text TEXT, vector BLOB, added_at REAL
             );
             CREATE INDEX IF NOT EXISTS docs_request ON docs(request_id);
             CREATE INDEX IF NOT EXISTS messages_session ON messages(session_id, seq);
-            CREATE VIRTUAL TABLE IF NOT EXISTS words USING fts5(id UNINDEXED, text);
-            CREATE VIRTUAL TABLE IF NOT EXISTS trigrams USING fts5(id UNINDEXED, text);
+            CREATE VIRTUAL TABLE IF NOT EXISTS words USING fts5(text, content='', contentless_delete=1);
+            CREATE VIRTUAL TABLE IF NOT EXISTS trigrams USING fts5(text, content='', contentless_delete=1);
         """)
         row = db.execute("SELECT value FROM meta WHERE key='signature'").fetchone()
         if row and row[0] != self.signature:
@@ -87,11 +90,14 @@ class Store:
                         req.request_id, req.session_id, json.dumps(message.model_dump()["content"], ensure_ascii=False),
                         content_text(message.content), message.role, message.timestamp, now))
                 for doc in docs:
-                    db.execute("INSERT INTO docs VALUES(?,?,?,?,?,?,?,?,?)", (
+                    cursor = db.execute("""INSERT INTO docs(
+                        id, request_id, session_id, start_seq, end_seq, content, text, vector, added_at
+                    ) VALUES(?,?,?,?,?,?,?,?,?)""", (
                         doc["id"], req.request_id, req.session_id, doc["start"], doc["end"],
                         json.dumps(doc["content"], ensure_ascii=False), doc["text"], doc.get("vector"), now))
-                    db.execute("INSERT INTO words VALUES(?,?)", (doc["id"], " ".join(terms(doc["index_text"]))))
-                    db.execute("INSERT INTO trigrams VALUES(?,?)", (doc["id"], " ".join(grams(doc["index_text"]))))
+                    rowid = cursor.lastrowid
+                    db.execute("INSERT INTO words(rowid,text) VALUES(?,?)", (rowid, " ".join(terms(doc["index_text"]))))
+                    db.execute("INSERT INTO trigrams(rowid,text) VALUES(?,?)", (rowid, " ".join(grams(doc["index_text"]))))
                 db.execute("INSERT INTO writes VALUES(?,?,?)", (req.request_id, digest, now))
         finally:
             db.close()
@@ -105,7 +111,8 @@ class Store:
             return []
         expression = " OR ".join('"' + token.replace('"', '""') + '"' for token in tokens)
         return [r[0] for r in db.execute(
-            f"SELECT id FROM {table} WHERE {table} MATCH ? ORDER BY bm25({table}), id LIMIT ?",
+            f"SELECT docs.id FROM {table} JOIN docs ON docs.rowid={table}.rowid "
+            f"WHERE {table} MATCH ? ORDER BY bm25({table}), docs.id LIMIT ?",
             (expression, limit))]
 
     def candidates(self, user_id, query, options, limit):
@@ -175,10 +182,10 @@ class Store:
             db = sqlite3.connect(path, timeout=60)
             try:
                 db.execute("PRAGMA secure_delete=ON")
-                old = [r[0] for r in db.execute("SELECT id FROM docs WHERE added_at < ?", (cutoff,))]
+                old = [r[0] for r in db.execute("SELECT rowid FROM docs WHERE added_at < ?", (cutoff,))]
                 with db:
-                    db.executemany("DELETE FROM words WHERE id=?", [(x,) for x in old])
-                    db.executemany("DELETE FROM trigrams WHERE id=?", [(x,) for x in old])
+                    db.executemany("DELETE FROM words WHERE rowid=?", [(x,) for x in old])
+                    db.executemany("DELETE FROM trigrams WHERE rowid=?", [(x,) for x in old])
                     for table in ("docs", "messages", "writes"):
                         db.execute(f"DELETE FROM {table} WHERE added_at < ?", (cutoff,))
                 if old:
