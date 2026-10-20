@@ -3,19 +3,18 @@ import json
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
-import numpy as np
-
 from .models import AcademicModels
+from . import __version__
 from .schema import content_text
 from .store import Store, fingerprint
-from .text import quoted_entities, split_spans, terms
+from .text import quoted_entities, split_spans
 
 
 class Engine:
     def __init__(self, settings):
         self.settings = settings
         signature = fingerprint({"mode": settings.mode, "chunk": settings.chunk_chars,
-                                 "overlap": settings.overlap_chars, "version": "0.1.0",
+                                 "overlap": settings.overlap_chars, "version": __version__,
                                  "window_stride": settings.window_stride,
                                  "compact_headers": settings.compact_headers,
                                  "embedding": AcademicModels.EMBEDDING_MODEL,
@@ -78,9 +77,14 @@ class Engine:
                 return
             docs = self.documents(req)
             if self.settings.mode == "research":
+                source = "\n\n".join(self.render(message, index, req.session_id)
+                                      for index, message in enumerate(req.messages))
+                segments = list(split_spans(source, 16000, 0))
+                tagged = await asyncio.gather(*(self.models.source_tags(text) for _, _, text in segments))
+                entries = [entry for batch in tagged for entry in batch]
                 for doc in docs:
-                    tags = await self.models.index_tags(doc["text"])
-                    doc["index_text"] += "\n" + tags
+                    tags = [tag for entry in entries if entry["quote"] in doc["text"] for tag in entry["tags"]]
+                    doc["index_text"] += "\n" + " ".join(dict.fromkeys(tags))
             if self.settings.mode != "lexical":
                 vectors = await self.models.embed([doc["index_text"] for doc in docs])
                 for doc, vector in zip(docs, vectors, strict=True):
@@ -95,11 +99,9 @@ class Engine:
                 return []
             if self.settings.mode != "lexical":
                 query_vector = (await self.models.embed([query]))[0]
-                vectors = [(key, np.frombuffer(doc["vector"], dtype=np.float32)) for key, doc in docs.items() if doc["vector"]]
-                if vectors:
-                    scores = np.stack([v for _, v in vectors]) @ query_vector
-                    order = np.argsort(-scores, kind="stable")[:self.settings.candidate_limit]
-                    ranked_lists.append(([vectors[int(i)][0] for i in order], 1.0))
+                dense = await asyncio.to_thread(self.store.dense_top, req.user_id, query_vector, self.settings.candidate_limit)
+                docs.update(await asyncio.to_thread(self.store.fetch_docs, req.user_id, dense))
+                ranked_lists.append((dense, 1.0))
             scores = defaultdict(float)
             for ranking, weight in ranked_lists:
                 for rank, key in enumerate(ranking):
@@ -110,7 +112,8 @@ class Engine:
                 names = Counter(x for key in seeds for x in quoted_entities(docs[key]["text"].split("]\n", 1)[-1]))
                 extra = [name for name, count in names.most_common(8) if count >= 2 and name.lower() not in query.lower()]
                 if extra:
-                    _, bridge_lists = await asyncio.to_thread(self.store.candidates, req.user_id, query + " " + " ".join(extra), [], self.settings.candidate_limit // 2)
+                    bridge_docs, bridge_lists = await asyncio.to_thread(self.store.candidates, req.user_id, query + " " + " ".join(extra), [], self.settings.candidate_limit // 2)
+                    docs.update(bridge_docs)
                     for ranking, weight in bridge_lists:
                         for rank, key in enumerate(ranking):
                             scores[key] += self.settings.bridge_weight * weight / (60 + rank + 1)

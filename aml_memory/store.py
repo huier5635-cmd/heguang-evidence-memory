@@ -1,8 +1,11 @@
 import hashlib
+import heapq
 import json
 import sqlite3
 import time
 from pathlib import Path
+
+import numpy as np
 
 from .text import terms
 
@@ -115,8 +118,53 @@ class Store:
             # Options get their own lower-weight retrieval path, no answer selection.
             for option in options:
                 lists.append((self.lexical(db, query + " " + option, "words", limit // 2), 0.2))
-            docs = {r["id"]: dict(r) for r in db.execute("SELECT * FROM docs")}
+            ids = {key for ranking, _ in lists for key in ranking}
+            if ids:
+                docs = self.fetch_docs_db(db, ids)
+            else:
+                # No lexical evidence: preserve a deterministic, bounded fallback.
+                docs = {r["id"]: dict(r) for r in db.execute("SELECT * FROM docs ORDER BY id LIMIT ?", (limit,))}
             return docs, lists
+        finally:
+            db.close()
+
+    @staticmethod
+    def fetch_docs_db(db, ids):
+        ids = sorted(set(ids))
+        docs = {}
+        for offset in range(0, len(ids), 400):
+            batch = ids[offset:offset + 400]
+            placeholders = ",".join("?" for _ in batch)
+            docs.update((r["id"], dict(r)) for r in db.execute(
+                f"SELECT * FROM docs WHERE id IN ({placeholders})", batch))
+        return docs
+
+    def fetch_docs(self, user_id, ids):
+        db = self.connect(user_id, create=False)
+        if db is None:
+            return {}
+        try:
+            return self.fetch_docs_db(db, ids)
+        finally:
+            db.close()
+
+    def dense_top(self, user_id, query_vector, limit, batch_size=256):
+        """Exact cosine scan with bounded matrix/heap memory; never loads source bodies."""
+        db = self.connect(user_id, create=False)
+        if db is None:
+            return []
+        try:
+            cursor = db.execute("SELECT id, vector FROM docs WHERE vector IS NOT NULL")
+            def scored():
+                while rows := cursor.fetchmany(batch_size):
+                    vectors = [np.frombuffer(row["vector"], dtype=np.float32) for row in rows]
+                    if any(v.shape != query_vector.shape or not np.isfinite(v).all() for v in vectors):
+                        raise RuntimeError("Invalid stored vector shape or values")
+                    similarities = np.stack(vectors) @ query_vector
+                    for row, score in zip(rows, similarities, strict=True):
+                        yield (float(score), row["id"])
+            best = heapq.nsmallest(limit, scored(), key=lambda item: (-item[0], item[1]))
+            return [key for _, key in best]
         finally:
             db.close()
 
