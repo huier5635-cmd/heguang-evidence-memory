@@ -42,24 +42,26 @@ def create_app(settings=None):
         if request.url.path == "/health":
             # Health checks must not queue behind long synchronous Add requests.
             return await call_next(request)
-        if request.url.path != "/health":
-            if settings.api_key:
-                auth = request.headers.get("authorization", "")
-                supplied = request.headers.get("x-api-key", "")
-                if auth.lower().startswith(("bearer ", "token ")):
-                    supplied = auth.split(" ", 1)[1]
-                if not hmac.compare_digest(supplied.encode(), settings.api_key.encode()):
-                    return JSONResponse({"detail": {"reason": "Invalid API credential"}}, status_code=401)
+        if settings.api_key:
+            auth = request.headers.get("authorization", "")
+            supplied = request.headers.get("x-api-key", "")
+            if auth.lower().startswith(("bearer ", "token ")):
+                supplied = auth.split(" ", 1)[1]
+            if not hmac.compare_digest(supplied.encode(), settings.api_key.encode()):
+                return JSONResponse({"detail": {"reason": "Invalid API credential"}}, status_code=401)
+        # Admit before reading a body. Queued uploads must not each allocate
+        # another max_body_bytes while a long Add/model call occupies a slot.
+        # Uvicorn's receive flow control can then pause those upload streams.
+        async with slots:
             total = 0
             body = bytearray()
             async for chunk in request.stream():
                 total += len(chunk)
                 if total > settings.max_body_bytes:
-                    return JSONResponse({"detail": {"reason": "Request exceeds configured 64 MiB limit"}}, status_code=413)
+                    return JSONResponse({"detail": {"reason": "Request exceeds configured body limit"}}, status_code=413)
                 body.extend(chunk)
             # Cache the checked body for FastAPI's JSON/Pydantic parser.
             request._body = bytes(body)
-        async with slots:
             return await call_next(request)
 
     @app.exception_handler(ModelUnavailable)

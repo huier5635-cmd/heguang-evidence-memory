@@ -1,0 +1,106 @@
+{
+  "checked_at_utc": "2026-10-20T16:03:31.490845+00:00",
+  "base_url": "https://heguang-8-208-30-48.sslip.io",
+  "application_source_commit": "26a922f02119988d9d891800371c170ba116629c",
+  "transport_notes": [
+    "Previous recording attempt failed once with SSLEOFError before writing any record; a direct default-CA TLS handshake and subsequent health request then succeeded."
+  ],
+  "mode": "lexical",
+  "version": "0.1.1",
+  "certificate": {
+    "protocol": "TLSv1.3",
+    "not_before": "Oct 20 14:49:37 2026 GMT",
+    "not_after": "Jan 18 14:49:36 2027 GMT",
+    "subject_alt_names": [
+      [
+        "DNS",
+        "heguang-8-208-30-48.sslip.io"
+      ]
+    ],
+    "issuer": [
+      [
+        [
+          "countryName",
+          "US"
+        ]
+      ],
+      [
+        [
+          "organizationName",
+          "Let's Encrypt"
+        ]
+      ],
+      [
+        [
+          "commonName",
+          "YE1"
+        ]
+      ]
+    ],
+    "verification": "default system trust; hostname verification enabled"
+  },
+  "external_unauthenticated_checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200,
+      "body": "{\"status\":\"ok\",\"version\":\"0.1.1\",\"mode\":\"lexical\"}"
+    },
+    {
+      "method": "POST",
+      "path": "/add",
+      "status": 401,
+      "body": "{\"detail\":{\"reason\":\"Invalid API credential\"}}"
+    },
+    {
+      "method": "POST",
+      "path": "/search",
+      "status": 401,
+      "body": "{\"detail\":{\"reason\":\"Invalid API credential\"}}"
+    },
+    {
+      "method": "GET",
+      "path": "/unknown",
+      "status": 404,
+      "body": "Not found"
+    }
+  ],
+  "http_redirect": {
+    "status": 308,
+    "location": "https://heguang-8-208-30-48.sslip.io/health"
+  },
+  "authenticated_preflight": {
+    "observed_via": "server Workbench; public HTTPS URL; credential read only from protected server environment file",
+    "status": "pass",
+    "elapsed_seconds": 0.317,
+    "checks": [
+      "add_echo",
+      "immediate_search",
+      "top_k",
+      "idempotent_retry",
+      "user_isolation"
+    ],
+    "data": "synthetic only"
+  },
+  "independent_external_verification": "second chat verified 200/401/401 with default CA trust",
+  "academic_application": "website acknowledged submitted; review and eligibility pending",
+  "official_smoke_runs": 0,
+  "official_full_runs": 0,
+  "real_model_calls": 0,
+  "limitations": [
+    "Not an official evaluation or score.",
+    "Full-scale disk, memory and throughput not proven.",
+    "Model-free academic eligibility pending organizer clarification."
+  ],
+  "host_retention": {
+    "service": "heguang-retention.service",
+    "timer": "heguang-retention.timer",
+    "period": "hourly plus up to 120 seconds jitter",
+    "retention_days": 29,
+    "persistent": true,
+    "first_run_result": "success",
+    "first_run_exit_code": 0,
+    "api_process_independent": true,
+    "data": "synthetic only; no elapsed-29-day test"
+  }
+}

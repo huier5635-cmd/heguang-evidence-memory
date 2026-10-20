@@ -1,0 +1,64 @@
+{
+  "experiment": "Bounded application request-body admission",
+  "tested_at_utc": "2026-10-20T16:52:39Z",
+  "baseline_source_commit": "26a922f02119988d9d891800371c170ba116629c",
+  "candidate_parent_commit": "db75eaa12053dbc0d264756b27df83b265cef2e5",
+  "baseline": {
+    "source_version": "0.1.1",
+    "transport": "local TCP HTTP/1.1 Uvicorn",
+    "active_adds_held": 1,
+    "max_concurrency": 1,
+    "queued_uploads": 6,
+    "synthetic_text_bytes_per_upload": 4194304,
+    "queued_body_bytes_consumed_before_release": 25166484,
+    "queued_uploads_consumed": 6,
+    "python_traced_current_bytes": 53151239,
+    "python_traced_peak_bytes": 53183050,
+    "health_status_while_busy": 200,
+    "health_ms_while_busy": 9.549,
+    "observation_seconds": 0.453,
+    "completed_adds_after_release": 7,
+    "all_http_200": true,
+    "real_model_calls": 0,
+    "official_runs": 0,
+    "production_changed": false,
+    "api_source_sha256": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+    "limitations": "Synthetic ingress only; Add implementation mocked. Python traced allocations are not RSS, process total memory, reverse-proxy behavior or Full capacity."
+  },
+  "candidate": {
+    "source_version": "0.1.2.dev1",
+    "transport": "local TCP HTTP/1.1 Uvicorn",
+    "active_adds_held": 1,
+    "max_concurrency": 1,
+    "queued_uploads": 6,
+    "synthetic_text_bytes_per_upload": 4194304,
+    "queued_body_bytes_consumed_before_release": 0,
+    "queued_uploads_consumed": 0,
+    "python_traced_current_bytes": 2488550,
+    "python_traced_peak_bytes": 2900218,
+    "health_status_while_busy": 200,
+    "health_ms_while_busy": 11.368,
+    "observation_seconds": 0.36,
+    "completed_adds_after_release": 7,
+    "all_http_200": true,
+    "real_model_calls": 0,
+    "official_runs": 0,
+    "production_changed": false,
+    "api_source_sha256": "db6d8f98ae0ddd8f77e53f4a7b64c8edd51ed2585dc6f10325c8b1054e7455ad",
+    "limitations": "Synthetic ingress only; Add implementation mocked. Python traced allocations are not RSS, process total memory, reverse-proxy behavior or Full capacity."
+  },
+  "regression_tests": {
+    "old_source_new_tests": {
+      "passed": 4,
+      "failed": 1,
+      "failure": "Queued upload body was consumed before a processing slot became available"
+    },
+    "candidate_all_tests": {
+      "passed": 24,
+      "failed": 0
+    }
+  },
+  "production_changed": false,
+  "official_runs": 0,
+  "real_model_calls": 0
+}
