@@ -1,0 +1,224 @@
+{
+  "pid": 63771,
+  "process_state": "missing",
+  "checks": {
+    "verified_source_files": 17,
+    "tests_passed": 43,
+    "model_calls": "mock only",
+    "production_changed": false
+  },
+  "sqlite_version": "3.45.1",
+  "source_sha256": {
+    "aml_memory/text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+    "aml_memory/engine.py": "4a4075c50bee5a75ca739bfa333a044ba0d2768ba68694eb74d04dc4397f63e0",
+    "aml_memory/config.py": "5f56af97287970b16cb2ffd5f053c321232d67494c72a04bad3b03349e310811",
+    "aml_memory/models.py": "5c75a9c305e102d891ef434ae79ab6d517571c7f587620c1f59131a3b2c50fc9",
+    "aml_memory/__init__.py": "702ca303dc84c1460771d2056b44fa71ff18947b62d0c755b8ab626bb25b4549",
+    "aml_memory/schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+    "aml_memory/api.py": "db6d8f98ae0ddd8f77e53f4a7b64c8edd51ed2585dc6f10325c8b1054e7455ad",
+    "aml_memory/store.py": "9438606728c903bc984ec2439ae3a57c7a7957a6df896c4758a450e96f4a53e1"
+  },
+  "report": {
+    "purpose": "Bounded synthetic end-to-end lexical HTTP capacity diagnostic",
+    "platform": "Linux-6.8.0-63-generic-x86_64-with-glibc2.39",
+    "application_version": "0.1.2.dev4",
+    "source_sha256": {
+      "__init__.py": "702ca303dc84c1460771d2056b44fa71ff18947b62d0c755b8ab626bb25b4549",
+      "api.py": "db6d8f98ae0ddd8f77e53f4a7b64c8edd51ed2585dc6f10325c8b1054e7455ad",
+      "config.py": "5f56af97287970b16cb2ffd5f053c321232d67494c72a04bad3b03349e310811",
+      "engine.py": "4a4075c50bee5a75ca739bfa333a044ba0d2768ba68694eb74d04dc4397f63e0",
+      "models.py": "5c75a9c305e102d891ef434ae79ab6d517571c7f587620c1f59131a3b2c50fc9",
+      "schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+      "store.py": "9438606728c903bc984ec2439ae3a57c7a7957a6df896c4758a450e96f4a53e1",
+      "text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f"
+    },
+    "requested_stages_messages": [
+      1000,
+      10000,
+      50000,
+      100000
+    ],
+    "batch_messages": 1000,
+    "stages": [
+      {
+        "messages": 1000,
+        "documents": 500,
+        "add_requests_total": 1,
+        "source_text_characters_total": 284675,
+        "http_request_bytes_total": 316268,
+        "stage_add_requests": 1,
+        "add_p50_ms": 796.506,
+        "add_p95_ms": 796.506,
+        "max_add_body_bytes": 316268,
+        "searches_per_class": 10,
+        "unique_marker_hits_at_100": 10,
+        "search_ms": {
+          "unique_marker": {
+            "p50": 20.977,
+            "p95": 24.906
+          },
+          "broad_topic": {
+            "p50": 31.907,
+            "p95": 34.843
+          }
+        },
+        "database_and_wal_bytes": 2723840,
+        "worker_rss_bytes_at_stage_end": 73650176,
+        "worker_peak_rss_bytes_so_far": 75923456,
+        "health_success_samples_so_far": 13,
+        "health_errors_so_far": 0,
+        "elapsed_seconds": 2.374
+      },
+      {
+        "messages": 10000,
+        "documents": 5000,
+        "add_requests_total": 10,
+        "source_text_characters_total": 2846782,
+        "http_request_bytes_total": 3162712,
+        "stage_add_requests": 9,
+        "add_p50_ms": 774.842,
+        "add_p95_ms": 795.517,
+        "max_add_body_bytes": 316276,
+        "searches_per_class": 10,
+        "unique_marker_hits_at_100": 10,
+        "search_ms": {
+          "unique_marker": {
+            "p50": 36.45,
+            "p95": 39.361
+          },
+          "broad_topic": {
+            "p50": 115.463,
+            "p95": 120.949
+          }
+        },
+        "database_and_wal_bytes": 28209152,
+        "worker_rss_bytes_at_stage_end": 76836864,
+        "worker_peak_rss_bytes_so_far": 76886016,
+        "health_success_samples_so_far": 94,
+        "health_errors_so_far": 0,
+        "elapsed_seconds": 11.255
+      },
+      {
+        "messages": 50000,
+        "documents": 25000,
+        "add_requests_total": 50,
+        "source_text_characters_total": 14233924,
+        "http_request_bytes_total": 15813624,
+        "stage_add_requests": 40,
+        "add_p50_ms": 853.686,
+        "add_p95_ms": 906.142,
+        "max_add_body_bytes": 316281,
+        "searches_per_class": 10,
+        "unique_marker_hits_at_100": 10,
+        "search_ms": {
+          "unique_marker": {
+            "p50": 131.6,
+            "p95": 141.053
+          },
+          "broad_topic": {
+            "p50": 465.881,
+            "p95": 469.373
+          }
+        },
+        "database_and_wal_bytes": 133947392,
+        "worker_rss_bytes_at_stage_end": 76857344,
+        "worker_peak_rss_bytes_so_far": 77312000,
+        "health_success_samples_so_far": 472,
+        "health_errors_so_far": 0,
+        "elapsed_seconds": 52.955
+      },
+      {
+        "messages": 100000,
+        "documents": 50000,
+        "add_requests_total": 100,
+        "source_text_characters_total": 28467851,
+        "http_request_bytes_total": 31627301,
+        "stage_add_requests": 50,
+        "add_p50_ms": 871.92,
+        "add_p95_ms": 930.792,
+        "max_add_body_bytes": 316281,
+        "searches_per_class": 10,
+        "unique_marker_hits_at_100": 10,
+        "search_ms": {
+          "unique_marker": {
+            "p50": 219.019,
+            "p95": 223.515
+          },
+          "broad_topic": {
+            "p50": 902.91,
+            "p95": 1003.018
+          }
+        },
+        "database_and_wal_bytes": 262893568,
+        "worker_rss_bytes_at_stage_end": 61345792,
+        "worker_peak_rss_bytes_so_far": 77312000,
+        "health_success_samples_so_far": 989,
+        "health_errors_so_far": 0,
+        "elapsed_seconds": 113.564
+      }
+    ],
+    "stop_reason": "completed_requested_stages",
+    "elapsed_seconds": 113.79,
+    "peak_worker_rss_bytes": 77312000,
+    "minimum_host_available_bytes": 315817984,
+    "peak_database_and_wal_bytes": 274408808,
+    "health_success_samples": 989,
+    "health_errors": 0,
+    "health_p95_ms": 8.939,
+    "health_max_ms": 38.408,
+    "guards": {
+      "worker_rss_mib": 384,
+      "available_memory_floor_mib": 192,
+      "database_disk_mib": 512,
+      "wall_seconds": 360
+    },
+    "production_changed": false,
+    "real_model_calls": 0,
+    "official_runs": 0,
+    "limitations": "Synthetic text, one user, one sequential write stream, lexical mode, Top100. Actual sampled worker RSS excludes controller, proxy, OS and other services. No dense vectors/model effects, adversarial workload, actual private corpus, crash recovery or official Full capacity proof."
+  },
+  "completed": true,
+  "source_storage": {
+    "messages": [
+      100000,
+      0
+    ],
+    "docs": [
+      50000,
+      0
+    ],
+    "quick_check": "ok",
+    "table_page_bytes": {
+      "docs": 102445056,
+      "docs_lookup": 2736128,
+      "docs_request": 913408,
+      "messages": 34226176,
+      "messages_session": 2420736,
+      "meta": 4096,
+      "sqlite_autoindex_docs_1": 2461696,
+      "sqlite_autoindex_meta_1": 4096,
+      "sqlite_autoindex_writes_1": 4096,
+      "sqlite_schema": 4096,
+      "sqlite_sequence": 4096,
+      "trigrams_config": 4096,
+      "trigrams_data": 92307456,
+      "trigrams_docsize": 659456,
+      "trigrams_idx": 110592,
+      "words_config": 4096,
+      "words_data": 21094400,
+      "words_docsize": 643072,
+      "words_idx": 36864,
+      "writes": 16384
+    }
+  },
+  "production_health": {
+    "status": "ok",
+    "version": "0.1.1",
+    "mode": "lexical"
+  },
+  "services": {
+    "heguang-memory": "active",
+    "caddy": "active",
+    "heguang-retention.timer": "active"
+  }
+}

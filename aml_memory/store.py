@@ -86,16 +86,17 @@ class Store:
             with db:
                 # A transaction makes the entire Add searchable atomically.
                 for message in req.messages:
-                    from .schema import content_text
                     db.execute("INSERT INTO messages(request_id,session_id,content,text,role,timestamp,added_at) VALUES(?,?,?,?,?,?,?)", (
                         req.request_id, req.session_id, json.dumps(message.model_dump()["content"], ensure_ascii=False),
-                        content_text(message.content), message.role, message.timestamp, now))
+                        None, message.role, message.timestamp, now))
                 for doc in docs:
                     cursor = db.execute("""INSERT INTO docs(
                         id, request_id, session_id, start_seq, end_seq, content, text, vector, added_at
                     ) VALUES(?,?,?,?,?,?,?,?,?)""", (
                         doc["id"], req.request_id, req.session_id, doc["start"], doc["end"],
-                        json.dumps(doc["content"], ensure_ascii=False), doc["text"], doc.get("vector"), now))
+                        json.dumps(doc["content"], ensure_ascii=False),
+                        None if isinstance(doc["content"], str) and doc["text"] == doc["content"] else doc["text"],
+                        doc.get("vector"), now))
                     rowid = cursor.lastrowid
                     db.execute("INSERT INTO words(rowid,text) VALUES(?,?)", (rowid, " ".join(terms(doc["index_text"]))))
                     db.execute("INSERT INTO trigrams(rowid,text) VALUES(?,?)", (rowid, " ".join(grams(doc["index_text"]))))
@@ -131,10 +132,24 @@ class Store:
                 docs = self.fetch_docs_db(db, ids)
             else:
                 # No lexical evidence: preserve a deterministic, bounded fallback.
-                docs = {r["id"]: dict(r) for r in db.execute("SELECT * FROM docs ORDER BY id LIMIT ?", (limit,))}
+                docs = {r["id"]: self.materialize_doc(r) for r in db.execute("SELECT * FROM docs ORDER BY id LIMIT ?", (limit,))}
             return docs, lists
         finally:
             db.close()
+
+    @staticmethod
+    def materialize_doc(row):
+        """Restore only an omitted exact copy; media/distinct renderings stay stored."""
+        doc = dict(row)
+        if doc["text"] is None:
+            try:
+                text = json.loads(doc["content"])
+            except (TypeError, ValueError):
+                raise RuntimeError("Invalid stored source representation") from None
+            if not isinstance(text, str):
+                raise RuntimeError("Invalid stored source representation")
+            doc["text"] = text
+        return doc
 
     @staticmethod
     def fetch_docs_db(db, ids):
@@ -143,7 +158,7 @@ class Store:
         for offset in range(0, len(ids), 400):
             batch = ids[offset:offset + 400]
             placeholders = ",".join("?" for _ in batch)
-            docs.update((r["id"], dict(r)) for r in db.execute(
+            docs.update((r["id"], Store.materialize_doc(r)) for r in db.execute(
                 f"SELECT * FROM docs WHERE id IN ({placeholders})", batch))
         return docs
 

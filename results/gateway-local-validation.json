@@ -1,0 +1,12 @@
+{
+  "version": "0.1.2.dev3",
+  "tests_passed": 38,
+  "model_transport": "httpx.MockTransport only",
+  "real_model_calls": 0,
+  "cloud_tests_this_version": null,
+  "official_runs": 0,
+  "account_registered": false,
+  "credits_claimed": false,
+  "provider_key_created": false,
+  "scope": "Gateway request protocol, fixed model identity, endpoint validation, 402 failure and research index-route binding"
+}

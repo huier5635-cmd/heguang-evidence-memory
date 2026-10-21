@@ -13,6 +13,7 @@ class Settings:
     embedding_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     llm_key: str = ""
     llm_url: str = "https://api.openai.com/v1"
+    llm_provider: str = "openai"
     chunk_chars: int = 1800
     overlap_chars: int = 200
     candidate_limit: int = 400
@@ -42,9 +43,18 @@ class Settings:
         for endpoint in (self.embedding_url, self.llm_url):
             if not endpoint.startswith("https://"):
                 raise ValueError("Model endpoints must use HTTPS")
+        if self.llm_provider not in {"openai", "vercel"}:
+            raise ValueError("AML_LLM_PROVIDER must be openai or vercel")
+        gateway_url = "https://ai-gateway.vercel.sh/v1"
+        if self.llm_provider == "vercel" and self.llm_url.rstrip("/") != gateway_url:
+            raise ValueError("Vercel LLM provider requires the official AI Gateway endpoint")
+        if self.llm_provider != "vercel" and self.llm_url.rstrip("/") == gateway_url:
+            raise ValueError("Set AML_LLM_PROVIDER=vercel for AI Gateway")
 
     @classmethod
     def from_env(cls):
+        llm_provider = os.getenv("AML_LLM_PROVIDER", "openai")
+        default_llm_url = "https://ai-gateway.vercel.sh/v1" if llm_provider == "vercel" else cls.llm_url
         return cls(
             data_dir=Path(os.getenv("AML_DATA_DIR", "data")),
             mode=os.getenv("AML_MODE", "lexical"),
@@ -53,7 +63,8 @@ class Settings:
             embedding_key=os.getenv("AML_EMBEDDING_KEY", ""),
             embedding_url=os.getenv("AML_EMBEDDING_URL", cls.embedding_url),
             llm_key=os.getenv("AML_LLM_KEY", ""),
-            llm_url=os.getenv("AML_LLM_URL", cls.llm_url),
+            llm_url=os.getenv("AML_LLM_URL", default_llm_url),
+            llm_provider=llm_provider,
             chunk_chars=int(os.getenv("AML_CHUNK_CHARS", "1800")),
             overlap_chars=int(os.getenv("AML_OVERLAP_CHARS", "200")),
             max_concurrency=int(os.getenv("AML_MAX_CONCURRENCY", "4")),

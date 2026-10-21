@@ -19,7 +19,10 @@ class Engine:
                                  "compact_headers": settings.compact_headers,
                                  "embedding": AcademicModels.EMBEDDING_MODEL,
                                  "llm": AcademicModels.LLM_MODEL,
+                                 "llm_provider": settings.llm_provider if settings.mode == "research" else "unused",
+                                 "llm_url": settings.llm_url.rstrip("/") if settings.mode == "research" else "unused",
                                  "fts_schema": 2,
+                                 "storage_schema": 3,
                                  "embedding_url": settings.embedding_url if settings.mode != "lexical" else "unused"})
         self.store = Store(settings.data_dir, signature)
         # Striped locks bound memory use; no evaluation content is stored in the lock map.

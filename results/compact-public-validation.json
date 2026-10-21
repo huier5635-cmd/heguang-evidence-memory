@@ -1,0 +1,82 @@
+{
+  "purpose": "isolated contentless FTS storage candidate validation",
+  "baseline_label": "26a922f02119988d9d891800371c170ba116629c",
+  "sqlite_version": "3.53.1",
+  "production_changed": false,
+  "real_model_calls": 0,
+  "official_runs": 0,
+  "source_sha256": {
+    "baseline": {
+      "aml_memory\\api.py": "d05d13b3848417db90bfd1a3ef0c43dec091f7012996aab8249874bbcab4ecd2",
+      "aml_memory\\config.py": "ec94bbaae40de715af77701f15c383b4722eb06e81f2ea391edf45f3d670fa77",
+      "aml_memory\\engine.py": "078f2fbdc339a420ca3c3a78efdc8c11ad96ec2d5923c2915a27934c1c023ebd",
+      "aml_memory\\models.py": "b40840798d4bee2baca82c8fab319151a52ee09f437c5765f7f7be072067005a",
+      "aml_memory\\schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+      "aml_memory\\store.py": "2fbd917cc94f1f44c27f4a26f892cea53b5b2a5a4326400b3ade6b8752fa2f5c",
+      "aml_memory\\text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+      "aml_memory\\__init__.py": "de9740f69fc6c8e9903694aaa2678071caf41707ea576fda55fd4fbcd3fde6b7"
+    },
+    "candidate": {
+      "aml_memory\\api.py": "db6d8f98ae0ddd8f77e53f4a7b64c8edd51ed2585dc6f10325c8b1054e7455ad",
+      "aml_memory\\config.py": "5f56af97287970b16cb2ffd5f053c321232d67494c72a04bad3b03349e310811",
+      "aml_memory\\engine.py": "4a4075c50bee5a75ca739bfa333a044ba0d2768ba68694eb74d04dc4397f63e0",
+      "aml_memory\\models.py": "5c75a9c305e102d891ef434ae79ab6d517571c7f587620c1f59131a3b2c50fc9",
+      "aml_memory\\schema.py": "e111b5d52600c1a4d703152def9a84080dc60c5185953bc6fd29904bc131cb74",
+      "aml_memory\\store.py": "9438606728c903bc984ec2439ae3a57c7a7957a6df896c4758a450e96f4a53e1",
+      "aml_memory\\text.py": "ac6d3b0a0db23cb6420b1cf32b2506eeee5cfdb994bcd0632db94524e9381f2f",
+      "aml_memory\\__init__.py": "702ca303dc84c1460771d2056b44fa71ff18947b62d0c755b8ab626bb25b4549"
+    }
+  },
+  "lifecycle_checks": [
+    "mixed_age_purge",
+    "remaining_evidence",
+    "reopen_persistence",
+    "retry_after_reopen",
+    "add_after_purge",
+    "partial_fts_failure_rollback",
+    "cross_version_array_equivalence"
+  ],
+  "public_regression": [
+    {
+      "dataset": "1-locomo10",
+      "dataset_sha256": "553cd5a15e25f2ceccc6ed185221eba645080c93e5b91087560a91aa5961f365",
+      "samples": 10,
+      "add_requests": 399,
+      "messages": 5882,
+      "search_queries": 1973,
+      "top_k": 100,
+      "exact_array_matches": 1973,
+      "database_integrity": "ok",
+      "documents": {
+        "baseline": 3011,
+        "candidate": 3011
+      },
+      "database_bytes_including_wal": {
+        "baseline": 33476608,
+        "candidate": 14811136
+      },
+      "elapsed_seconds": 77.547
+    },
+    {
+      "dataset": "2-locomo_refined",
+      "dataset_sha256": "42c737807ed2ee64e1a903fe40b66c149a0c083255e83df7424cec85fe5323b1",
+      "samples": 10,
+      "add_requests": 399,
+      "messages": 5882,
+      "search_queries": 1375,
+      "top_k": 100,
+      "exact_array_matches": 1375,
+      "database_integrity": "ok",
+      "documents": {
+        "baseline": 3011,
+        "candidate": 3011
+      },
+      "database_bytes_including_wal": {
+        "baseline": 33476608,
+        "candidate": 14811136
+      },
+      "elapsed_seconds": 57.125
+    }
+  ],
+  "limitations": "Related public LoCoMo datasets, lexical mode, one local development machine. Exact equivalence on these inputs does not establish held-out answer quality, real model performance, crash recovery or Full capacity."
+}
