@@ -1,8 +1,8 @@
-> **v0.1.2 已上线并通过官方 Smoke。** 本地与云端各 43 项测试通过；公开数据 3,348 次 Search 数组与 v0.1.1 完全一致。云端完成 25 万条合成消息的隔离 HTTP 压测。v0.1.1 与 v0.1.2 的 Smoke 分别为 68.67 和 63.06；正式 Full 正在运行，尚无 Full 成绩或第二期排名。
+> **v0.1.2 已完成首次官方 Full。** 本地与云端各 43 项测试通过；公开数据 3,348 次 Search 数组与 v0.1.1 完全一致。云端完成 25 万条合成消息的隔离 HTTP 压测。v0.1.1 与 v0.1.2 的 Smoke 分别为 68.67 和 63.06；正式 Full 私有成绩待主办方复核，第二期尚未公布公榜名次。
 
 # Heguang Evidence Memory — 0.1.2 原文副本存储
 
-可复现的 Agent Memory Challenge Add/Search 研究原型。学术赛道纯词项方案获赛事方书面允许。生产服务现运行 [固定源码提交 `8ca9914`](https://github.com/huier5635-cmd/heguang-evidence-memory/commit/8ca9914b97e46403c067cb47919319ee0996850e)，官方绑定版本 `v0.1.2-compact-8ca9914`；Smoke `teval_d0080d18da677d8e` 成功完成 46/46 项，平均分 63.06。官方 Full `teval_3a409ec4814ca561` 已于 2026-10-22 03:30:58（北京时间）启动，运行中；公开测试与 Smoke 不能代替正式成绩。
+可复现的 Agent Memory Challenge Add/Search 研究原型。学术赛道纯词项方案获赛事方书面允许。生产服务现运行 [固定源码提交 `8ca9914`](https://github.com/huier5635-cmd/heguang-evidence-memory/commit/8ca9914b97e46403c067cb47919319ee0996850e)，官方绑定版本 `v0.1.2-compact-8ca9914`；Smoke `teval_d0080d18da677d8e` 成功完成 46/46 项，平均分 63.06。官方 Full `teval_3a409ec4814ca561` 于 2026-10-23 04:16:08（北京时间）成功完成，评分 9602/9602。私有 Full 分数和公榜、奖项均待主办方复核与发布。
 
 早期 FTS 实验的设计与验证见[存储优化实验](docs/存储优化实验.md)，聚合报告位于 `results/fts-candidate-validation.json`。
 
@@ -18,7 +18,7 @@
 
 生产接口为 `https://heguang-8-208-30-48.sslip.io/add` 和 `/search`，使用现有赛事受控鉴权；公开健康检查为 `/health`。实例为 2 vCPU、1 GiB 内存、30 GiB 系统盘。2026-10-22 03:19 清理隔离压测数据后，根盘可用 25,414,918,144 字节。服务内部 `AML_MAX_CONCURRENCY=2`，超出请求会在读取请求体前排队；赛事 Full 页面要求 Add 和 Search 并发上限至少 16，属于平台派发上限，并非服务同时处理 16 个请求的承诺。
 
-固定 v0.1.2 源码在同一服务器的独立目录完成 250,000 条合成消息、125,000 检索窗口的 HTTP 压测，历时 309.875 秒。数据库与 WAL 峰值 668,097,576 字节，工作进程 RSS 峰值 76,865,536 字节，系统 available 内存最低 288,448,512 字节，健康检查错误 0；单用户宽泛查询 P95 2,297.131 毫秒。合成工作负载不能证明约 3 亿 token 私有 Full 的磁盘峰值、并发请求大小或最终分数。Full 正在运行；2026-10-22 03:42:59 的只读检查显示根盘可用 24,896,454,656 字节，生产数据目录 525,885,440 字节，服务与代理均运行中。
+固定 v0.1.2 源码在同一服务器的独立目录完成 250,000 条合成消息、125,000 检索窗口的 HTTP 压测，历时 309.875 秒。数据库与 WAL 峰值 668,097,576 字节，工作进程 RSS 峰值 76,865,536 字节，系统 available 内存最低 288,448,512 字节，健康检查错误 0；单用户宽泛查询 P95 2,297.131 毫秒。合成工作负载不能证明约 3 亿 token 私有 Full 的磁盘峰值或并发请求大小；上述正式 Full 结果提供了本次实际运行证据。2026-10-22 03:42:59 的只读检查显示根盘可用 24,896,454,656 字节，生产数据目录 525,885,440 字节，服务与代理均运行中。
 
 ## 中文学习文档
 
@@ -145,5 +145,3 @@ $env:AML_MEMORY_SYSTEM_KEY = $env:AML_API_KEY
 公开数据只从作者源获取：[LoCoMo](https://github.com/snap-research/LoCoMo)、[LoCoMo-Refined](https://github.com/mem-eval-suite/LoCoMo_refined)。使用数据须另行遵循其许可证与署名要求；本代码 MIT 许可证不覆盖外部数据。
 
 规则依据（2026-10-20核查）：[比赛](https://agentmemoryleaderboard.ai/competition/)、[接入规则](https://agentmemoryleaderboard.ai/rules)、[API指南](https://agentmemoryleaderboard.ai/api-guide)。本届材料截止2026-10-31 23:59、评测停止2026-11-04 23:59，均为UTC+8；具体资格、奖金及最终结果以官方审核为准。
-
-
