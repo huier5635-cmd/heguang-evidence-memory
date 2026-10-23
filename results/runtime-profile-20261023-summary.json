@@ -1,0 +1,62 @@
+{
+  "purpose": "Offline CPU runtime ablation on previously used public development inputs.\n\nNo official requests, new quality claim, production edits, or persistent score cache.\nEvery runtime has its own process so resident models do not overlap.\n",
+  "completed": true,
+  "fixture_sha256": "17b1926936a5d81cb6ded4edc0c321b9209d04120ab61835658d6f988865b349",
+  "cases": 10,
+  "repeats": 2,
+  "comparisons": {
+    "basic_t2": {
+      "inference_seconds_total": 15.6616750999965,
+      "median_case_seconds": 0.8725844500004314,
+      "maximum_case_seconds": 1.0220621999978903,
+      "speedup_vs_basic_t2": 1.0,
+      "maximum_absolute_logit_difference": 0.0,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 208314368
+    },
+    "basic_t1": {
+      "inference_seconds_total": 24.474502399985795,
+      "median_case_seconds": 1.364156700001331,
+      "maximum_case_seconds": 1.5663155000002007,
+      "speedup_vs_basic_t2": 0.6399180193345051,
+      "maximum_absolute_logit_difference": 0.0,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 207847424
+    },
+    "basic_t2_no_spin": {
+      "inference_seconds_total": 18.112166299993987,
+      "median_case_seconds": 0.9404744999992545,
+      "maximum_case_seconds": 1.6722713999988628,
+      "speedup_vs_basic_t2": 0.8647046874785872,
+      "maximum_absolute_logit_difference": 0.0,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 208588800
+    },
+    "all_t1": {
+      "inference_seconds_total": 24.921844099990267,
+      "median_case_seconds": 1.317171850001614,
+      "maximum_case_seconds": 1.8433317000017269,
+      "speedup_vs_basic_t2": 0.628431629584049,
+      "maximum_absolute_logit_difference": 0.23764276504516602,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 206290944
+    },
+    "all_t2_no_spin": {
+      "inference_seconds_total": 16.87683489999472,
+      "median_case_seconds": 0.9532582499996352,
+      "maximum_case_seconds": 1.2862280000044848,
+      "speedup_vs_basic_t2": 0.9279983594555044,
+      "maximum_absolute_logit_difference": 0.23764276504516602,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 207646720
+    }
+  },
+  "limitations": [
+    "Local Windows CPU, not Linux one-core quota or cloud memory proof.",
+    "Already used development queries; runtime/order comparison only, not independent relevance or coding success.",
+    "Nonzero logit differences or ordering differences require explicit investigation before adoption."
+  ],
+  "production_modified": false,
+  "official_calls": 0,
+  "full_allowed": false
+}

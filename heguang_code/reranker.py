@@ -40,7 +40,9 @@ def reorder(rows, pair_scores, weight=1):
 
 
 class PairScorer:
-    def __init__(self, model_dir):
+    def __init__(self, model_dir, *, threads=2):
+        if type(threads) is not int or threads not in (1, 2):
+            raise ValueError("Reranker threads must be 1 or 2")
         # Imports are optional: the lexical service has no model dependencies.
         import numpy as np
         import onnxruntime as ort
@@ -54,11 +56,14 @@ class PairScorer:
             if actual != expected or (filename == MODEL_FILE and actual != MODEL_SHA256):
                 raise RuntimeError("Pinned reranker checksum mismatch")
         options = ort.SessionOptions()
-        options.intra_op_num_threads = 2
+        options.intra_op_num_threads = threads
         options.inter_op_num_threads = 1
         options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
         options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
         options.enable_cpu_mem_arena = False
+        if threads == 1:
+            options.add_session_config_entry("session.intra_op.allow_spinning", "0")
+            options.add_session_config_entry("session.inter_op.allow_spinning", "0")
         self.session = ort.InferenceSession(str(model_dir / MODEL_FILE), sess_options=options,
                                            providers=["CPUExecutionProvider"])
         self.tokenizer = Tokenizer.from_file(str(model_dir / "tokenizer.json"))

@@ -17,6 +17,7 @@ def create():
         "HCM_SESSION_PENALTY=0",
         "HCM_RERANKER_DIR=/opt/heguang-coding/model",
         "HCM_RERANKER_WEIGHT=4",
+        "HCM_RERANK_THREADS=1",
         "HCM_RERANK_RESPONSE_CHARS=128000",
         "HCM_MAX_CONCURRENCY=1",
         "HCM_LARGE_BODY_BYTES=16777216", ""])

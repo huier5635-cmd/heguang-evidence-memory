@@ -10,6 +10,7 @@ WorkingDirectory=/opt/heguang-coding/app
 EnvironmentFile=/etc/heguang-coding.env
 Environment=PYTHONDONTWRITEBYTECODE=1
 Environment=TOKENIZERS_PARALLELISM=false
+ExecStartPre=/usr/bin/python3 -c "from pathlib import Path; assert '/var/lib/heguang-coding-host/swapfile' in Path('/proc/swaps').read_text(), 'Required Coding swap buffer is not active'"
 ExecStart=/opt/heguang-coding/venv/bin/python -m uvicorn heguang_code.api:create_app --factory --host 127.0.0.1 --port 8752 --workers 1 --no-access-log
 Restart=on-failure
 RestartSec=10
@@ -20,8 +21,10 @@ ProtectHome=true
 ReadWritePaths=/var/lib/heguang-coding
 UMask=0077
 MemoryAccounting=true
-MemoryHigh=500M
-MemoryMax=650M
+MemoryHigh=320M
+MemoryMax=384M
+MemorySwapMax=512M
+CPUQuota=100%
 TasksMax=64
 LimitNOFILE=65536
 

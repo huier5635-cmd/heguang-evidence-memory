@@ -8,8 +8,37 @@ from fastapi.testclient import TestClient
 
 from heguang_code.api import create_app
 from heguang_code.config import Settings
-from heguang_code.reranker import fit_budget, reorder
+from heguang_code.reranker import PairScorer, fit_budget, reorder
 from heguang_code.schema import SearchRequest
+
+
+@pytest.mark.parametrize("value", [0, 3, -1, True, 1.0])
+def test_unbounded_or_noninteger_model_threads_rejected(tmp_path, value):
+    with pytest.raises(ValueError, match="threads must be 1 or 2"):
+        Settings(data_dir=tmp_path, api_key="test", reranker_threads=value)
+    # Reject before loading model dependencies or touching an absent model path.
+    with pytest.raises(ValueError, match="threads must be 1 or 2"):
+        PairScorer(tmp_path / "absent-model", threads=value)
+
+
+def test_single_core_environment_reaches_model_and_health(tmp_path, monkeypatch):
+    import heguang_code.api as api_module
+    observed = []
+
+    class ConfiguredScorer:
+        def __init__(self, directory, *, threads):
+            observed.append((directory, threads))
+
+    monkeypatch.setenv("HCM_API_KEY", "test")
+    monkeypatch.setenv("HCM_DATA_DIR", str(tmp_path / "data"))
+    monkeypatch.setenv("HCM_RERANKER_DIR", str(tmp_path / "model"))
+    monkeypatch.setenv("HCM_RERANK_THREADS", "1")
+    monkeypatch.setattr(api_module, "PairScorer", ConfiguredScorer)
+    settings = Settings.from_env()
+    app = api_module.create_app(settings)
+    with TestClient(app) as client:
+        assert client.get("/health").json()["reranker_threads"] == 1
+    assert observed == [(tmp_path / "model", 1)]
 
 
 def test_reranking_preserves_all_evidence_and_tail_order():

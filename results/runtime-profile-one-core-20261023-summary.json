@@ -1,0 +1,46 @@
+{
+  "purpose": "Offline CPU runtime ablation on previously used public development inputs.\n\nNo official requests, new quality claim, production edits, or persistent score cache.\nEvery runtime has its own process so resident models do not overlap.\n",
+  "completed": true,
+  "fixture_sha256": "17b1926936a5d81cb6ded4edc0c321b9209d04120ab61835658d6f988865b349",
+  "cases": 10,
+  "repeats": 2,
+  "comparisons": {
+    "basic_t2": {
+      "inference_seconds_total": 42.6578459000084,
+      "median_case_seconds": 2.3800234500013175,
+      "maximum_case_seconds": 2.840950800004066,
+      "speedup_vs_basic_t2": 1.0,
+      "maximum_absolute_logit_difference": 0.0,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 209158144
+    },
+    "basic_t1": {
+      "inference_seconds_total": 25.443156299981638,
+      "median_case_seconds": 1.4400235499997507,
+      "maximum_case_seconds": 1.6952757999970345,
+      "speedup_vs_basic_t2": 1.676594106370332,
+      "maximum_absolute_logit_difference": 0.0,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 207597568
+    },
+    "basic_t2_no_spin": {
+      "inference_seconds_total": 28.7363720999856,
+      "median_case_seconds": 1.6099408499976562,
+      "maximum_case_seconds": 2.307867499999702,
+      "speedup_vs_basic_t2": 1.4844548139752747,
+      "maximum_absolute_logit_difference": 0.0,
+      "all_score_orders_equal": true,
+      "rss_peak_sampled_bytes": 208416768
+    }
+  },
+  "one_core_affinity_requested": true,
+  "reference_variant": "basic_t2",
+  "limitations": [
+    "Local Windows CPU, not Linux one-core quota or cloud memory proof.",
+    "Already used development queries; runtime/order comparison only, not independent relevance or coding success.",
+    "Nonzero logit differences or ordering differences require explicit investigation before adoption."
+  ],
+  "production_modified": false,
+  "official_calls": 0,
+  "full_allowed": false
+}

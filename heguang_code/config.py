@@ -16,6 +16,7 @@ class Settings:
     session_penalty: float = 0.0
     reranker_dir: Path | None = None
     reranker_weight: float = 4.0
+    reranker_threads: int = 2
     rerank_response_chars: int = 128000
     max_concurrency: int = 2
     max_body_bytes: int = 64 * 1024 * 1024
@@ -37,6 +38,8 @@ class Settings:
             raise ValueError("Invalid session diversity penalty")
         if not .25 <= self.reranker_weight <= 16 or not self.chunk_chars + 1024 <= self.rerank_response_chars <= 512000:
             raise ValueError("Invalid reranker weight/evidence budget")
+        if type(self.reranker_threads) is not int or self.reranker_threads not in (1, 2):
+            raise ValueError("Reranker threads must be 1 or 2")
         if not 1 <= self.retention_days <= 29 or not 1 <= self.max_concurrency <= 8:
             raise ValueError("Invalid retention/concurrency")
         if not 1024 <= self.large_body_bytes <= 64 * 1024 * 1024:
@@ -50,6 +53,7 @@ class Settings:
                    session_penalty=float(os.getenv("HCM_SESSION_PENALTY", "0")),
                    reranker_dir=Path(os.environ["HCM_RERANKER_DIR"]) if os.getenv("HCM_RERANKER_DIR") else None,
                    reranker_weight=float(os.getenv("HCM_RERANKER_WEIGHT", "4")),
+                   reranker_threads=int(os.getenv("HCM_RERANK_THREADS", "2")),
                    rerank_response_chars=int(os.getenv("HCM_RERANK_RESPONSE_CHARS", "128000")),
                    max_concurrency=int(os.getenv("HCM_MAX_CONCURRENCY", "2")),
                    large_body_bytes=int(os.getenv("HCM_LARGE_BODY_BYTES", "16777216")))

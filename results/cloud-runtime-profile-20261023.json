@@ -1,0 +1,273 @@
+{
+  "event": "coding_cloud_runtime_profile_complete",
+  "status": "passed",
+  "failure_type": null,
+  "source_commit": "978f2ab2bea5ec9f55ce06ce23a31d3e0df4901d",
+  "seconds": 117.067,
+  "scope": "Same synthetic model inputs under actual Linux 100 percent CPU quota, memory cap 320 MiB; not HTTP concurrency or relevance/Full capacity",
+  "variants": [
+    {
+      "variant": "basic_t2",
+      "scores": [
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203
+      ],
+      "documents": 6,
+      "max_document_chars": 12000,
+      "input_sha256": "b71587e0fd9668beaa21e9218ffe49d414915dd3c45301047bf44442465a36bf",
+      "load_seconds": 0.4627,
+      "inference_seconds": 32.4322,
+      "per_document_seconds": [
+        6.0209,
+        5.296,
+        5.2974,
+        5.2825,
+        5.2949,
+        5.2405
+      ],
+      "elapsed_seconds": 32.8969,
+      "process_peak_rss_bytes": 289374208,
+      "cgroup_memory_peak_bytes": 293769216,
+      "cpu_stat_delta": {
+        "usage_usec": 32922795,
+        "user_usec": 30886288,
+        "system_usec": 2036507,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 329,
+        "nr_throttled": 326,
+        "throttled_usec": 30335646,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "cpu_max": "100000 100000",
+      "memory_max": "335544320",
+      "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+      "scorer_sha256": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+      "production_source_modified": false,
+      "official_calls": 0,
+      "full_allowed": false
+    },
+    {
+      "variant": "basic_t1",
+      "scores": [
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203
+      ],
+      "documents": 6,
+      "max_document_chars": 12000,
+      "input_sha256": "b71587e0fd9668beaa21e9218ffe49d414915dd3c45301047bf44442465a36bf",
+      "load_seconds": 0.4172,
+      "inference_seconds": 16.2247,
+      "per_document_seconds": [
+        3.1499,
+        2.6209,
+        2.594,
+        2.65,
+        2.5992,
+        2.6107
+      ],
+      "elapsed_seconds": 16.6437,
+      "process_peak_rss_bytes": 278573056,
+      "cgroup_memory_peak_bytes": 280444928,
+      "cpu_stat_delta": {
+        "usage_usec": 16599586,
+        "user_usec": 15182214,
+        "system_usec": 1417372,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 167,
+        "nr_throttled": 7,
+        "throttled_usec": 72551,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "cpu_max": "100000 100000",
+      "memory_max": "335544320",
+      "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+      "scorer_sha256": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+      "production_source_modified": false,
+      "official_calls": 0,
+      "full_allowed": false
+    },
+    {
+      "variant": "basic_t2_no_spin",
+      "scores": [
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203
+      ],
+      "documents": 6,
+      "max_document_chars": 12000,
+      "input_sha256": "b71587e0fd9668beaa21e9218ffe49d414915dd3c45301047bf44442465a36bf",
+      "load_seconds": 0.4016,
+      "inference_seconds": 29.8771,
+      "per_document_seconds": [
+        5.5099,
+        4.8673,
+        4.8947,
+        4.8704,
+        4.8466,
+        4.8884
+      ],
+      "elapsed_seconds": 30.2798,
+      "process_peak_rss_bytes": 301572096,
+      "cgroup_memory_peak_bytes": 275992576,
+      "cpu_stat_delta": {
+        "usage_usec": 30258492,
+        "user_usec": 28204990,
+        "system_usec": 2053502,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 303,
+        "nr_throttled": 299,
+        "throttled_usec": 22215868,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "cpu_max": "100000 100000",
+      "memory_max": "335544320",
+      "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+      "scorer_sha256": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+      "production_source_modified": false,
+      "official_calls": 0,
+      "full_allowed": false
+    },
+    {
+      "variant": "basic_t2_repeat",
+      "scores": [
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203,
+        -4.529428958892822,
+        -11.039783477783203
+      ],
+      "documents": 6,
+      "max_document_chars": 12000,
+      "input_sha256": "b71587e0fd9668beaa21e9218ffe49d414915dd3c45301047bf44442465a36bf",
+      "load_seconds": 0.4444,
+      "inference_seconds": 32.5019,
+      "per_document_seconds": [
+        6.0794,
+        5.3006,
+        5.2939,
+        5.2955,
+        5.2344,
+        5.2981
+      ],
+      "elapsed_seconds": 32.9482,
+      "process_peak_rss_bytes": 296194048,
+      "cgroup_memory_peak_bytes": 288366592,
+      "cpu_stat_delta": {
+        "usage_usec": 32972331,
+        "user_usec": 30960226,
+        "system_usec": 2012104,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 330,
+        "nr_throttled": 327,
+        "throttled_usec": 30706086,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "cpu_max": "100000 100000",
+      "memory_max": "335544320",
+      "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+      "scorer_sha256": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+      "production_source_modified": false,
+      "official_calls": 0,
+      "full_allowed": false
+    }
+  ],
+  "comparisons": {
+    "basic_t2": {
+      "inference_seconds": 32.4322,
+      "speedup_vs_baseline": 1,
+      "maximum_logit_difference": 0,
+      "all_scores_exactly_equal": true,
+      "peak_rss_bytes": 289374208,
+      "cpu_stat_delta": {
+        "usage_usec": 32922795,
+        "user_usec": 30886288,
+        "system_usec": 2036507,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 329,
+        "nr_throttled": 326,
+        "throttled_usec": 30335646,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      }
+    },
+    "basic_t1": {
+      "inference_seconds": 16.2247,
+      "speedup_vs_baseline": 1.9989,
+      "maximum_logit_difference": 0,
+      "all_scores_exactly_equal": true,
+      "peak_rss_bytes": 278573056,
+      "cpu_stat_delta": {
+        "usage_usec": 16599586,
+        "user_usec": 15182214,
+        "system_usec": 1417372,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 167,
+        "nr_throttled": 7,
+        "throttled_usec": 72551,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      }
+    },
+    "basic_t2_no_spin": {
+      "inference_seconds": 29.8771,
+      "speedup_vs_baseline": 1.0855,
+      "maximum_logit_difference": 0,
+      "all_scores_exactly_equal": true,
+      "peak_rss_bytes": 301572096,
+      "cpu_stat_delta": {
+        "usage_usec": 30258492,
+        "user_usec": 28204990,
+        "system_usec": 2053502,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 303,
+        "nr_throttled": 299,
+        "throttled_usec": 22215868,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      }
+    },
+    "basic_t2_repeat": {
+      "inference_seconds": 32.5019,
+      "speedup_vs_baseline": 0.9979,
+      "maximum_logit_difference": 0,
+      "all_scores_exactly_equal": true,
+      "peak_rss_bytes": 296194048,
+      "cpu_stat_delta": {
+        "usage_usec": 32972331,
+        "user_usec": 30960226,
+        "system_usec": 2012104,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 330,
+        "nr_throttled": 327,
+        "throttled_usec": 30706086,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      }
+    }
+  },
+  "coding_restored": true,
+  "textual_health_unchanged": true,
+  "textual_unit_sha256": "57cd1bc08525d25da36d5a6e4dc00f630918d09d65a076a365d8da63d35298a2",
+  "caddy_unchanged": true,
+  "production_source_modified": false,
+  "credentials_accessed": false,
+  "official_smoke_started": false,
+  "full_allowed": false,
+  "cloud_exit_code": 0
+}

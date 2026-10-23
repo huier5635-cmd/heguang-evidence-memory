@@ -1,0 +1,46 @@
+{
+  "event": "coding_concurrency16_complete",
+  "status": "passed",
+  "scope": "16 concurrent own synthetic Add, then 16 concurrent own synthetic Search; one 3300-character source per isolated user; not official Smoke or Full capacity",
+  "source_commit": "978f2ab2bea5ec9f55ce06ce23a31d3e0df4901d",
+  "seconds": 87.149,
+  "phases": {
+    "add": {
+      "successes": 16,
+      "seconds_total": 0.665,
+      "seconds_min": 0.28,
+      "seconds_median": 0.477,
+      "seconds_p95": 0.62,
+      "seconds_max": 0.65,
+      "overlapping_clients_peak": 16
+    },
+    "search": {
+      "successes": 16,
+      "seconds_total": 86.44,
+      "seconds_min": 6.401,
+      "seconds_median": 46.466,
+      "seconds_p95": 81.13,
+      "seconds_max": 86.435,
+      "overlapping_clients_peak": 16
+    }
+  },
+  "monitor": {
+    "health_successes": 290,
+    "health_errors": 0,
+    "health_max_seconds": 0.284,
+    "coding_rss_peak_bytes": 253628416,
+    "cgroup_current_peak_bytes": 257433600,
+    "host_mem_available_min_kib": 80676,
+    "host_swap_used_peak_kib": 0
+  },
+  "pid_unchanged": true,
+  "nrestarts_unchanged": true,
+  "exact_original_source_verified": true,
+  "user_isolation_verified": true,
+  "textual_health_unchanged": true,
+  "textual_unit_sha256": "57cd1bc08525d25da36d5a6e4dc00f630918d09d65a076a365d8da63d35298a2",
+  "credential_value_printed": false,
+  "official_smoke_started": false,
+  "full_allowed": false,
+  "cloud_exit_code": 0
+}

@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0.dev5",
+  "tests": 53,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source_sha256": {
+    "heguang_code/__init__.py": "7244fbc42f85add0a32579e1451b4bb82b288d8e75f9ac329c391116c2c08392",
+    "heguang_code/api.py": "7b487a24dca0a4c1746b04a2bac170130d7747060af2f12e439145125ebd7e40",
+    "heguang_code/config.py": "ccdf32e08abea8243f6a501790ca0e163efb3f1dcf14c179a1a990848949d5c2",
+    "heguang_code/feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "f9c7a7e625aaf9abb7089c65ce344ddeedd99d16811e0272264eb503e02be7d0",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/store.py": "8cf210d265bb2735bf9a7b1cc4d219f3ae1961008c612d78df3aa1c8c4fd6180"
+  },
+  "test_sha256": {
+    "tests/test_api.py": "da153de1fa2e9bc17a3fb97c539dc9f7e6e49fbc817cb5571d249b3656db2ac1",
+    "tests/test_feature_storage.py": "925bc1be78c24134a3819e359014539d3c6f9adc17b4cf39e5f9f5e56732be12",
+    "tests/test_features.py": "1803ca0fa68cd31d30890337f076e40e2333e935c4a7751d3aa84a0ee351edda",
+    "tests/test_free_codegen.py": "10994dbb48b9bcf868688d5a39e125db336dd72ec2ea0ee5a37afa19a53dcae3",
+    "tests/test_large_input.py": "0505acd20de9f1c17c1cfd6326f03c53c6a793b4279c38c58a6f1942446ed8c3",
+    "tests/test_local_codegen.py": "e1daed53633a58d6a8d0cdb649e2ec957c799b0f6abb447fef6d77831691fc06",
+    "tests/test_prompt_layout.py": "3abf6a5dc4b9d0d13e7707d3846688f517d3b05667cbc959cd0e2d63b5a7221f",
+    "tests/test_rerank.py": "ace277974ef5a2950aa52487da4bbe25eddac0877a0765a8f281b77d6e334587",
+    "tests/test_storage.py": "aa60ad23b5dc63b28b7f458ee636fa6a355cb13aaadf96b537dae1969e592169",
+    "tests/test_trajectory.py": "86ecb544a9cd4950e455d29f05fd9689dad4b04ce275f0b8726e1d86a8eb495b"
+  },
+  "junit_sha256": "7ea7eb8a857b38e636b53ef4f464c44c55125c71e94446d1b02f00f8408b97b9",
+  "official_calls": 0,
+  "full_allowed": false
+}

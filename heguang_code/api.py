@@ -18,7 +18,7 @@ from .store import ConflictingWrite, Store, digest
 def create_app(settings=None, scorer=None):
     settings = settings or Settings.from_env()
     store = Store(settings)
-    scorer = scorer or (PairScorer(settings.reranker_dir) if settings.reranker_dir else None)
+    scorer = scorer or (PairScorer(settings.reranker_dir, threads=settings.reranker_threads) if settings.reranker_dir else None)
     slots = asyncio.Semaphore(settings.max_concurrency)
     large_slot = asyncio.Semaphore(1)
     locks = [asyncio.Lock() for _ in range(256)]
@@ -107,7 +107,8 @@ def create_app(settings=None, scorer=None):
                 "max_processing_requests": settings.max_concurrency,
                 "max_body_bytes": settings.max_body_bytes, "large_body_bytes": settings.large_body_bytes,
                 "large_requests_processed_at_once": 1,
-                "reranker_weight": settings.reranker_weight if scorer else None}
+                "reranker_weight": settings.reranker_weight if scorer else None,
+                "reranker_threads": settings.reranker_threads if scorer else None}
 
     def lock(user):
         return locks[int(digest(user)[:8], 16) % len(locks)]

@@ -1,0 +1,97 @@
+{
+  "purpose": "Verify the real single-thread constructor against frozen development scores.",
+  "passed": true,
+  "version": "0.2.0.dev5",
+  "fixture_sha256": "17b1926936a5d81cb6ded4edc0c321b9209d04120ab61835658d6f988865b349",
+  "reference_sha256": "c233cb8082e5ba2bb5a9fed57cdcef305293d782a32bb31907ac46d9d65a3e5f",
+  "source_sha256": {
+    "heguang_code/__init__.py": "7244fbc42f85add0a32579e1451b4bb82b288d8e75f9ac329c391116c2c08392",
+    "heguang_code/api.py": "7b487a24dca0a4c1746b04a2bac170130d7747060af2f12e439145125ebd7e40",
+    "heguang_code/config.py": "ccdf32e08abea8243f6a501790ca0e163efb3f1dcf14c179a1a990848949d5c2",
+    "heguang_code/feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "f9c7a7e625aaf9abb7089c65ce344ddeedd99d16811e0272264eb503e02be7d0",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/store.py": "8cf210d265bb2735bf9a7b1cc4d219f3ae1961008c612d78df3aa1c8c4fd6180"
+  },
+  "tool_sha256": "9a64d55bc58046c278fcbda4bb77395a891e56f254cd034e43f292f379a2adf3",
+  "cases": [
+    {
+      "id": "astropy__astropy-15082",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "django__django-18305",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "gin-gonic__gin-2778",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "gin-gonic__gin-2833",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "pylint-dev__pylint-6964",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "redis__redis-13957",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "sympy__sympy-12426",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "sympy__sympy-21309",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "synthetic_short",
+      "documents": 3,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    },
+    {
+      "id": "synthetic_long_query",
+      "documents": 2,
+      "exact_scores_equal": true,
+      "exact_final_rankings_equal": true,
+      "maximum_logit_difference": 0
+    }
+  ],
+  "elapsed_seconds": 12.558355200002552,
+  "actual_model_threads": 1,
+  "limitations": "Eight already used public development queries and two synthetic queries; constructor and numerical/ranking parity only. Not a new independent quality test or cloud API timing.",
+  "official_calls": 0,
+  "paid_api_calls": 0,
+  "full_allowed": false
+}
