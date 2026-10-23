@@ -8,6 +8,7 @@ import zlib
 from collections import defaultdict
 
 from .features import chunks, encoded, technical, words
+from .feature_storage import decode_features, encode_features
 from .normalize import PAIR_COMMAND_LIMIT, commands_in, trajectory_views
 
 
@@ -36,7 +37,7 @@ class Store:
         settings.data_dir.mkdir(parents=True, exist_ok=True)
         # Only stored representation/tokenization belongs in the index signature.
         # Search budgets and reranking can be compared on exactly the same index.
-        self.signature = digest({"schema": 4, "source_view": 4,
+        self.signature = digest({"schema": 5, "source_view": 4, "feature_codec": 1,
                                  "rich_tokens": settings.profile != "baseline",
                                  "chunk_chars": settings.chunk_chars,
                                  "overlap_chars": settings.overlap_chars,
@@ -179,7 +180,7 @@ class Store:
                         paths, symbols = technical(chunk)
                         body = words(chunk, split=self.settings.profile != "baseline", stop=self.settings.profile != "baseline")
                         cursor = db.execute("INSERT INTO docs(id,paths,symbols,word_count) VALUES(?,?,?,?)", (
-                            doc_id, json.dumps(sorted(paths)), json.dumps(sorted(symbols)), len(body)))
+                            doc_id, encode_features(paths), encode_features(symbols), len(body)))
                         rowid = cursor.lastrowid
                         db.execute("INSERT INTO search(rowid,body,symbols,paths) VALUES(?,?,?,?)", (
                             rowid, " ".join(body), " ".join(encoded(symbols, "s")), " ".join(encoded(paths, "p"))))
@@ -305,8 +306,8 @@ class Store:
                 documents.update((row["rowid"], dict(row)) for row in db.execute(f"SELECT rowid,* FROM docs WHERE rowid IN ({placeholders})", batch))
             if self.settings.profile != "baseline":
                 for rowid, doc in documents.items():
-                    path_hits = sum(path_rarity.get(value, 0) for value in json.loads(doc["paths"]))
-                    symbol_hits = sum(symbol_rarity.get(value, 0) for value in json.loads(doc["symbols"]))
+                    path_hits = sum(path_rarity.get(value, 0) for value in decode_features(doc["paths"]))
+                    symbol_hits = sum(symbol_rarity.get(value, 0) for value in decode_features(doc["symbols"]))
                     scores[rowid] += min(0.018, path_hits * 0.006) + min(0.012, symbol_hits * 0.003)
             pending = [(-score, documents[rowid]["id"], rowid) for rowid, score in scores.items()]
             heapq.heapify(pending)

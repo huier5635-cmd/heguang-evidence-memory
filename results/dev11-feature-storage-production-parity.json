@@ -1,0 +1,27 @@
+{
+  "purpose": "Compare current bounded production codec with frozen dev3 over copied public data.",
+  "passed": true,
+  "retrieval_cases_equal": 432,
+  "feature_fields_verified": 32096,
+  "original_fixture_unchanged": true,
+  "users": 56,
+  "closed_database_bytes": 63135744,
+  "legacy_commit": "56c9d08c42dc7ac0ef0796459dcff690b5b018e4",
+  "receipt_sha256": "3ee8792434c5991e36624d74a34ae480ae46335b7c19a1229807bda480c32a73",
+  "source_sha256": {
+    "heguang_code/__init__.py": "6fc7e23a202e37663fdc3578b2ae2f4a86e9a524b3f4788d251981a76a80ad29",
+    "heguang_code/api.py": "55b1f92f61327469c7d24d725b84c5bee78c1c20e9becf2902cb4a94eba3bdb2",
+    "heguang_code/config.py": "c5fb363693157f200a50435a5fa0b70e29e723bdd7aade3a6643b0c161f2337b",
+    "heguang_code/feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/store.py": "8cf210d265bb2735bf9a7b1cc4d219f3ae1961008c612d78df3aa1c8c4fd6180",
+    "tools/verify_feature_storage.py": "ca5260e8a1126336f75e868819889be3c1dad69551e19b7d6bd17d4831f1bf7d"
+  },
+  "official_calls": 0,
+  "full_allowed": false,
+  "limitations": "Storage and candidate-output equivalence on one public fixture; no new relevance, task-resolution, deployed capacity or Full score claim. Test-only copies are transformed; production never migrates an old index automatically.",
+  "metadata_correction": "Verification-tool hash moved to an explicitly named source entry; no measured result changed; original report retained in history."
+}

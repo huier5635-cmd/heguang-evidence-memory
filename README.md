@@ -1,6 +1,6 @@
 # 编程记忆开发候选
 
-内部代号 Heguang，当前服务版本 `0.2.0.dev3`。这是独立的 Coding Agent Memory 项目，由当前对话单独开发。文本赛道视为已冻结，不修改其结果、版本或线上服务。
+内部代号 Heguang，当前本地服务版本 `0.2.0.dev4`；公开 dev3 固定提交保留。这是独立的 Coding Agent Memory 项目，由当前对话单独开发。文本赛道视为已冻结，不修改其结果、版本或线上服务。
 
 **尚未提交 Coding 申请、Smoke 或 Full，也未部署到公网。** `SUBMISSION_POLICY.json` 已允许申请、开源、独立部署和 Smoke，继续禁止 Full。当前结果属于公开数据检索代理实验，不能当成官方 CAMBench 分数或代码任务解决率。
 
@@ -18,6 +18,8 @@
 
 10. [本地模型对照](docs/本地模型对照.md)：两轮实际测试均失败，保留草稿与协议修订。
 11. [部署准备](deploy/README.md)：独立进程、数据、鉴权、保留期和现有 HTTPS 路由。
+
+12. [容量与元数据压缩](docs/容量与元数据压缩.md)：存储收益、控制组、签名升级与检索一致性。
 
 ## 当前实现
 
@@ -45,7 +47,7 @@ $env:HCM_SESSION_PENALTY = "0"
 .venv/Scripts/python.exe -m uvicorn heguang_code.api:create_app --factory --host 127.0.0.1 --port 8072 --workers 1
 ```
 
-密钥只保存在这个终端的环境变量中；不要输出、截图或提交它。示例绑定本机回环地址。关闭终端服务就会停止。省略 `HCM_PROFILE` 时使用 `rarity` 配置。
+密钥只保存在这个终端的环境变量中；不要输出、截图或提交它。示例绑定本机回环地址。关闭终端服务就会停止。省略 `HCM_PROFILE` 时使用 `rarity` 配置。dev4 索引签名已升级，旧库请使用新目录重建，不会自动迁移。
 
 接口为 `GET /health`、`POST /add`、`POST /search`。后两者接受 `Authorization: Bearer <本机专用密钥>`。`Add` 返回 `success/request_id/user_id/session_id`；`Search` 返回 `data: [{id, content, score}]`。`top_k` 为 1..100；纯检索模式总返回预算为 32,000 字符，启用重排后默认 128,000 字符，因此可能返回更少记录。
 
@@ -68,7 +70,7 @@ $env:HCM_RERANKER_DIR = "C:/aml-models/minilm"
 .venv/Scripts/python.exe -m pytest -q
 ```
 
-当前 44 项测试通过。大请求试验同时发送两份约 64 MB 的 JSON，原文均完整恢复，采样服务内存峰值从约 695 MiB 降至约 377 MiB。原有较大公开样本逐条恢复了 13,093 条消息、验证 289 组跨 Add 配对；其历史报告是 `results/dev8-capacity-http.json`。最新工程并发复测另存 `dev9` 报告。这些都不是正式全量容量或代码任务解决率。复现命令见学习文档。测试数据、模型权重、数据库和真实凭据不随开发包分发。
+当前 47 项测试通过。大请求试验同时发送两份约 64 MB 的 JSON，原文均完整恢复，采样服务内存峰值从约 695 MiB 降至约 377 MiB。原有较大公开样本逐条恢复了 13,093 条消息、验证 289 组跨 Add 配对；其历史报告是 `results/dev8-capacity-http.json`。最新工程并发复测另存 `dev9` 报告。这些都不是正式全量容量或代码任务解决率。复现命令见学习文档。测试数据、模型权重、数据库和真实凭据不随开发包分发。
 
 ## 提交前还缺什么
 

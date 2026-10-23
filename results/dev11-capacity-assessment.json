@@ -1,0 +1,105 @@
+{
+  "purpose": "Read-only storage accounting on an already completed public fixture, with explicit scenarios.",
+  "checked_at_utc": "2026-10-23T07:28:54.823357+00:00",
+  "source_sha256": {
+    "tools/inspect_capacity.py": "e42c994f6ae9944b4ad84a9d0a6cfd94534567a86a798ac7b662eb56b705515c"
+  },
+  "evidence_sha256": "7af8e09c2d9e5bf17f34f424e17615110b9f6cc55ea107361d37eed0a18f455b",
+  "public_trajectories": 120,
+  "isolated_user_databases": 56,
+  "database_bytes": 70553600,
+  "counts": {
+    "messages": 13093,
+    "normalized_source_characters": 21249394,
+    "free_page_bytes": 1110016,
+    "compressed_source_blob_bytes": 6436439,
+    "compressed_structured_message_bytes": 11931664
+  },
+  "table_page_bytes": {
+    "raw_messages": 16060416,
+    "search_data": 13676544,
+    "docs": 10731520,
+    "blobs": 9113600,
+    "sources": 2629632,
+    "call_state": 2547712,
+    "blocks": 2043904,
+    "sqlite_autoindex_blobs_1": 1380352,
+    "spans": 1216512,
+    "sqlite_autoindex_spans_1": 1212416,
+    "spans_source": 1155072,
+    "sqlite_autoindex_docs_1": 1126400,
+    "sqlite_autoindex_blocks_1": 1044480,
+    "sqlite_autoindex_sources_1": 954368,
+    "sqlite_autoindex_raw_messages_1": 946176,
+    "sources_request": 843776,
+    "sqlite_autoindex_call_state_1": 729088,
+    "search_docsize": 425984,
+    "meta": 229376,
+    "search_config": 229376,
+    "search_idx": 229376,
+    "sqlite_autoindex_meta_1": 229376,
+    "sqlite_autoindex_writes_1": 229376,
+    "sqlite_schema": 229376,
+    "writes": 229376
+  },
+  "ratios": {
+    "database_bytes_per_normalized_source_character": 3.3202640978843916,
+    "database_bytes_per_input_json_byte": 1.0924343529615421
+  },
+  "scenarios": [
+    {
+      "assumed_token_denominator": "normalized_source_characters",
+      "assumed_units_per_reported_token": 2,
+      "projected_database_bytes": 11952950752,
+      "with_30_percent_margin_and_3_gib_reserve_bytes": 18760061450,
+      "within_nominal_30_decimal_gb": true
+    },
+    {
+      "assumed_token_denominator": "normalized_source_characters",
+      "assumed_units_per_reported_token": 4,
+      "projected_database_bytes": 23905901505,
+      "with_30_percent_margin_and_3_gib_reserve_bytes": 34298897428,
+      "within_nominal_30_decimal_gb": false
+    },
+    {
+      "assumed_token_denominator": "normalized_source_characters",
+      "assumed_units_per_reported_token": 6,
+      "projected_database_bytes": 35858852257,
+      "with_30_percent_margin_and_3_gib_reserve_bytes": 49837733406,
+      "within_nominal_30_decimal_gb": false
+    },
+    {
+      "assumed_token_denominator": "input_json_bytes",
+      "assumed_units_per_reported_token": 2,
+      "projected_database_bytes": 3932763671,
+      "with_30_percent_margin_and_3_gib_reserve_bytes": 8333818244,
+      "within_nominal_30_decimal_gb": true
+    },
+    {
+      "assumed_token_denominator": "input_json_bytes",
+      "assumed_units_per_reported_token": 4,
+      "projected_database_bytes": 7865527341,
+      "with_30_percent_margin_and_3_gib_reserve_bytes": 13446411016,
+      "within_nominal_30_decimal_gb": true
+    },
+    {
+      "assumed_token_denominator": "input_json_bytes",
+      "assumed_units_per_reported_token": 6,
+      "projected_database_bytes": 11798291012,
+      "with_30_percent_margin_and_3_gib_reserve_bytes": 18559003788,
+      "within_nominal_30_decimal_gb": true
+    }
+  ],
+  "reported_full_tokens_used_for_scenarios": 1800000000,
+  "fixture_unchanged_by_inspection": true,
+  "model_or_official_calls": 0,
+  "full_allowed": false,
+  "full_scale_capacity_verified": false,
+  "conclusion": "Some explicit denominator scenarios exceed nominal capacity. Others fit. No unique forecast is justified without actual deployed headroom and the official token/input accounting.",
+  "limitations": [
+    "Different public benchmark, selected 120 historical trajectories, 56 repository-scoped users; not official CAMBench.",
+    "Source view omits some raw metadata; structured JSON archives coexist with indexed source. Token count may refer to either or neither.",
+    "Linear ratios cannot predict vocabulary growth, cross-user duplication, long-trajectory tails, WAL peaks, rebuild/VACUUM space or Linux throughput.",
+    "30 decimal GB is nominal total disk, not measured free space. 30 percent margin and 3 GiB reserve are assumptions, not deployment evidence."
+  ]
+}

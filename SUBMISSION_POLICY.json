@@ -12,7 +12,7 @@
   "user_instruction": "没优化到最好就不要提交",
   "development_owner": "this conversation only",
   "release_gates": {
-    "contract_and_exact_source_restoration": "44 tests, two 60MiB sources, concurrent 120-trajectory local HTTP and 8 current-API port cases passed; no cloud/full-scale proof",
+    "contract_and_exact_source_restoration": "dev4: 47 tests; 13093 public messages exact; 289 cross-Add pairs; 120 duplicate/conflicting retries; 432 legacy/current retrieval cases equal; no cloud/full-scale proof",
     "candidate_selection_with_independent_data": "limited_holdout_evidence_available; not executable task-resolution proof",
     "sealed_repository_test": "completed_once_on_frozen_0.2.0.dev2; 7 queries from 4 repositories; limited retrieval evidence only",
     "downstream_coding_task_resolution": "Two local public development GPU pairs completed and tested; both arms failed in both pairs. No demonstrated task-resolution gain. Same previously developed case, not two independent cases.",
@@ -27,6 +27,7 @@
     "excluded_direction": "BGE embedding experiment aborted; not integrated",
     "holdout": "Frozen 7-query / 4-repository comparison completed; every noise setting Hit5 7/7 both; at least one complete historical patch 5/7 -> 6/7. MRR sometimes regressed. Noise pools are small and 16/64 saturate.",
     "concurrent_public_http": "0.2.0.dev3: 8 parallel client trajectories / 2 server slots; 13093 messages exact; 120 duplicate and 120 conflicting retries; 1620 health successes, 0 failures; worker reaped",
-    "large_request_memory": "Two 63999418-byte HTTP Adds: sampled peak 728920064 -> 395431936 bytes after buffering/digest changes plus serial admission for large requests; both sources exact. Local repetitive fixture, not cloud/full-scale evidence."
+    "large_request_memory": "Two 63999418-byte HTTP Adds: sampled peak 728920064 -> 395431936 bytes after buffering/digest changes plus serial admission for large requests; both sources exact. Local repetitive fixture, not cloud/full-scale evidence.",
+    "current_feature_storage": "dev4 bounded lossless codec; closed controlled fixture 8.6 percent extra disk saving; fresh HTTP fixture about 8.4 percent smaller; not relevance or Full proof"
   }
 }

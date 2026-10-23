@@ -1,0 +1,17 @@
+{
+  "purpose": "Vacuum-only control for the frozen metadata-compression prototype; original fixture read only.",
+  "source_sha256": {
+    "tools/feature_storage_control.py": "5f8f6f5cbcb01839298803509f734117d078d9f82cd38300e9cb87c2f5b4ff02"
+  },
+  "prototype_report_sha256": "0f48bb554aeaa025ead93d6be26e4cb87568e78b683e678307484ebe2809fef9",
+  "original_fixture_unchanged": true,
+  "size_measurement": "Closed, checkpointed .sqlite3 files only, no live WAL/SHM; not peak disk usage",
+  "original_database_bytes": 70553600,
+  "vacuum_only_database_bytes": 69099520,
+  "compressed_and_vacuumed_database_bytes": 63012864,
+  "additional_saved_fraction_vs_vacuum_control": 0.088085,
+  "production_code_changed": false,
+  "official_or_model_calls": 0,
+  "full_allowed": false,
+  "limitation": "One selected public fixture. Controls page compaction only; production codec, runtime and larger-scale tests remain necessary."
+}
