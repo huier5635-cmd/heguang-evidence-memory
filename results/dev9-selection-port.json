@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "purpose": "Verify selected API output against the pre-integration public selection study.",
+  "cases": [
+    {
+      "target_id": "astropy__astropy-15082",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 127687
+    },
+    {
+      "target_id": "django__django-18305",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 127986
+    },
+    {
+      "target_id": "gin-gonic__gin-2778",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 12397
+    },
+    {
+      "target_id": "gin-gonic__gin-2833",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 12397
+    },
+    {
+      "target_id": "pylint-dev__pylint-6964",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 39339
+    },
+    {
+      "target_id": "redis__redis-13957",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 70105
+    },
+    {
+      "target_id": "sympy__sympy-12426",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 36659
+    },
+    {
+      "target_id": "sympy__sympy-21309",
+      "maximum_pair_score_error": 0.0,
+      "frozen_study_metrics_matched": true,
+      "returned_chars": 127521
+    }
+  ],
+  "reference_report_sha256": "aae3769a95ffb69b37ed7eb1c599ad8130904b67727221fce163b7ee90bd8576",
+  "source_sha256": {
+    "heguang_code/__init__.py": "6edb04185766ca3ec20dae3ebdc87d55a2f4892cfb915a8ab60a83574b5d8811",
+    "heguang_code/api.py": "55b1f92f61327469c7d24d725b84c5bee78c1c20e9becf2902cb4a94eba3bdb2",
+    "heguang_code/config.py": "c5fb363693157f200a50435a5fa0b70e29e723bdd7aade3a6643b0c161f2337b",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/store.py": "13cbed7c2f812cd2235b1f2e8d54ab50eb3e2bee5a9e775a7248f5b796c17699"
+  },
+  "official_score": false,
+  "official_submissions": 0,
+  "paid_api_calls": 0,
+  "limitations": "Eight public development cases verify port behavior. This is not independent quality validation, coding resolution or cloud capacity."
+}

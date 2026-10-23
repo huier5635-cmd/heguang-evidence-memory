@@ -1,0 +1,19 @@
+# Insert inside the existing heguang-8-208-30-48.sslip.io site,
+# before its fallback handle. Preserve the Textual handlers byte for byte.
+# Do not put an API key in Caddy configuration.
+handle_path /coding/* {
+    @coding_api path /health /add /search
+    handle @coding_api {
+        request_body {
+            max_size 67108864
+        }
+        reverse_proxy 127.0.0.1:8752 {
+            transport http {
+                response_header_timeout 30m
+            }
+        }
+    }
+    handle {
+        respond "Not found" 404
+    }
+}

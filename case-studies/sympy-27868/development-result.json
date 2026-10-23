@@ -1,0 +1,25 @@
+{
+  "instance_id": "sympy__sympy-27868",
+  "phase": "development3",
+  "exit_code": 0,
+  "source_sha256": "efba3a03743b48e242f9306bb6bbc78d2ea1d8b745222816536d86315254453b",
+  "tests": [
+    {
+      "name": "test_mathematica",
+      "outcome": "passed"
+    },
+    {
+      "name": "test_parser_mathematica_tokenizer",
+      "outcome": "passed"
+    },
+    {
+      "name": "test_parser_mathematica_exp_alt",
+      "outcome": "passed"
+    }
+  ],
+  "blind_score": false,
+  "first_frozen_attempt_passed": false,
+  "target_gold_solution_patch_read": false,
+  "public_tests_already_seen": true,
+  "official_score": false
+}

@@ -1,0 +1,21 @@
+--- a/sympy/parsing/mathematica.py
++++ b/sympy/parsing/mathematica.py
+@@ -588,7 +588,8 @@
+         "##": lambda: ["SlotSequence", "1"],
+     }
+ 
+-    _literal = r"[A-Za-z][A-Za-z0-9]*"
++    # Underscores are Mathematica pattern operators, not identifier characters.
++    _literal = r"[^\W\d_][^\W_]*"
+     _number = r"(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)"
+ 
+     _enclosure_open = ["(", "[", "[[", "{"]
+@@ -656,7 +657,7 @@
+             code_splits[i] = code_split
+ 
+         # Tokenize the input strings with a regular expression:
+-        token_lists = [tokenizer.findall(i) if isinstance(i, str) and i.isascii() else [i] for i in code_splits]
++        token_lists = [tokenizer.findall(i) if isinstance(i, str) else [i] for i in code_splits]
+         tokens = [j for i in token_lists for j in i]
+ 
+         # Remove newlines at the beginning

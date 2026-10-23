@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"edits\": [\n    {\n      \"path\": \"sympy/parsing/mathematica.py\",\n      \"old\": \"def _from_mathematica_to_tokens(self, code: str):\",\n      \"new\": \"def _from_mathematica_to_tokens(self, code: str) -> list[str]:\"\n    },\n    {\n      \"path\": \"sympy/parsing/mathematica.py\",\n      \"old\": \"tokens = [tokenizer.findall(i) if isinstance(i, str) and i.isascii() else [i] for i in code_splits]\",\n      \"new\": \"tokens = [tokenizer.findall(i) if isinstance(i, str) and i.isascii() else [i] for i in code_splits]  # type: ignore\"\n    }\n  ]\n}"
+      }
+    }
+  ],
+  "created": 1792738225,
+  "model": "local-public-code-pilot",
+  "system_fingerprint": "b11669-620d2225c",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 169,
+    "prompt_tokens": 13112,
+    "total_tokens": 13281,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "id": "chatcmpl-HgZbLwhyFcDwBJojyjDw1pLteNZoZBLV",
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 13112,
+    "prompt_ms": 8540.67,
+    "prompt_per_token_ms": 0.6513628737034778,
+    "prompt_per_second": 1535.2425512284165,
+    "predicted_n": 169,
+    "predicted_ms": 2305.281,
+    "predicted_per_token_ms": 13.721910714285714,
+    "predicted_per_second": 72.87614828734544
+  }
+}

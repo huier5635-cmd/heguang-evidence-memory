@@ -1,0 +1,14 @@
+{
+  "status": "interrupted_without_recoverable_draft",
+  "observed_at_utc": "2026-10-23T06:37:12.675461+00:00",
+  "last_observed_live_elapsed_s": 403.2,
+  "last_observed_rss_mib": 5240.3,
+  "generation_requests_observed_started": 1,
+  "saved_completed_drafts": 0,
+  "worker_missing_on_revalidation": true,
+  "tool_session_handle_missing": true,
+  "exit_reason": "unknown; no terminal report was recovered",
+  "paid_api_calls": 0,
+  "official_score": false,
+  "qualification": "Do not count this as a successful pair or silently discard it. A later GPU trial is a separately declared development rerun, not a new blind score."
+}

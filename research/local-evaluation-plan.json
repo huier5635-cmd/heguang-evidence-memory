@@ -1,0 +1,11 @@
+{
+  "purpose": "Pre-generation evaluation protocol for one previously studied public local-model pilot",
+  "case": "sympy__sympy-27868",
+  "evaluator_sha256": "6ca205c95d5d122e3ac3569a3bcb5dddedaa95d4e51a084f53e3f0f65e597e24",
+  "oracle_policy": "After both raw responses and proposed source are frozen; no target gold solution column read",
+  "admission": "Original baseline must fail both declared FAIL_TO_PASS tests and pass the PASS_TO_PASS test",
+  "review": "Current assistant reviews both frozen code diffs before passing response hashes",
+  "timeouts_are_outcomes": true,
+  "regeneration_after_oracle_feedback": false,
+  "official_score": false
+}

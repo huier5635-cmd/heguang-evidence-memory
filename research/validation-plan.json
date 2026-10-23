@@ -1,0 +1,19 @@
+{
+  "purpose": "Predeclared public repository validation, not an official submission or sealed-test freeze",
+  "selected_from": "63 development queries only, 16-negative cap per positive",
+  "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+  "noise": 16,
+  "weight": 1,
+  "source_sha256": {
+    "heguang_code/__init__.py": "a1edc9f1e9ea4161c619e256956cc07da84377653dd2601867ee181fb4e67cab",
+    "heguang_code/api.py": "7c16c501517123a7881b16acb3962af2e631443f368d8cd92048fefea3e046b9",
+    "heguang_code/config.py": "8ab3a78371b4f94931569b26046b940b3432cfa166adb2c1f7778a98c6931359",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/schema.py": "f9efbca902beb40836e68899afda18ac2c44af3315aa028d585bf12bd400164b",
+    "heguang_code/store.py": "e0f50c2bc2dc2ac1ce961b28cec120f8479f5d54ba87f9861c0c1a32c49ec936",
+    "research/reranker.py": "0fda569596fc98e637e27d58508a58b991b1049c81f73275abe2f928ed86aef8",
+    "tools/reranker_ablation.py": "843c0764ef65d29dd85fac428929a120ee8de195f59361e92354f8cc8f36994e"
+  },
+  "official_submission_allowed": false
+}

@@ -1,0 +1,79 @@
+--- a/sympy/parsing/mathematica.py
++++ b/sympy/parsing/mathematica.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ import re
+ import typing
++import unicodedata
+ from itertools import product
+ from typing import Any, Callable
+ 
+@@ -588,7 +589,8 @@
+         "##": lambda: ["SlotSequence", "1"],
+     }
+ 
+-    _literal = r"[A-Za-z][A-Za-z0-9]*"
++    # Underscores are Mathematica pattern operators, not identifier characters.
++    _literal = r"[^\W\d_][^\W_]*"
+     _number = r"(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)"
+ 
+     _enclosure_open = ["(", "[", "[[", "{"]
+@@ -656,7 +658,32 @@
+             code_splits[i] = code_split
+ 
+         # Tokenize the input strings with a regular expression:
+-        token_lists = [tokenizer.findall(i) if isinstance(i, str) and i.isascii() else [i] for i in code_splits]
++        token_lists = []
++        for item in code_splits:
++            if not isinstance(item, str):
++                token_lists.append([item])
++                continue
++            def named_character(match):
++                name = match.group(1)
++                constants = {"ExponentialE": "E", "ImaginaryI": "I", "ImaginaryJ": "I", "LongEqual": "=="}
++                if name in constants:
++                    return constants[name]
++                capital = name.startswith("Capital")
++                letter = name[7:] if capital else name
++                try:
++                    return unicodedata.lookup("GREEK " + ("CAPITAL" if capital else "SMALL") + " LETTER " + letter.upper())
++                except KeyError:
++                    raise SyntaxError("Unsupported named character: " + name) from None
++
++            item = re.sub(r"\\\[([A-Za-z][A-Za-z0-9]*)\]", named_character, item)
++            if "\\[" in item:
++                raise SyntaxError("Malformed named character escape")
++            # Python's Unicode \w excludes combining marks. Use a same-length
++            # matching view, then return exact original spelling by offsets.
++            matching_view = "".join("A" if unicodedata.category(char).startswith("M") else char
++                                    for char in item)
++            token_lists.append([item[match.start():match.end()]
++                                for match in tokenizer.finditer(matching_view)])
+         tokens = [j for i in token_lists for j in i]
+ 
+         # Remove newlines at the beginning
+@@ -1061,6 +1088,9 @@
+     _atom_conversions = {
+         "I": I,
+         "Pi": pi,
++        "ExponentialE": sympy.E,
++        "ImaginaryI": I,
++        "ImaginaryJ": I,
+     }
+ 
+     def _from_fullformlist_to_sympy(self, full_form_list):
+@@ -1073,7 +1103,13 @@
+                     head = self._node_conversions.get(expr[0], Function(expr[0]))
+                 return head(*[recurse(arg) for arg in expr[1:]])
+             else:
+-                return self._atom_conversions.get(expr, sympify(expr))
++                if expr in self._atom_conversions:
++                    return self._atom_conversions[expr]
++                if not expr.isascii():
++                    # Preserve Unicode names instead of Python identifier
++                    # normalization or rejecting combining marks.
++                    return sympy.Symbol(expr)
++                return sympify(expr)
+ 
+         return recurse(full_form_list)
+ 

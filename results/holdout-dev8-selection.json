@@ -1,0 +1,1207 @@
+{
+  "purpose": "One frozen public repository holdout comparison; no coding agent or official run.",
+  "complete": true,
+  "split": "sealed_test",
+  "unique_queries": 7,
+  "cases_completed": 28,
+  "frozen_plan_sha256": "b94d4f2487083f14340aaee8237249e6dbeacc4941eb3650b0978c409b414518",
+  "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+  "source_sha256": {
+    "heguang_code/__init__.py": "544099865597d7dc9df32e781de1e08cf5b2f337ad48667fa171dd166c4a8735",
+    "heguang_code/api.py": "a89784f3bb0e739b820c2467aa0872a3d7b6acf8ed1395adfc56f63197e2a9d5",
+    "heguang_code/config.py": "aa66dd106a241d28d734ac599659bf27665593c924029e03bdbc7d05656587ca",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+    "heguang_code/schema.py": "f9efbca902beb40836e68899afda18ac2c44af3315aa028d585bf12bd400164b",
+    "heguang_code/store.py": "f0e066b4e86d9b17785d67d6315855c151c6ed154623f7b877f8d3e3a38ca585",
+    "research/reranker.py": "0fda569596fc98e637e27d58508a58b991b1049c81f73275abe2f928ed86aef8",
+    "tools/public_benchmark.py": "c724716647f4993d6844f072c86e47a7b63f2eda7609bf7f201ff7f526b56aba",
+    "tools/selection_ablation.py": "7d3be3005d97c968c16a61c1a66a9511a7d2e44ca16626990e4691d349b23996",
+    "tools/sealed_selection_probe.py": "439767c532092c694e22be909671b7f82a772a101639881bf5fb34402712efa1"
+  },
+  "data_audit": {
+    "history_rows": 1007,
+    "target_rows": 362,
+    "unique_target_ids": 357,
+    "ambiguous_target_ids_excluded": [
+      "django__django-27910",
+      "django__django-28147"
+    ],
+    "relationships": 362,
+    "excluded_relationships": {
+      "not_lower_pr_number": 189,
+      "not_strictly_earlier": 76,
+      "missing_or_ambiguous": 4,
+      "different_repository": 15
+    },
+    "eligible_queries": 78,
+    "split_seed": "coding-20261023",
+    "split_unit": "repository",
+    "target_fields_loaded": [
+      "instance_id",
+      "repo",
+      "problem_statement",
+      "created_at"
+    ],
+    "history_fields_loaded": [
+      "instance_id",
+      "repo",
+      "problem_statement",
+      "hints_text",
+      "patch",
+      "created_at"
+    ],
+    "eligible_split_counts": {
+      "dev": 63,
+      "validation": 8,
+      "sealed_test": 7
+    },
+    "source_sha256": {
+      "SWEContextBench_Experience.parquet": "e10d452123257fabc604e77985e34184ad7504788106ee3ac3e7e8f621303610",
+      "SWEContextBench_Related.parquet": "394ce86dbf8e5b7471264625ad4879d70c676a5b43dd16e4d7416592547c8892",
+      "SWEContextBench_Relationship.parquet": "f59b1a0fd021c6608bd185f15113cbbd26f804c20494da6d4827adb9ea70edb5"
+    }
+  },
+  "aggregate": {
+    "0": {
+      "legacy": {
+        "hit_at_1": 1.0,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 1.0,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.91051,
+        "any_complete_historical_patch": 0.714286,
+        "returned_chunks": 2.714286,
+        "returned_characters": 9109.142857
+      },
+      "candidate": {
+        "hit_at_1": 1.0,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 1.0,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.983037,
+        "any_complete_historical_patch": 0.857143,
+        "returned_chunks": 4.0,
+        "returned_characters": 13896.0
+      }
+    },
+    "4": {
+      "legacy": {
+        "hit_at_1": 0.714286,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 0.857143,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.91051,
+        "any_complete_historical_patch": 0.714286,
+        "returned_chunks": 6.428571,
+        "returned_characters": 19953.142857
+      },
+      "candidate": {
+        "hit_at_1": 0.714286,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 0.821429,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.983037,
+        "any_complete_historical_patch": 0.857143,
+        "returned_chunks": 8.285714,
+        "returned_characters": 26504.142857
+      }
+    },
+    "16": {
+      "legacy": {
+        "hit_at_1": 0.714286,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 0.821429,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.91051,
+        "any_complete_historical_patch": 0.714286,
+        "returned_chunks": 7.285714,
+        "returned_characters": 22530.0
+      },
+      "candidate": {
+        "hit_at_1": 0.714286,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 0.814286,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.983037,
+        "any_complete_historical_patch": 0.857143,
+        "returned_chunks": 11.714286,
+        "returned_characters": 37753.428571
+      }
+    },
+    "64": {
+      "legacy": {
+        "hit_at_1": 0.714286,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 0.821429,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.91051,
+        "any_complete_historical_patch": 0.714286,
+        "returned_chunks": 7.285714,
+        "returned_characters": 22530.0
+      },
+      "candidate": {
+        "hit_at_1": 0.714286,
+        "hit_at_5": 1.0,
+        "hit_at_20": 1.0,
+        "reciprocal_rank": 0.814286,
+        "historical_patch_retrieved": 1.0,
+        "historical_patch_coverage": 0.983037,
+        "any_complete_historical_patch": 0.857143,
+        "returned_chunks": 11.714286,
+        "returned_characters": 37753.428571
+      }
+    }
+  },
+  "cases": [
+    {
+      "target_id": "astral-sh__ruff-15725",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 1,
+          "returned_characters": 2391
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 1,
+          "returned_characters": 2391
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 417.692,
+        "candidate": 4.272
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15725",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 4,
+      "history_count": 5,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 16037
+        },
+        "candidate": {
+          "first_positive_rank": 4,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.25,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 16037
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 1116.248,
+        "candidate": 5.499
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15725",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 16,
+      "history_count": 7,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 4,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.25,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        },
+        "candidate": {
+          "first_positive_rank": 5,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.2,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 507.265,
+        "candidate": 6.448
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15725",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 64,
+      "history_count": 7,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 4,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.25,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        },
+        "candidate": {
+          "first_positive_rank": 5,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.2,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 23.24,
+        "candidate": 6.391
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-16445",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 1,
+          "returned_characters": 2391
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 1,
+          "returned_characters": 2391
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 243.868,
+        "candidate": 3.395
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-16445",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 4,
+      "history_count": 5,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 15935
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 15935
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 1092.86,
+        "candidate": 4.532
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-16445",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 16,
+      "history_count": 7,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 514.167,
+        "candidate": 4.923
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-16445",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 64,
+      "history_count": 7,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 8,
+          "returned_characters": 22345
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 4.96,
+        "candidate": 4.958
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-9485",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.4923124009794037,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 9,
+          "returned_characters": 31469
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 18,
+          "returned_characters": 64977
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 2239.456,
+        "candidate": 1820.94
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-9485",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 4,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.4923124009794037,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 9,
+          "returned_characters": 31469
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 18,
+          "returned_characters": 64977
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 3.863,
+        "candidate": 4.353
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-9485",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 16,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.4923124009794037,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 9,
+          "returned_characters": 31469
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 18,
+          "returned_characters": 64977
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 4.207,
+        "candidate": 4.498
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-9485",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 64,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.4923124009794037,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 9,
+          "returned_characters": 31469
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 18,
+          "returned_characters": 64977
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 3.725,
+        "candidate": 4.115
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15997",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 1,
+          "returned_characters": 3730
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 1,
+          "returned_characters": 3730
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 279.697,
+        "candidate": 3.637
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15997",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 4,
+      "history_count": 5,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 5,
+          "returned_characters": 16191
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 5,
+          "returned_characters": 16191
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 1166.26,
+        "candidate": 4.965
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15997",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 16,
+      "history_count": 7,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 7,
+          "returned_characters": 21549
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 7,
+          "returned_characters": 21549
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 578.5,
+        "candidate": 6.089
+      }
+    },
+    {
+      "target_id": "astral-sh__ruff-15997",
+      "repository": "astral-sh/ruff",
+      "noise_requested_per_positive": 64,
+      "history_count": 7,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 7,
+          "returned_characters": 21549
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 0.8812600969305331,
+          "any_complete_historical_patch": false,
+          "returned_chunks": 7,
+          "returned_characters": 21549
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 6.138,
+        "candidate": 5.982
+      }
+    },
+    {
+      "target_id": "fluent__fluentd-3638",
+      "repository": "fluent/fluentd",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 3,
+          "returned_characters": 9152
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 3,
+          "returned_characters": 9152
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 875.973,
+        "candidate": 5.927
+      }
+    },
+    {
+      "target_id": "fluent__fluentd-3638",
+      "repository": "fluent/fluentd",
+      "noise_requested_per_positive": 4,
+      "history_count": 2,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 17821
+        },
+        "candidate": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 17821
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 935.897,
+        "candidate": 6.697
+      }
+    },
+    {
+      "target_id": "fluent__fluentd-3638",
+      "repository": "fluent/fluentd",
+      "noise_requested_per_positive": 16,
+      "history_count": 2,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 17821
+        },
+        "candidate": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 17821
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 6.302,
+        "candidate": 6.13
+      }
+    },
+    {
+      "target_id": "fluent__fluentd-3638",
+      "repository": "fluent/fluentd",
+      "noise_requested_per_positive": 64,
+      "history_count": 2,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 17821
+        },
+        "candidate": {
+          "first_positive_rank": 2,
+          "hit_at_1": false,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 0.5,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 6,
+          "returned_characters": 17821
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 6.236,
+        "candidate": 6.337
+      }
+    },
+    {
+      "target_id": "gohugoio__hugo-12449",
+      "repository": "gohugoio/hugo",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 1,
+          "returned_characters": 3605
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 1,
+          "returned_characters": 3605
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 298.362,
+        "candidate": 3.113
+      }
+    },
+    {
+      "target_id": "gohugoio__hugo-12449",
+      "repository": "gohugoio/hugo",
+      "noise_requested_per_positive": 4,
+      "history_count": 4,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 4,
+          "returned_characters": 10641
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 4,
+          "returned_characters": 10641
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 894.795,
+        "candidate": 3.962
+      }
+    },
+    {
+      "target_id": "gohugoio__hugo-12449",
+      "repository": "gohugoio/hugo",
+      "noise_requested_per_positive": 16,
+      "history_count": 4,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 4,
+          "returned_characters": 10641
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 4,
+          "returned_characters": 10641
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 3.77,
+        "candidate": 3.621
+      }
+    },
+    {
+      "target_id": "gohugoio__hugo-12449",
+      "repository": "gohugoio/hugo",
+      "noise_requested_per_positive": 64,
+      "history_count": 4,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 4,
+          "returned_characters": 10641
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 4,
+          "returned_characters": 10641
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 3.822,
+        "candidate": 3.739
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-15177",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 0,
+      "history_count": 1,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 3,
+          "returned_characters": 11026
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 3,
+          "returned_characters": 11026
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 916.574,
+        "candidate": 6.257
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-15177",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 4,
+      "history_count": 5,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 9,
+          "returned_characters": 31578
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 13,
+          "returned_characters": 43927
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 1798.767,
+        "candidate": 1196.709
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-15177",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 16,
+      "history_count": 8,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 9,
+          "returned_characters": 31540
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 31,
+          "returned_characters": 104596
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 289.493,
+        "candidate": 1407.237
+      }
+    },
+    {
+      "target_id": "prometheus__prometheus-15177",
+      "repository": "prometheus/prometheus",
+      "noise_requested_per_positive": 64,
+      "history_count": 8,
+      "positive_count": 1,
+      "variants": {
+        "legacy": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 9,
+          "returned_characters": 31540
+        },
+        "candidate": {
+          "first_positive_rank": 1,
+          "hit_at_1": true,
+          "hit_at_5": true,
+          "hit_at_20": true,
+          "reciprocal_rank": 1.0,
+          "historical_patch_retrieved": true,
+          "historical_patch_coverage": 1.0,
+          "any_complete_historical_patch": true,
+          "returned_chunks": 31,
+          "returned_characters": 104596
+        }
+      },
+      "local_ms_with_public_cache": {
+        "legacy": 7.632,
+        "candidate": 8.806
+      }
+    }
+  ],
+  "elapsed_seconds_this_invocation": 19.849,
+  "observed_rss_bytes": 177635328,
+  "official_submissions": 0,
+  "paid_api_calls": 0,
+  "limitations": "Seven public queries from previously untested repositories, with repeated noise conditions. This is one frozen retrieval proxy test, not 28 independent tasks, code resolution, CAMBench, or proof of prize eligibility. Output budgets differ. Both model arms share a public research score cache, so their timings are not comparable. After this run these queries are spent holdout data; do not tune and call a rerun blind."
+}

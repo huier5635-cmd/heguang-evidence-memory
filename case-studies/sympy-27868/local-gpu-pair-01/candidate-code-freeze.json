@@ -1,0 +1,17 @@
+{
+  "generation_result_sha256": "262d2f95817f1bdcb3ca559360b2e339298c2a1e1d223829d4f19a9c634dee68",
+  "reviewed_response_sha256": [
+    "4743733cb2d5921bbb7132ce2a65f7d30ee230c03c8bc98b537b57250b4c8358",
+    "085b571901c36f621130088277fd85f65c68237a0a401a2b31848750e4ef8a1f"
+  ],
+  "source_sha256": {
+    "without_memory": {
+      "sympy/parsing/mathematica.py": "7e442f928cdc58ef778ba34bcdc772e502f958eab165a9310967ae612999e25a"
+    }
+  },
+  "invalid_drafts": {
+    "with_memory": "invalid_exact_edits"
+  },
+  "target_gold_solution_read": false,
+  "target_oracle_loaded_at_freeze": false
+}

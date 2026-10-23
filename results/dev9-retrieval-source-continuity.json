@@ -1,0 +1,28 @@
+{
+  "frozen_version": "0.2.0.dev2",
+  "current_version": "0.2.0.dev3",
+  "identical_store_methods": [
+    "search",
+    "query_terms",
+    "ranking",
+    "feature_rarity",
+    "source_span"
+  ],
+  "reranker_and_features_unchanged": true,
+  "heldout_results_not_rerun": true,
+  "qualification": "Source comparison, not a new holdout score. HTTP port and contract tests separately verify current engineering behavior.",
+  "identical_modules": {
+    "heguang_code/reranker.py": {
+      "frozen_sha256": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+      "current_sha256": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa"
+    },
+    "heguang_code/features.py": {
+      "frozen_sha256": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+      "current_sha256": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796"
+    },
+    "heguang_code/normalize.py": {
+      "frozen_sha256": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+      "current_sha256": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62"
+    }
+  }
+}

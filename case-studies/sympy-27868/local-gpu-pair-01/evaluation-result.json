@@ -1,0 +1,56 @@
+{
+  "instance_id": "sympy__sympy-27868",
+  "purpose": "Evaluate two reviewed, already frozen local drafts on one PUBLIC development case.",
+  "phases": {
+    "baseline": {
+      "status": "tested",
+      "exit_code": 1,
+      "source_sha256": {
+        "sympy/parsing/mathematica.py": "3f6bd6120c7f1d7bf823f0beeaf3c4dd15ed6e95cd4f688825006b03a41faa45"
+      },
+      "test_outcomes": {
+        "sympy/parsing/tests/test_mathematica.py::test_mathematica": "failed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_exp_alt": "passed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_tokenizer": "failed"
+      },
+      "resolved": false,
+      "tests_executed": true
+    },
+    "without_memory": {
+      "status": "tested",
+      "exit_code": 1,
+      "source_sha256": {
+        "sympy/parsing/mathematica.py": "7e442f928cdc58ef778ba34bcdc772e502f958eab165a9310967ae612999e25a"
+      },
+      "test_outcomes": {
+        "sympy/parsing/tests/test_mathematica.py::test_mathematica": "failed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_exp_alt": "passed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_tokenizer": "failed"
+      },
+      "resolved": false,
+      "tests_executed": true
+    },
+    "with_memory": {
+      "status": "invalid_exact_edits",
+      "resolved": false,
+      "tests_executed": false
+    }
+  },
+  "baseline_admissible": true,
+  "candidate_code_freeze_sha256": "a788cb1f0471532cca93db20c9733d1d63695c49d812cbb92f1d254d84de2d71",
+  "oracle_fields": [
+    "instance_id",
+    "test_patch",
+    "FAIL_TO_PASS",
+    "PASS_TO_PASS"
+  ],
+  "public_test_patch_sha256": "8d392e5467fb0422dff5362e6a411097af9ad4e0903c3eb399281a3cd4046948",
+  "target_gold_solution_read": false,
+  "model_received_target_oracle": false,
+  "manual_public_case_already_developed": true,
+  "memory_resolved_delta_on_this_one_case": 0,
+  "blind_generalization_score": false,
+  "official_score": false,
+  "paid_api_calls": 0,
+  "limitations": "One already studied public development case with a local quantized model, one-shot edits and reduced context. Not the official model/agent, not multiple independent tasks, no statistical memory-benefit claim."
+}

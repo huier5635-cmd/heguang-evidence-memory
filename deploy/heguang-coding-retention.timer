@@ -1,0 +1,11 @@
+[Unit]
+Description=Hourly Coding-only retention
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=120
+Persistent=true
+Unit=heguang-coding-retention.service
+
+[Install]
+WantedBy=timers.target

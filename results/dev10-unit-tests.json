@@ -1,0 +1,34 @@
+{
+  "observed_command": "python -B -m pytest -q -p no:cacheprovider --tb=short --junitxml=../coding-dev10-unit-tests.xml",
+  "exit_code": 0,
+  "tests_passed": 44,
+  "recorded_at_utc": "2026-10-23T07:09:03.627069+00:00",
+  "source_sha256": {
+    "heguang_code/__init__.py": "6edb04185766ca3ec20dae3ebdc87d55a2f4892cfb915a8ab60a83574b5d8811",
+    "heguang_code/api.py": "55b1f92f61327469c7d24d725b84c5bee78c1c20e9becf2902cb4a94eba3bdb2",
+    "heguang_code/config.py": "c5fb363693157f200a50435a5fa0b70e29e723bdd7aade3a6643b0c161f2337b",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/store.py": "13cbed7c2f812cd2235b1f2e8d54ab50eb3e2bee5a9e775a7248f5b796c17699"
+  },
+  "test_sha256": {
+    "tests/test_api.py": "da153de1fa2e9bc17a3fb97c539dc9f7e6e49fbc817cb5571d249b3656db2ac1",
+    "tests/test_features.py": "1803ca0fa68cd31d30890337f076e40e2333e935c4a7751d3aa84a0ee351edda",
+    "tests/test_free_codegen.py": "10994dbb48b9bcf868688d5a39e125db336dd72ec2ea0ee5a37afa19a53dcae3",
+    "tests/test_large_input.py": "0505acd20de9f1c17c1cfd6326f03c53c6a793b4279c38c58a6f1942446ed8c3",
+    "tests/test_local_codegen.py": "e1daed53633a58d6a8d0cdb649e2ec957c799b0f6abb447fef6d77831691fc06",
+    "tests/test_prompt_layout.py": "3abf6a5dc4b9d0d13e7707d3846688f517d3b05667cbc959cd0e2d63b5a7221f",
+    "tests/test_rerank.py": "affdadab859ed3a59626a532a0f0fbab2266fe2bbd69f6aefadbdffc6585ca46",
+    "tests/test_storage.py": "aa60ad23b5dc63b28b7f458ee636fa6a355cb13aaadf96b537dae1969e592169",
+    "tests/test_trajectory.py": "86ecb544a9cd4950e455d29f05fd9689dad4b04ce275f0b8726e1d86a8eb495b"
+  },
+  "research_sha256": {
+    "research/free_codegen.py": "83a748f54c00062bb15b282a2123204566f171db13ce63c31f977f0954642818",
+    "research/local_codegen.py": "fc03bbaff34af1b8ae28f760ff3566ae43441229ce00b9cb4f5790d10c5b6964",
+    "research/local_encoder.py": "0d777ebf9380b17680cb2fc3b86957dff524092e3164220999d2f9df5ec51542",
+    "research/prompt_layout.py": "97dcbe7ab248f9e0406a38a6fb5bea59e2ba365715f44922e1569a02dcda549e",
+    "research/reranker.py": "0fda569596fc98e637e27d58508a58b991b1049c81f73275abe2f928ed86aef8"
+  }
+}

@@ -1,0 +1,29 @@
+--- a/sympy/parsing/mathematica.py
++++ b/sympy/parsing/mathematica.py
+@@ -621,7 +621,7 @@
+         self._regex_tokenizer = tokenizer
+         return self._regex_tokenizer
+ 
+-    def _from_mathematica_to_tokens(self, code: str):
++    def _from_mathematica_to_tokens(self, code: str) -> list[str]:
+         tokenizer = self._get_tokenizer()
+ 
+         # Find strings:
+@@ -687,7 +687,7 @@
+             return True
+         return not self._is_op(token)
+ 
+-    def _from_tokens_to_fullformlist(self, tokens: list):
++    def _from_tokens_to_fullformlist(self, tokens: list) -> list:
+         stack: list[list] = [[]]
+         open_seq = []
+         pointer: int = 0
+@@ -1063,7 +1063,7 @@
+         "Pi": pi,
+     }
+ 
+-    def _from_fullformlist_to_sympy(self, full_form_list):
++    def _from_fullformlist_to_sympy(self, full_form_list) -> Any:
+ 
+         def recurse(expr):
+             if isinstance(expr, list):

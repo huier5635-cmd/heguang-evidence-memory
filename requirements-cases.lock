@@ -1,0 +1,5 @@
+-r requirements-dev.lock
+six==1.17.0
+mpmath==1.4.1
+hypothesis==6.170.7
+sortedcontainers==2.4.0

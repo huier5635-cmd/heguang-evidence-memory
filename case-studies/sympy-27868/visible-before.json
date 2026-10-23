@@ -1,0 +1,56 @@
+{
+  "instance_id": "sympy__sympy-27868",
+  "base_commit": "22fc107a94eaabc4f6eb31470b39db65abb7a394",
+  "source_sha256": "3f6bd6120c7f1d7bf823f0beeaf3c4dd15ed6e95cd4f688825006b03a41faa45",
+  "visible_examples": [
+    {
+      "input": "Sqrt[2]*T",
+      "tokens": [
+        "Sqrt",
+        "[",
+        "2",
+        "]",
+        "*",
+        "T"
+      ],
+      "passed": true,
+      "actual": "sqrt(2)*T"
+    },
+    {
+      "input": "Sqrt[2]*\u03c3",
+      "tokens": [
+        "Sqrt[2]*\u03c3"
+      ],
+      "passed": false,
+      "error": "TypeError"
+    },
+    {
+      "input": "\u03bb",
+      "tokens": [
+        "\u03bb"
+      ],
+      "passed": true,
+      "actual": "\u03bb"
+    },
+    {
+      "input": "\u03b1 + \u03c3",
+      "tokens": [
+        "\u03b1 + \u03c3"
+      ],
+      "passed": true,
+      "actual": "\u03b1 + \u03c3"
+    },
+    {
+      "input": "2\u03b1",
+      "tokens": [
+        "2\u03b1"
+      ],
+      "passed": false,
+      "error": "SympifyError"
+    }
+  ],
+  "passed": 3,
+  "target_patch_read": false,
+  "target_test_patch_read": false,
+  "official_score": false
+}

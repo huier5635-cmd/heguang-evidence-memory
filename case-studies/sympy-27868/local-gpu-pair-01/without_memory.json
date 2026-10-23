@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"edits\": [\n    {\n      \"path\": \"sympy/parsing/mathematica.py\",\n      \"old\": \"def _from_mathematica_to_tokens(self, code: str):\",\n      \"new\": \"def _from_mathematica_to_tokens(self, code: str) -> list[str]:\"\n    },\n    {\n      \"path\": \"sympy/parsing/mathematica.py\",\n      \"old\": \"def _from_tokens_to_fullformlist(self, tokens: list):\",\n      \"new\": \"def _from_tokens_to_fullformlist(self, tokens: list) -> list:\"\n    },\n    {\n      \"path\": \"sympy/parsing/mathematica.py\",\n      \"old\": \"def _from_fullformlist_to_sympy(self, full_form_list):\",\n      \"new\": \"def _from_fullformlist_to_sympy(self, full_form_list) -> Any:\"\n    }\n  ]\n}"
+      }
+    }
+  ],
+  "created": 1792737679,
+  "model": "local-public-code-pilot",
+  "system_fingerprint": "b11669-620d2225c",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 204,
+    "prompt_tokens": 12053,
+    "total_tokens": 12257,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "id": "chatcmpl-ya1xifhs5FoLXJloVnjL5Hzv0vOKvlw5",
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 12053,
+    "prompt_ms": 9286.981,
+    "prompt_per_token_ms": 0.7705119887165021,
+    "prompt_per_second": 1297.8383394991333,
+    "predicted_n": 204,
+    "predicted_ms": 2924.572,
+    "predicted_per_token_ms": 14.406758620689656,
+    "predicted_per_second": 69.41186607818169
+  }
+}

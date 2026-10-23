@@ -1,0 +1,32 @@
+{
+  "track": "coding",
+  "division": "academic_open_source",
+  "official_submission_allowed": false,
+  "official_application_allowed": true,
+  "official_smoke_allowed": true,
+  "official_full_allowed": false,
+  "public_source_publication_allowed": true,
+  "authorization": "User explicitly answered: 允许申请和 Smoke，Full 继续关闭",
+  "official_full_runs_started_by_this_candidate": 0,
+  "production_deployed": false,
+  "user_instruction": "没优化到最好就不要提交",
+  "development_owner": "this conversation only",
+  "release_gates": {
+    "contract_and_exact_source_restoration": "44 tests, two 60MiB sources, concurrent 120-trajectory local HTTP and 8 current-API port cases passed; no cloud/full-scale proof",
+    "candidate_selection_with_independent_data": "limited_holdout_evidence_available; not executable task-resolution proof",
+    "sealed_repository_test": "completed_once_on_frozen_0.2.0.dev2; 7 queries from 4 repositories; limited retrieval evidence only",
+    "downstream_coding_task_resolution": "Two local public development GPU pairs completed and tested; both arms failed in both pairs. No demonstrated task-resolution gain. Same previously developed case, not two independent cases.",
+    "full_coding_scale_capacity": "not_verified",
+    "cloud_deployment_validation": "not_started"
+  },
+  "restriction": "Application, source publication, separate Coding deployment and Smoke are authorized. official_submission_allowed is the legacy Full gate and remains false. Never start or resume Full, change the frozen Textual service, publish credentials, incur charges or enable auto-recharge. Smoke success does not authorize Full.",
+  "research_evidence": {
+    "free_cross_encoder": "selection before final packing and weight/budget ablations on 63 development queries; 8 API port parity cases passed; expanded configuration has not had an independent quality test",
+    "larger_public_http": "120 trajectories; 13093 messages restored exactly; 289 cross-Add pairs; 1914 health successes and zero errors; sequential local sample only",
+    "official_model_rule": "Embedding text-embedding-v4, LLM gpt-4o-mini; reranker unrestricted",
+    "excluded_direction": "BGE embedding experiment aborted; not integrated",
+    "holdout": "Frozen 7-query / 4-repository comparison completed; every noise setting Hit5 7/7 both; at least one complete historical patch 5/7 -> 6/7. MRR sometimes regressed. Noise pools are small and 16/64 saturate.",
+    "concurrent_public_http": "0.2.0.dev3: 8 parallel client trajectories / 2 server slots; 13093 messages exact; 120 duplicate and 120 conflicting retries; 1620 health successes, 0 failures; worker reaped",
+    "large_request_memory": "Two 63999418-byte HTTP Adds: sampled peak 728920064 -> 395431936 bytes after buffering/digest changes plus serial admission for large requests; both sources exact. Local repetitive fixture, not cloud/full-scale evidence."
+  }
+}

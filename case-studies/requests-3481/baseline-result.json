@@ -1,0 +1,20 @@
+{
+  "instance_id": "psf__requests-3481",
+  "base_commit": "b2f6173a3833153f57d9e3baa6728c5cc46c0b29",
+  "package_version_at_base": "3.0.0",
+  "baseline_reproduction_passed": true,
+  "encoding_before_iteration": null,
+  "lines": 3,
+  "line_type": "bytes",
+  "target_code_changed": false,
+  "target_patch_read": false,
+  "target_test_patch_read": false,
+  "count_as_resolved_task": false,
+  "interpretation": "The visible baseline does not reproduce the reported streaming exception under this local reproduction. No repair success is claimed.",
+  "compatibility": "collections ABC aliases and current six compatibility module for Python 3.12 import support; 2016 HTTP/decoder sources unchanged",
+  "source_hashes": {
+    "requests/utils.py": "069ab7e6ecfad0db886422ced849fe284930d289fed1e7c0b4ca6d5fe5d633fd",
+    "requests/models.py": "76cf9b004300a70cfc92c522aec96a20f8ab272fb3e3600324cd7d49bd1b8c9f"
+  },
+  "limitations": "Local chunked HTTP reproduction on Python 3.12; not the original Python 2.7 environment or the dataset's executable test oracle."
+}

@@ -1,0 +1,13 @@
+{
+  "original_evaluator_sha256": "6ca205c95d5d122e3ac3569a3bcb5dddedaa95d4e51a084f53e3f0f65e597e24",
+  "current_evaluator_sha256": "b65ab89506b0fa7e579e30e7247460e8c75da217e647d2dcd97d3cbf5b397c2a",
+  "reason": "Second pair evaluation first stopped on codeload TLS EOF after code freeze. No model request was repeated.",
+  "change": "Optional cached public archive with exactly the same pinned SHA256 and size bound; default path unchanged",
+  "archive_sha256": "c98673d2b1b5a141df946251c5a620fcda18b66f8984c75a17e2acdeb95db865",
+  "original_archive": "history/coding-dev10-original-evaluator.zip",
+  "first_attempt_freeze_sha256": "a06cc83799bf2bf7b948b72ceaeeb7a24330943e33f201e6a82cfd6e1d957b74",
+  "completed_attempt_freeze_sha256": "a06cc83799bf2bf7b948b72ceaeeb7a24330943e33f201e6a82cfd6e1d957b74",
+  "test_and_scoring_contract_changed": false,
+  "model_drafts_changed": false,
+  "official_score": false
+}

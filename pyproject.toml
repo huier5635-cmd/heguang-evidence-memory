@@ -3,16 +3,18 @@ requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "heguang-evidence-memory"
-version = "0.1.1"
-description = "Source-preserving Add/Search prototype for Agent Memory Challenge"
-requires-python = ">=3.11"
-dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "httpx>=0.27,<1", "numpy>=2,<3"]
+name = "heguang-coding-memory"
+version = "0.2.0.dev3"
+description = "Independent coding-memory Add/Search development candidate"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1"]
 
 [project.optional-dependencies]
-test = ["pytest>=8,<10"]
+rerank = ["onnxruntime>=1.31,<2", "tokenizers>=0.23,<1", "numpy>=2,<3"]
+
+[tool.setuptools.packages.find]
+include = ["heguang_code*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
-

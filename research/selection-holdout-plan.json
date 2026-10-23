@@ -1,0 +1,59 @@
+{
+  "purpose": "Predeclared single repository holdout of immutable local candidate 0.2.0.dev2; no official evaluation",
+  "frozen_at_utc": "2026-10-22T23:16:14.354303+00:00",
+  "version": "0.2.0.dev2",
+  "split": "sealed_test",
+  "expected_queries": 7,
+  "noise": [
+    0,
+    4,
+    16,
+    64
+  ],
+  "source_sha256": {
+    "heguang_code/__init__.py": "544099865597d7dc9df32e781de1e08cf5b2f337ad48667fa171dd166c4a8735",
+    "heguang_code/api.py": "a89784f3bb0e739b820c2467aa0872a3d7b6acf8ed1395adfc56f63197e2a9d5",
+    "heguang_code/config.py": "aa66dd106a241d28d734ac599659bf27665593c924029e03bdbc7d05656587ca",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "785277e70c04af06de2e41ce30f7efd1ba816240fb8aedb9e6c70c53915d8ffa",
+    "heguang_code/schema.py": "f9efbca902beb40836e68899afda18ac2c44af3315aa028d585bf12bd400164b",
+    "heguang_code/store.py": "f0e066b4e86d9b17785d67d6315855c151c6ed154623f7b877f8d3e3a38ca585",
+    "research/reranker.py": "0fda569596fc98e637e27d58508a58b991b1049c81f73275abe2f928ed86aef8",
+    "tools/public_benchmark.py": "c724716647f4993d6844f072c86e47a7b63f2eda7609bf7f201ff7f526b56aba",
+    "tools/selection_ablation.py": "7d3be3005d97c968c16a61c1a66a9511a7d2e44ca16626990e4691d349b23996",
+    "tools/sealed_selection_probe.py": "439767c532092c694e22be909671b7f82a772a101639881bf5fb34402712efa1"
+  },
+  "input_sha256": {
+    "SWEContextBench/data/SWEContextBench_Experience.parquet": "e10d452123257fabc604e77985e34184ad7504788106ee3ac3e7e8f621303610",
+    "SWEContextBench/data/SWEContextBench_Related.parquet": "394ce86dbf8e5b7471264625ad4879d70c676a5b43dd16e4d7416592547c8892",
+    "SWEContextBench/data/SWEContextBench_Relationship.parquet": "f59b1a0fd021c6608bd185f15113cbbd26f804c20494da6d4827adb9ea70edb5"
+  },
+  "model_sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+  "tokenizer_sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+  "variants": {
+    "legacy": {
+      "weight": 1,
+      "characters": 32000,
+      "selection_pool": false
+    },
+    "candidate": {
+      "weight": 4,
+      "characters": 128000,
+      "selection_pool": true
+    }
+  },
+  "primary_metrics": [
+    "hit_at_5",
+    "any_complete_historical_patch"
+  ],
+  "comparison": "Report both primary metrics in every noise condition; candidate nonregression is not assumed. Preserve every failure and all seven tasks. No tuning from holdout results.",
+  "limits": {
+    "seconds": 420,
+    "rss_mib": 512
+  },
+  "candidate_package_sha256": "8dc85d18a5845230339792a13656425d5ae8c29402355a13c72456e9fe67d980",
+  "official_submission_allowed": false,
+  "prior_holdout_evaluations": 0,
+  "interpretation": "Retrieval-only public repository holdout. Seven tasks, not 28 independent observations; cannot establish executable task-resolution gain or an award."
+}

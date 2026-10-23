@@ -1,0 +1,29 @@
+[Unit]
+Description=Heguang Coding Memory isolated Smoke candidate
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=admin
+Group=admin
+WorkingDirectory=/opt/heguang-coding/app
+EnvironmentFile=/etc/heguang-coding.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=TOKENIZERS_PARALLELISM=false
+ExecStart=/opt/heguang-coding/venv/bin/python -m uvicorn heguang_code.api:create_app --factory --host 127.0.0.1 --port 8752 --workers 1 --no-access-log
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/heguang-coding
+UMask=0077
+MemoryAccounting=true
+MemoryHigh=500M
+MemoryMax=650M
+TasksMax=64
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

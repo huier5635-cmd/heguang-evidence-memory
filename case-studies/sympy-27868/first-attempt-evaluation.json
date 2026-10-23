@@ -1,0 +1,43 @@
+{
+  "instance_id": "sympy__sympy-27868",
+  "base_commit": "22fc107a94eaabc4f6eb31470b39db65abb7a394",
+  "public_case_oracle_passed": false,
+  "phases": {
+    "before": {
+      "exit_code": 1,
+      "source_sha256": "3f6bd6120c7f1d7bf823f0beeaf3c4dd15ed6e95cd4f688825006b03a41faa45",
+      "test_outcomes": {
+        "sympy/parsing/tests/test_mathematica.py::test_mathematica": "failed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_exp_alt": "passed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_tokenizer": "failed"
+      }
+    },
+    "after": {
+      "exit_code": 1,
+      "source_sha256": "9a0056c7c213a7e4184de8f9a1ea065aa81ff6f9487b80c800dab8a908bda425",
+      "test_outcomes": {
+        "sympy/parsing/tests/test_mathematica.py::test_mathematica": "failed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_exp_alt": "passed",
+        "sympy/parsing/tests/test_mathematica.py::test_parser_mathematica_tokenizer": "failed"
+      }
+    }
+  },
+  "fail_to_pass_cases": 2,
+  "pass_to_pass_cases": 1,
+  "gold_solution_patch_read": false,
+  "oracle_fields_loaded_only_after_code_freeze": [
+    "instance_id",
+    "test_patch",
+    "FAIL_TO_PASS",
+    "PASS_TO_PASS"
+  ],
+  "frozen_plan_sha256": "7b39c3cb6a76d7df34dd4a89bd35195a3e27df7b38368f86a4eb659eba8af21e",
+  "test_patch_sha256": "8d392e5467fb0422dff5362e6a411097af9ad4e0903c3eb399281a3cd4046948",
+  "memory_input": "Public earlier-task histories only; oracle fields never supplied to Add/Search",
+  "official_submissions": 0,
+  "paid_api_calls": 0,
+  "official_score": false,
+  "limitations": "One public manually solved case with no no-memory control and a different agent/model from AML. It cannot establish memory benefit, generalization or official task-resolution rate.",
+  "first_attempt_frozen_evaluation": true,
+  "subsequent_development_must_not_be_reported_as_blind": true
+}

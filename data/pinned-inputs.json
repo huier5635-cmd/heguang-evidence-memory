@@ -1,0 +1,269 @@
+{
+  "purpose": "Pinned public research inputs only; no target solutions exported",
+  "files": [
+    {
+      "dataset": "jiayuanz3/SWEContextBench",
+      "revision": "12c65bd15e2559bc808065565e941ee7bbbd008f",
+      "path": "README.md",
+      "url": "https://huggingface.co/datasets/jiayuanz3/SWEContextBench/resolve/12c65bd15e2559bc808065565e941ee7bbbd008f/README.md",
+      "bytes": 4661,
+      "sha256": "e5e52253e2712efe6fad68c9e918b56bb3190a8d28d92e451b1698027d9d153f"
+    },
+    {
+      "dataset": "jiayuanz3/SWEContextBench",
+      "revision": "12c65bd15e2559bc808065565e941ee7bbbd008f",
+      "path": "data/SWEContextBench_Experience.parquet",
+      "url": "https://huggingface.co/datasets/jiayuanz3/SWEContextBench/resolve/12c65bd15e2559bc808065565e941ee7bbbd008f/data/SWEContextBench_Experience.parquet",
+      "bytes": 3968145,
+      "sha256": "e10d452123257fabc604e77985e34184ad7504788106ee3ac3e7e8f621303610"
+    },
+    {
+      "dataset": "jiayuanz3/SWEContextBench",
+      "revision": "12c65bd15e2559bc808065565e941ee7bbbd008f",
+      "path": "data/SWEContextBench_Related.parquet",
+      "url": "https://huggingface.co/datasets/jiayuanz3/SWEContextBench/resolve/12c65bd15e2559bc808065565e941ee7bbbd008f/data/SWEContextBench_Related.parquet",
+      "bytes": 2222795,
+      "sha256": "394ce86dbf8e5b7471264625ad4879d70c676a5b43dd16e4d7416592547c8892"
+    },
+    {
+      "dataset": "jiayuanz3/SWEContextBench",
+      "revision": "12c65bd15e2559bc808065565e941ee7bbbd008f",
+      "path": "data/SWEContextBench_Relationship.parquet",
+      "url": "https://huggingface.co/datasets/jiayuanz3/SWEContextBench/resolve/12c65bd15e2559bc808065565e941ee7bbbd008f/data/SWEContextBench_Relationship.parquet",
+      "bytes": 24334,
+      "sha256": "f59b1a0fd021c6608bd185f15113cbbd26f804c20494da6d4827adb9ea70edb5"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "README.md",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/README.md",
+      "bytes": 8459,
+      "sha256": "f94f3a086c19342c7555749d37bfa599324af7ea19eb9c88b3fb5cb3c7c1b920"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "test.parquet",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/test.parquet",
+      "bytes": 1104552,
+      "sha256": "22238743ca143276e3ff4616f569b3921c42945bfee1a6aa8fa376a02feebb98"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/go/argoproj__argo/argoproj__argo-3385/argoproj__argo-3385.traj.json",
+      "local_path": "trace-sample/8e54973419ef578270a6.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/go/argoproj__argo/argoproj__argo-3385/argoproj__argo-3385.traj.json",
+      "bytes": 594178,
+      "sha256": "db35656e408033794fbf4f985b9749678db05e7eeadea69389ada90246267df2"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/go/allegro__marathon-consul/allegro__marathon-consul-147/allegro__marathon-consul-147.traj.json",
+      "local_path": "trace-sample/90d29d32c48a6c62a226.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/go/allegro__marathon-consul/allegro__marathon-consul-147/allegro__marathon-consul-147.traj.json",
+      "bytes": 758574,
+      "sha256": "f5bac71c3d673f580d13739e1fcc850a486a9018c88131aa758f562647f3c4e9"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/go/gardener__machine-controller-manager/gardener__machine-controller-manager-492/gardener__machine-controller-manager-492.traj.json",
+      "local_path": "trace-sample/029502ddba4020462b16.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/go/gardener__machine-controller-manager/gardener__machine-controller-manager-492/gardener__machine-controller-manager-492.traj.json",
+      "bytes": 901760,
+      "sha256": "29ce343c360167260895b29c0f2d76bf7a8886c69e47791263c2e7128231805a"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/java/decorators-squad__eo-yaml/decorators-squad__eo-yaml-466/decorators-squad__eo-yaml-466.traj.json",
+      "local_path": "trace-sample/494ee8b97a4c1b134848.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/java/decorators-squad__eo-yaml/decorators-squad__eo-yaml-466/decorators-squad__eo-yaml-466.traj.json",
+      "bytes": 164752,
+      "sha256": "add5290077cf91bcd253b88901d0891ecfadf0bd94c123c58a906b6417b4f5c0"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/java/joelittlejohn__jsonschema2pojo/joelittlejohn__jsonschema2pojo-529/joelittlejohn__jsonschema2pojo-529.traj.json",
+      "local_path": "trace-sample/20149cf0101a03c1e5a2.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/java/joelittlejohn__jsonschema2pojo/joelittlejohn__jsonschema2pojo-529/joelittlejohn__jsonschema2pojo-529.traj.json",
+      "bytes": 532878,
+      "sha256": "65639d69ad0b035f033ca3169c5777d23d86732f46d3e82a90a410328fad0702"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/js/eslint__eslint/eslint__eslint-8274/eslint__eslint-8274.traj.json",
+      "local_path": "trace-sample/d699400cf183d5a11f27.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/js/eslint__eslint/eslint__eslint-8274/eslint__eslint-8274.traj.json",
+      "bytes": 985825,
+      "sha256": "04f1785b8adbe0095e831b9e07bb186ec5f3ce569b49681afc857c6241bc0e38"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/js/jlongster__prettier/jlongster__prettier-561/jlongster__prettier-561.traj.json",
+      "local_path": "trace-sample/a498731553ef6f743321.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/js/jlongster__prettier/jlongster__prettier-561/jlongster__prettier-561.traj.json",
+      "bytes": 1722081,
+      "sha256": "e33a191e1592910baf35411896ecdc492fc3675791a5c36a28a9cc1d8967319e"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/js/babel__minify/babel__minify-705/babel__minify-705.traj.json",
+      "local_path": "trace-sample/302f6b4910341f80810f.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/js/babel__minify/babel__minify-705/babel__minify-705.traj.json",
+      "bytes": 1161039,
+      "sha256": "4c7f8d39aee23ffc06e46e1c1c77fb41ea745969aa44c16849050fc8ec2ba97c"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/kotlin/analysis-dev__diktat/analysis-dev__diktat-778/analysis-dev__diktat-778.traj.json",
+      "local_path": "trace-sample/9fb6ad423c1860d029da.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/kotlin/analysis-dev__diktat/analysis-dev__diktat-778/analysis-dev__diktat-778.traj.json",
+      "bytes": 474895,
+      "sha256": "183a2cee1e6916dbd7b74d1cba6befdc267fa95a7903a50eeda6b18dcb360dde"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/kotlin/jeremymailen__kotlinter-gradle/jeremymailen__kotlinter-gradle-246/jeremymailen__kotlinter-gradle-246.traj.json",
+      "local_path": "trace-sample/a65f68224bcc9882d7ca.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/kotlin/jeremymailen__kotlinter-gradle/jeremymailen__kotlinter-gradle-246/jeremymailen__kotlinter-gradle-246.traj.json",
+      "bytes": 354423,
+      "sha256": "5f6ab64a00dcb876dc58e6cb8ebcf933c7e07e4e2781085ddadaa940d3b41697"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/php/doctrine__migrations/doctrine__migrations-1226/doctrine__migrations-1226.traj.json",
+      "local_path": "trace-sample/3079c0c5b7a9693e9f4f.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/php/doctrine__migrations/doctrine__migrations-1226/doctrine__migrations-1226.traj.json",
+      "bytes": 568371,
+      "sha256": "bd43cf6dd68e9687494622af312e35f39a66f9979c5e3d160574dbb34f44da0e"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/php/DenverCoder1__readme-typing-svg/denvercoder1__readme-typing-svg-213/denvercoder1__readme-typing-svg-213.traj.json",
+      "local_path": "trace-sample/c9479e7119f68bcd53c7.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/php/DenverCoder1__readme-typing-svg/denvercoder1__readme-typing-svg-213/denvercoder1__readme-typing-svg-213.traj.json",
+      "bytes": 289205,
+      "sha256": "010b69195462f8b6f4a5106bfce6921b10e3f9838db3295560f39edf40c9e046"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/python/pypa__setuptools/pypa__setuptools-1100/pypa__setuptools-1100.traj.json",
+      "local_path": "trace-sample/eae60433dfcddbf8e0fd.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/pypa__setuptools/pypa__setuptools-1100/pypa__setuptools-1100.traj.json",
+      "bytes": 586373,
+      "sha256": "4c62d8fcddf7b6b4d382e449809716d0373eb25a0a02a6363d48ad3f9d50dc92"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/python/mpmath__mpmath/mpmath__mpmath-854/mpmath__mpmath-854.traj.json",
+      "local_path": "trace-sample/ead0f75ab7372cfa5fe6.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/mpmath__mpmath/mpmath__mpmath-854/mpmath__mpmath-854.traj.json",
+      "bytes": 292709,
+      "sha256": "69659e8e9b8fb6a2b835690420ad120e21711d37ef2a8cbfa41370afb67838f0"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/python/hdmf-dev__hdmf/hdmf-dev__hdmf-657/hdmf-dev__hdmf-657.traj.json",
+      "local_path": "trace-sample/050ea2d292865db53580.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/hdmf-dev__hdmf/hdmf-dev__hdmf-657/hdmf-dev__hdmf-657.traj.json",
+      "bytes": 445965,
+      "sha256": "dae2d67ffc2a03f2ab288261c21c9efac87bec713cb8a96ce2415953c204957f"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/rust/gluesql__gluesql/gluesql__gluesql-67/gluesql__gluesql-67.traj.json",
+      "local_path": "trace-sample/a24678755673aa58cafa.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/rust/gluesql__gluesql/gluesql__gluesql-67/gluesql__gluesql-67.traj.json",
+      "bytes": 676214,
+      "sha256": "30a6f3cc357936a9d9d517fe1b830492f44553eaa03592aaf6b51a52b7579c19"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/rust/dtolnay__cxx/dtolnay__cxx-361/dtolnay__cxx-361.traj.json",
+      "local_path": "trace-sample/9417c6561b50f259a532.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/rust/dtolnay__cxx/dtolnay__cxx-361/dtolnay__cxx-361.traj.json",
+      "bytes": 706362,
+      "sha256": "018315ef6e805a82dcaea2946cfc932b36855136b60afed883eb7f4d54a7dd71"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/rust/dprint__dprint-plugin-typescript/dprint__dprint-plugin-typescript-419/dprint__dprint-plugin-typescript-419.traj.json",
+      "local_path": "trace-sample/eb22b010174219705e81.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/rust/dprint__dprint-plugin-typescript/dprint__dprint-plugin-typescript-419/dprint__dprint-plugin-typescript-419.traj.json",
+      "bytes": 333016,
+      "sha256": "54f43fafb6bed5556b56dc2f97aa7e204c4b36c29abb8eeb84e695e361c56bfa"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/swift/cpisciotta__xcbeautify/cpisciotta__xcbeautify-294/cpisciotta__xcbeautify-294.traj.json",
+      "local_path": "trace-sample/deaf7893b8ae74659da2.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/swift/cpisciotta__xcbeautify/cpisciotta__xcbeautify-294/cpisciotta__xcbeautify-294.traj.json",
+      "bytes": 695024,
+      "sha256": "4a3a561ef5de089ed2396ff97e37525de4296c6c97e15fdc9215c69dda66ecdf"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/swift/apple__swift-argument-parser/apple__swift-argument-parser-62/apple__swift-argument-parser-62.traj.json",
+      "local_path": "trace-sample/59fa906058f66098f0b1.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/swift/apple__swift-argument-parser/apple__swift-argument-parser-62/apple__swift-argument-parser-62.traj.json",
+      "bytes": 1677267,
+      "sha256": "35ef13168aa81137612cd5f082b9e73f2013ed49063bbdd9a31d4870320b1444"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/swift/Quick__Nimble/quick__nimble-1151/quick__nimble-1151.traj.json",
+      "local_path": "trace-sample/32d7e956ffe3d434fd74.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/swift/Quick__Nimble/quick__nimble-1151/quick__nimble-1151.traj.json",
+      "bytes": 421917,
+      "sha256": "d5ce75b872356f48f4ff5acab1bcd8e63d8cfd7370106fa3f57b49632a99f8b3"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/ts/FHIR__sushi/fhir__sushi-745/fhir__sushi-745.traj.json",
+      "local_path": "trace-sample/1df7abe315c9aea56904.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/ts/FHIR__sushi/fhir__sushi-745/fhir__sushi-745.traj.json",
+      "bytes": 318432,
+      "sha256": "7b08db1931147bd23ea92cfd9f83648654b175f9b7e4fc26baf0bee9ca8c69cd"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/ts/platers__obsidian-linter/platers__obsidian-linter-209/platers__obsidian-linter-209.traj.json",
+      "local_path": "trace-sample/61b1f1bbb5c3585dcc7f.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/ts/platers__obsidian-linter/platers__obsidian-linter-209/platers__obsidian-linter-209.traj.json",
+      "bytes": 511008,
+      "sha256": "f17f3adbac5626b612871519d77c3a9853e5c10a1f4a250168d81f10c90f2294"
+    },
+    {
+      "dataset": "Tongyi-ConvAI/VibeMemBench",
+      "revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+      "path": "history/ts/JoshuaKGoldberg__template-typescript-node-package/joshuakgoldberg__template-typescript-node-package-548/joshuakgoldberg__template-typescript-node-package-548.traj.json",
+      "local_path": "trace-sample/b443bcf198a6c2fab499.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/ts/JoshuaKGoldberg__template-typescript-node-package/joshuakgoldberg__template-typescript-node-package-548/joshuakgoldberg__template-typescript-node-package-548.traj.json",
+      "bytes": 315067,
+      "sha256": "861bc1ed6e020890f0d8ced27d0f58000768c489bab5e503c4395d78f02a6d14"
+    }
+  ]
+}

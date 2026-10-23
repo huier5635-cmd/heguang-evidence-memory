@@ -1,0 +1,16 @@
+{
+  "instance_id": "sympy__sympy-27868",
+  "frozen_at_utc": "2026-10-22T22:24:04.207476+00:00",
+  "base_commit": "22fc107a94eaabc4f6eb31470b39db65abb7a394",
+  "modified_files": {
+    "sympy/parsing/mathematica.py": "9a0056c7c213a7e4184de8f9a1ea065aa81ff6f9487b80c800dab8a908bda425"
+  },
+  "base_file_sha256": "3f6bd6120c7f1d7bf823f0beeaf3c4dd15ed6e95cd4f688825006b03a41faa45",
+  "patch_sha256": "dc8523f6bd7628ffd356873d946a3ce8f023be8a1c8f61ac9683328e94fed9e9",
+  "target_gold_patch_read": false,
+  "target_test_patch_read_before_freeze": false,
+  "existing_tests_modified": false,
+  "known_visible_test_change": "Cos(1/2 * pi-symbol) now follows the same implicit-multiplication grammar as its ASCII equivalent; existing legacy expectation differs. No test was edited.",
+  "solver": "Current assistant using public retrieved history and visible base repository; differs from official agent/model",
+  "official_score": false
+}

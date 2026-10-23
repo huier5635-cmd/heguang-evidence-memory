@@ -1,9 +1,0 @@
-.git
-.env
-.env.*
-data
-*.sqlite3*
-__pycache__
-.pytest_cache
-tests
-

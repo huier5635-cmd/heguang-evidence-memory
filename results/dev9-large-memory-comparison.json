@@ -1,0 +1,27 @@
+{
+  "purpose": "Large-body engineering comparison on identical two 63999418-byte HTTP requests; no task-quality inference",
+  "source_mib_each": 60,
+  "parallel_clients": 2,
+  "stages": [
+    {
+      "label": "original",
+      "report": "dev9-large-add-memory.json",
+      "peak_rss_bytes": 728920064,
+      "peak_rss_mib": 695.15
+    },
+    {
+      "label": "release buffer and stream digest",
+      "report": "dev9-large-add-memory-optimized.json",
+      "peak_rss_bytes": 648732672,
+      "peak_rss_mib": 618.68
+    },
+    {
+      "label": "also serialize large or unknown-size requests",
+      "report": "dev9-large-add-memory-admission.json",
+      "peak_rss_bytes": 395431936,
+      "peak_rss_mib": 377.11
+    }
+  ],
+  "rss_reduction_percent": 45.75,
+  "qualification": "Sampling on local Windows, includes loaded reranker. Large requests are deliberately serialized; smaller requests retain two processing slots. Not a cloud-memory guarantee or full-scale storage proof."
+}
