@@ -1,0 +1,6 @@
+{
+  "cause": "Pinned GitHub codeload applies export-subst to the three Versioneer keyword strings; git show returns unsubstituted strings. All other lines are unchanged except trailing transport newline in diagnostic raw copy.",
+  "normalization": "Restore the exact pinned codeload bytes already shown to all solver arms; verify independent manifest SHA. No target test or solution access.",
+  "asset_sha256": "9f353ca3d38791ef8b7f19f578f6e6a4dee69d500f141952a0e1e27041fecc95",
+  "full_allowed": false
+}

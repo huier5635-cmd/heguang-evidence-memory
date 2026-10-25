@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 
 
-def restore_declared_generated_files(repo, commit, expected, allowed):
+def restore_declared_generated_files(repo, commit, expected, allowed, fixed_files=None):
     repo = Path(repo).resolve()
     head = subprocess.run(['git', '-C', str(repo), 'rev-parse', 'HEAD'],
                           check=True, stdout=subprocess.PIPE).stdout.decode().strip()
@@ -21,10 +21,13 @@ def restore_declared_generated_files(repo, commit, expected, allowed):
             continue
         if name not in allowed:
             raise ValueError('Undeclared source difference: ' + name)
-        fixed = subprocess.run(['git', '-C', str(repo), 'show', commit + ':' + name],
-                               check=True, stdout=subprocess.PIPE).stdout
+        if fixed_files and name in fixed_files:
+            fixed = Path(fixed_files[name]).read_bytes()
+        else:
+            fixed = subprocess.run(['git', '-C', str(repo), 'show', commit + ':' + name],
+                                   check=True, stdout=subprocess.PIPE).stdout
         if hashlib.sha256(fixed).hexdigest() != wanted:
-            raise ValueError('Git base bytes differ from independent manifest: ' + name)
+            raise ValueError('Fixed base bytes differ from independent manifest: ' + name)
         pending.append((name, path, original, fixed, wanted))
     # All paths and originals are checked before any file is changed.
     receipt = []

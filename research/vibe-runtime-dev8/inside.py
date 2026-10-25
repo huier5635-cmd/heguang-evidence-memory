@@ -8,7 +8,7 @@ repo=Path(case['working_dir']).resolve()
 head=subprocess.run(['git','-C',str(repo),'rev-parse','HEAD'],capture_output=True,text=True,check=True).stdout.strip()
 if head != case['base_commit']: raise RuntimeError('Repository HEAD mismatch before normalization')
 from normalize_base import restore_declared_generated_files
-normalization=restore_declared_generated_files(repo,case['base_commit'],case['expected_source_files'],['src/hdmf/_version.py'] if case['case']=='hdmf-dev__hdmf-839' else [])
+normalization=restore_declared_generated_files(repo,case['base_commit'],case['expected_source_files'],['src/hdmf/_version.py'] if case['case']=='hdmf-dev__hdmf-839' else [], {'src/hdmf/_version.py':'/kit/hdmf-export-version.py'} if case['case']=='hdmf-dev__hdmf-839' else None)
 changed=[];missing=[]
 for name,expected in case['expected_source_files'].items():
  path=(repo/name).resolve()
