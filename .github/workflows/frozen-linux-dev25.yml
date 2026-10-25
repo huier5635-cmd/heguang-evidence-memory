@@ -1,0 +1,31 @@
+name: Frozen public repairs on Linux
+on:
+  push:
+    branches: [coding-linux-frozen-dev25]
+permissions: {}
+jobs:
+  public-frozen-only:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        case: [pylint-dev__pylint-10275, sphinx-doc__sphinx-13319, pydata__xarray-9498]
+    steps:
+      - name: Fetch this exact public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Evaluate frozen patches using full tests and no network
+        env:
+          CASE_ID: ${{ matrix.case }}
+        run: |
+          python3 checkout/research/linux-frozen-dev25/evaluate_linux.py --case "$CASE_ID" --output "$RUNNER_TEMP/qianora-$CASE_ID"

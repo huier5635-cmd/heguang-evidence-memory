@@ -1,0 +1,22 @@
+--- a/xarray/coding/times.py
++++ b/xarray/coding/times.py
+@@ -990,6 +990,19 @@
+                     f"at which point xarray will make an appropriate choice."
+                 )
+             else:
++                # Check if we can safely cast to the target dtype
++                # by checking if all values fit in the target range
++                try:
++                    # Try casting with overflow checking
++                    np.asarray(num, dtype=dtype)
++                except OverflowError:
++                    # If overflow occurs, fall back to int64 for safety
++                    warnings.warn(
++                        f"Overflow detected when casting to {dtype!r}, using int64 instead.",
++                        UserWarning
++                    )
++                    dtype = np.int64
++
+                 raise OverflowError(
+                     f"Not possible to cast encoded times from "
+                     f"{num.dtype!r} to {dtype!r} without overflow. Consider "

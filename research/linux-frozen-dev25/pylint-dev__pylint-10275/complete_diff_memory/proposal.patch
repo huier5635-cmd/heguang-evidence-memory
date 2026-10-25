@@ -1,0 +1,27 @@
+--- a/pylint/checkers/variables.py
++++ b/pylint/checkers/variables.py
+@@ -2511,15 +2511,18 @@
+         return False
+ 
+     @staticmethod
++    @staticmethod
+     def _is_variable_annotation_in_function(node: nodes.NodeNG) -> bool:
+         is_annotation = utils.get_node_first_ancestor_of_type(node, nodes.AnnAssign)
+-        return (
+-            is_annotation
+-            and utils.get_node_first_ancestor_of_type(  # type: ignore[return-value]
+-                is_annotation, nodes.FunctionDef
+-            )
++        if not is_annotation:
++            return False
++        func = utils.get_node_first_ancestor_of_type(  # type: ignore[return-value]
++            is_annotation, nodes.FunctionDef
+         )
+-
++        if not func:
++            return False
++        # Check if the function is at module level
++        return func.parent is not None and not isinstance(func.parent, nodes.FunctionDef)
+     def _ignore_class_scope(self, node: nodes.NodeNG) -> bool:
+         """Return True if the node is in a local class scope, as an assignment.
+ 

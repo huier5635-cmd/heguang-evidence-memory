@@ -1,0 +1,18 @@
+{
+  "protocol": "full-suite-evidence-dev25-v1",
+  "supersedes_exact_node_selection_for_execution_only": true,
+  "input_manifest_preserved": "manifest.json",
+  "command": [
+    "pytest",
+    "-rA"
+  ],
+  "declared_lists_are_summary_identities": true,
+  "collision_members_preserved": true,
+  "model_regeneration_allowed": false,
+  "target_solution_access_allowed": false,
+  "official_score": false,
+  "full_allowed": false,
+  "expected_platform": "Linux",
+  "budget_currency_units": 0,
+  "artifacts_upload_enabled": false
+}

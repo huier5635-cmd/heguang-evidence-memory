@@ -1,0 +1,11 @@
+--- a/sphinx/writers/text.py
++++ b/sphinx/writers/text.py
+@@ -796,7 +796,7 @@
+                 self.add_text(production['tokenname'].ljust(maxlen) + ' ::=')
+                 lastname = production['tokenname']
+             elif lastname is not None:
+-                self.add_text('%s    ' % (' ' * len(lastname)))
++                self.add_text('%s    ' % (' ' * maxlen))
+             self.add_text(production.astext() + self.nl)
+         self.end_state(wrap=False)
+         raise nodes.SkipNode

@@ -1,0 +1,12 @@
+--- a/pylint/checkers/variables.py
++++ b/pylint/checkers/variables.py
+@@ -1994,7 +1994,8 @@
+             return False
+         if self._is_builtin(node.name):
+             return False
+-        if self._is_variable_annotation_in_function(node):
++        if (self._is_variable_annotation_in_function(node) and
++            not utils.is_node_in_type_annotation_context(node)):
+             return False
+         if self._has_nonlocal_in_enclosing_frame(
+             node, current_consumer.consumed_uncertain.get(node.name, [])

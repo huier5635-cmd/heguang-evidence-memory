@@ -1,0 +1,92 @@
+{
+  "cases": [
+    {
+      "instance_id": "pylint-dev__pylint-10275",
+      "repo": "pylint-dev/pylint",
+      "base_commit": "512c8bee6cd237a8e56ab5527ee2876d8070c0d6",
+      "created_at": "2025-03-13T13:36:56",
+      "arms": [
+        {
+          "arm": "without_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "674e2a8b0ae9398e0d8756d9870e95f986a79d3539ea9df118192cf5fcdaf856",
+          "patch_sha256": "521c31d498ea118b74784d2215c71440a63b4dce5a15cdc9c97f9248a8f80953"
+        },
+        {
+          "arm": "dev6_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "4ff346165c4e81c24b6da78b8913168e6677487a278753b444c8d20c2c8c4c31",
+          "patch_sha256": "7be6444f202863fbaa22356d5c352a6ef00153c273ba81d53b3b555b9a7ff965"
+        },
+        {
+          "arm": "complete_diff_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "fed3bf15fd7e20b54a1eafd83efae7079d5cb2cdc790addbdaefac86b4fbaa25",
+          "patch_sha256": "823216067a1677cca5558928743f8ce4c7cd07a43b080ad0c6c0dedf181212ef"
+        }
+      ]
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-13319",
+      "repo": "sphinx-doc/sphinx",
+      "base_commit": "c4b3dcbaf9f9a5d0895374981a9d222e6be094e2",
+      "created_at": "2025-02-09T20:52:42",
+      "arms": [
+        {
+          "arm": "dev6_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "9f74f5133e707f939775e7d7b7930f5e2a60c99db73540a609b067fe68d7f913",
+          "patch_sha256": "1fce319763301f711a4a97a45a9ad3cc597a659f6316ef143137a8df2ce5f3a8"
+        },
+        {
+          "arm": "complete_diff_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "948a54a47bd316013c2975620cfb7022b331a1bdf85b175976622b7e28cb8763",
+          "patch_sha256": "1fce319763301f711a4a97a45a9ad3cc597a659f6316ef143137a8df2ce5f3a8"
+        },
+        {
+          "arm": "without_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "cdb1887b10fb6a43806a95e4484cf2895543434a4340d48f953bdb57273df026",
+          "patch_sha256": "1fce319763301f711a4a97a45a9ad3cc597a659f6316ef143137a8df2ce5f3a8"
+        }
+      ]
+    },
+    {
+      "instance_id": "pydata__xarray-9498",
+      "repo": "pydata/xarray",
+      "base_commit": "bb539d8e89fa7601e69fb9dbf849b051c61a3a31",
+      "created_at": "2024-09-15T14:47:50",
+      "arms": [
+        {
+          "arm": "complete_diff_memory",
+          "status": "invalid_python_no_execution",
+          "proposal_sha256": "a0ae0a943b34c7ea6634bb76d74fa9f20439897b74d89a7f43ffc4be7a891774"
+        },
+        {
+          "arm": "without_memory",
+          "status": "frozen_reviewed",
+          "proposal_sha256": "70176483954fd4ca2cd0d37fb7d1ef6154c9fb49aa1b25cf21397b61b473a268",
+          "patch_sha256": "4ceb9186aeea8e8d1dbbcb243e6ea1eaec7770cc5aeeb5c242df0a3f0081a175"
+        },
+        {
+          "arm": "dev6_memory",
+          "status": "invalid_python_no_execution",
+          "proposal_sha256": "18dbdee6ecfba5961750603f04932d33901685ea327ec186552bd46561d3d889"
+        }
+      ]
+    }
+  ],
+  "study_plan_sha256": "fef441f2a93e04189f5ca053e84aef06ef12d7ea3377f77a5bc22268a32ced9b",
+  "review_sha256": "3551077a276f7e1439d6520930126b046e339f6a443d94f5b7098c13eb414b7e",
+  "dataset_sha256": "080e36e46198bf9c177a6b077624d4028baf6ff04d661c332cc1fe1e5dfa50b2",
+  "target_solution_column_loaded": false,
+  "generation_allowed": false,
+  "executed": false,
+  "platform": "Linux required; exact collected node identity must match declared lists before execution",
+  "missing_or_ambiguous_test_ids_must_fail_admission": true,
+  "test_aliases_or_prefix_expansion_allowed": false,
+  "paid_calls": 0,
+  "official_calls": 0,
+  "full_allowed": false
+}

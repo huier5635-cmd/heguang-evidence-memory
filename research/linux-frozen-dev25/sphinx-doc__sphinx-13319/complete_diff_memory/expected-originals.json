@@ -1,0 +1,5 @@
+{
+  "sphinx/writers/html5.py": "18ca8ac68bf3997ee4d5b6035bad82aaba52d3d9260111ddaf47011fc9877e10",
+  "sphinx/writers/manpage.py": "eca89c884e02d5bbeebf13b3eca58d0d02fc00c1ec04ad7ab0b2ddda40043c4e",
+  "sphinx/writers/text.py": "f0fa544e93abf73fe3af8942145e259df1f63e9716620b05a09c272fa7bc0bae"
+}
