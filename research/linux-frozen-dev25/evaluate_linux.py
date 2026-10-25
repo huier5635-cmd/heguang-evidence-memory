@@ -47,7 +47,7 @@ def main():
    subprocess.run(['docker','rm','-f',cid],check=True,capture_output=True)
   path=folder/'run/full-suite-events.json'
   evidence=json.loads(path.read_text()) if path.exists() else None
-  reports[arm]={'exit_code':exit_code,'guard_reason':guard,'seconds':round(time.monotonic()-started,3),'preflight_passed':(folder/'preflight.json').exists(),'events':evidence,'log_sha256':sha(folder/'execution.log')}
+  reports[arm]={'exit_code':exit_code,'guard_reason':guard,'seconds':round(time.monotonic()-started,3),'preflight_passed':(folder/'preflight.json').exists(),'events':evidence,'log_sha256':sha(folder/'execution.log'),'log_tail':(folder/'execution.log').read_bytes()[-8000:].decode('utf-8',errors='replace')}
  declarations=json.loads((KIT/case['instance_id']/'declared-tests.json').read_text())
  baseline=reports['baseline'];evaluated={}
  for arm in arms[1:]:
@@ -64,5 +64,7 @@ def main():
  print('QIANORA_RESULT_SHA256 '+sha(path))
  for off in range(0,len(encoded),12000):print('QIANORA_EVIDENCE '+str(off//12000)+' '+encoded[off:off+12000])
  print(json.dumps({'case':case['instance_id'],'evaluation':evaluated,'full_allowed':False},indent=2))
+ if not baseline['preflight_passed'] or not baseline['events']:
+  raise SystemExit(2)
 
 if __name__=='__main__':main()
