@@ -1,0 +1,11 @@
+--- a/setuptools/installer.py
++++ b/setuptools/installer.py
+@@ -85,6 +85,8 @@
+         index_url = None
+     if 'find_links' in opts:
+         find_links = opts['find_links'][1][:]
++        if isinstance(find_links, six.string_types):
++            find_links = find_links.split()
+     else:
+         find_links = []
+     if dist.dependency_links:

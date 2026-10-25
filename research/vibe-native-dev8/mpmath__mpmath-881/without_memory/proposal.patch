@@ -1,0 +1,12 @@
+--- a/mpmath/libmp/libmpf.py
++++ b/mpmath/libmp/libmpf.py
+@@ -1729,7 +1729,9 @@
+             exp += exp_add
+ 
+         fix0 = 0 if fmt_type else 1
++        fix0 = 0 if fmt_type else 1
+         if -4 <= exp < precision - fix0:
++            fmt_type = 'f'
+             precision = max(0, precision - exp - 1)
+         else:
+             fmt_type = 'e'

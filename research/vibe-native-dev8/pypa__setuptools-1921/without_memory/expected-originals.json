@@ -1,0 +1,5 @@
+{
+  "setuptools/command/easy_install.py": "ad07d81a34288667f9a9b2036664157a9c59b7b7832f6b571fe27d95146dcc44",
+  "setuptools/dist.py": "86fe484df3e341b93c78230a58a46c5541d0bf0560e1e72706dac8ca4b54f901",
+  "setuptools/installer.py": "6a75624b065195790b1500017c38330dc78b439552ea6b4e950562dc503f681f"
+}

@@ -1,0 +1,58 @@
+{
+  "commands": {
+    "hdmf-dev__hdmf-839": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/unit/build_tests/test_classgenerator.py"
+      ],
+      "original_command": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning tests/unit/build_tests/test_classgenerator.py",
+      "parser": "parse_log_pytest"
+    },
+    "mpmath__mpmath-881": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "mpmath/tests/test_format.py"
+      ],
+      "original_command": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning mpmath/tests/test_format.py",
+      "parser": "parse_log_pytest"
+    },
+    "pypa__setuptools-1921": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "setuptools/tests/test_easy_install.py"
+      ],
+      "original_command": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning setuptools/tests/test_easy_install.py",
+      "parser": "parse_log_pytest"
+    }
+  },
+  "source_columns": [
+    "instance_id",
+    "install_config"
+  ],
+  "target_test_or_solution_columns_loaded": false,
+  "frozen_before_oracle_access": true
+}

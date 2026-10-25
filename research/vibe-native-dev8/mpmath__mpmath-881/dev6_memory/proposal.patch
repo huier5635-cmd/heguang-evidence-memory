@@ -1,0 +1,12 @@
+--- a/mpmath/libmp/libmpf.py
++++ b/mpmath/libmp/libmpf.py
+@@ -1729,6 +1729,9 @@
+             exp += exp_add
+ 
+         fix0 = 0 if fmt_type else 1
++        fix0 = 0 if fmt_type else 1
++        # For 'g' format, we need to handle the case where exp is -4 specially
++        # to match CPython's behavior for very small numbers
+         if -4 <= exp < precision - fix0:
+             precision = max(0, precision - exp - 1)
+         else:
