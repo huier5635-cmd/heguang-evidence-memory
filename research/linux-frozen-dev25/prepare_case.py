@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 p=argparse.ArgumentParser();p.add_argument('case');p.add_argument('arm');args=p.parse_args()
-kit=Path('/kit');repo=Path('/testbed');evidence=Path('/evidence')
+kit=Path('/kit');repo=Path('/testbed');evidence=Path('/tmp/qianora-dev25-evidence')
 assert sys.platform.startswith('linux') and Path.cwd()==repo
 manifest=json.loads((kit/'manifest.json').read_text())
 case=next(c for c in manifest['cases'] if c['instance_id']==args.case)

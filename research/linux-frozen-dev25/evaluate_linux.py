@@ -42,8 +42,8 @@ def main():
     reports[arm]={'exit_code':None,'guard_reason':'Baseline inadmissible; proposal not executed','seconds':0,'preflight_passed':False,'events':None,'log_tail':'','proposal_executed':False}
     continue
   folder=args.output/arm;folder.mkdir()
-  command='cd /testbed && python /kit/prepare_case.py '+case['instance_id']+' '+arm+' && python /kit/run_full_suite_evidence.py --output /evidence/run'
-  create=['docker','create','--network=none','--cap-drop=ALL','--security-opt=no-new-privileges','--cpus=2','--memory=6g','--pids-limit=256','--mount','type=bind,src='+str(KIT.resolve())+',dst=/kit,readonly','--mount','type=bind,src='+str(folder.resolve())+',dst=/evidence','--entrypoint','/bin/bash',image_id,'-c',command]
+  command='mkdir /tmp/qianora-dev25-evidence && cd /testbed && python /kit/prepare_case.py '+case['instance_id']+' '+arm+' && python /kit/run_full_suite_evidence.py --output /tmp/qianora-dev25-evidence/run'
+  create=['docker','create','--network=none','--cap-drop=ALL','--security-opt=no-new-privileges','--cpus=2','--memory=6g','--pids-limit=256','--mount','type=bind,src='+str(KIT.resolve())+',dst=/kit,readonly','--entrypoint','/bin/bash',image_id,'-c',command]
   cid=subprocess.run(create,check=True,capture_output=True,text=True).stdout.strip();assert re.fullmatch(r'[a-f0-9]{64}',cid)
   started=time.monotonic();guard=None;exit_code=None
   try:
@@ -56,6 +56,9 @@ def main():
    state=json.loads(subprocess.run(['docker','inspect',cid],capture_output=True,text=True,check=True).stdout)[0]['State']
    exit_code=None if state.get('Running') else state['ExitCode']
    if state.get('OOMKilled'):guard='Container memory limit'
+   copied=subprocess.run(['docker','cp',cid+':/tmp/qianora-dev25-evidence/.',str(folder.resolve())],capture_output=True,text=True)
+   if copied.returncode:
+    guard=guard or 'Container evidence recovery failed'
    subprocess.run(['docker','rm','-f',cid],check=True,capture_output=True)
   path=folder/'run/full-suite-events.json'
   evidence=json.loads(path.read_text()) if path.exists() else None
