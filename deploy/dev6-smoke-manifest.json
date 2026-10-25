@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0.dev6",
+  "source_selection": "coalesce",
+  "base_commit": "2c7c032fd7662686cf246e0e2e176a3ea6c552bc",
+  "base_files_sha256": {
+    "heguang_code/__init__.py": "7244fbc42f85add0a32579e1451b4bb82b288d8e75f9ac329c391116c2c08392",
+    "heguang_code/api.py": "7b487a24dca0a4c1746b04a2bac170130d7747060af2f12e439145125ebd7e40",
+    "heguang_code/config.py": "ccdf32e08abea8243f6a501790ca0e163efb3f1dcf14c179a1a990848949d5c2",
+    "heguang_code/feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "f9c7a7e625aaf9abb7089c65ce344ddeedd99d16811e0272264eb503e02be7d0",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/store.py": "8cf210d265bb2735bf9a7b1cc4d219f3ae1961008c612d78df3aa1c8c4fd6180"
+  },
+  "files_sha256": {
+    "heguang_code/__init__.py": "c91c547a8636c6a5522fb27c0ec4d970055fc39269cdaad24ce254fed8a7026c",
+    "heguang_code/api.py": "86c60a007516c1a341af397e891c63c5eb95fc6b6431c1ca6e1e37912cbee517",
+    "heguang_code/config.py": "03b54aa8ea02e16066270fe013eac18e3c45e251d25d97c8f78854937158b8fd",
+    "heguang_code/feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "f9c7a7e625aaf9abb7089c65ce344ddeedd99d16811e0272264eb503e02be7d0",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/selection.py": "ba685e39f791643a5a5ff21f89b5471fd00b5f639fe4110f3be4343f236e290a",
+    "heguang_code/store.py": "8cf210d265bb2735bf9a7b1cc4d219f3ae1961008c612d78df3aa1c8c4fd6180"
+  },
+  "unit_checks": {
+    "passed": 63,
+    "observed_stdout": "63 passed in 1.61s"
+  },
+  "official_smoke_score": 0,
+  "coding_benefit_demonstrated": false,
+  "full_allowed": false
+}

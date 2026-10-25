@@ -12,6 +12,7 @@ from . import __version__
 from .config import Settings
 from .schema import AddRequest, SearchRequest
 from .reranker import MODEL_NAME, PairScorer, fit_budget, reorder
+from .selection import MAX_SPAN_CHARACTERS, coalesce
 from .store import ConflictingWrite, Store, digest
 
 
@@ -19,6 +20,8 @@ def create_app(settings=None, scorer=None):
     settings = settings or Settings.from_env()
     store = Store(settings)
     scorer = scorer or (PairScorer(settings.reranker_dir, threads=settings.reranker_threads) if settings.reranker_dir else None)
+    if settings.source_selection == "coalesce" and scorer is None:
+        raise ValueError("Source coalescing requires the configured reranker")
     slots = asyncio.Semaphore(settings.max_concurrency)
     large_slot = asyncio.Semaphore(1)
     locks = [asyncio.Lock() for _ in range(256)]
@@ -39,7 +42,7 @@ def create_app(settings=None, scorer=None):
             with contextlib.suppress(asyncio.CancelledError):
                 await cleanup
 
-    app = FastAPI(title="Heguang Coding Memory — development candidate", lifespan=lifespan,
+    app = FastAPI(title="Qianora Coding Memory — development candidate", lifespan=lifespan,
                   docs_url=None, redoc_url=None, openapi_url=None)
     app.state.store = store
 
@@ -108,7 +111,9 @@ def create_app(settings=None, scorer=None):
                 "max_body_bytes": settings.max_body_bytes, "large_body_bytes": settings.large_body_bytes,
                 "large_requests_processed_at_once": 1,
                 "reranker_weight": settings.reranker_weight if scorer else None,
-                "reranker_threads": settings.reranker_threads if scorer else None}
+                "reranker_threads": settings.reranker_threads if scorer else None,
+                "source_selection": settings.source_selection,
+                "max_source_span_characters": MAX_SPAN_CHARACTERS if settings.source_selection == "coalesce" else None}
 
     def lock(user):
         return locks[int(digest(user)[:8], 16) % len(locks)]
@@ -131,6 +136,8 @@ def create_app(settings=None, scorer=None):
                     if len(scores) != len(prefix):
                         raise RuntimeError("Reranker result length differs from candidates")
                     ranked = reorder(data, scores, weight=settings.reranker_weight)
+                    if settings.source_selection == "coalesce":
+                        ranked = coalesce(ranked)
                     return fit_budget(ranked, top_k=req.top_k, characters=settings.rerank_response_chars)
                 data = await asyncio.to_thread(rerank)
         return {"data": data}
