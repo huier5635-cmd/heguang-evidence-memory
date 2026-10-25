@@ -26,11 +26,17 @@ def assessment(baseline, candidate, declarations):
             or not baseline['events'] or not candidate['events']):
         return {'baseline_admissible': False, 'resolved': False, 'reason': 'Missing native evidence'}
     b, c = baseline['events'], candidate['events']
-    return assess(exact_outcomes(b['collected'], b['events']), exact_outcomes(c['collected'], c['events']),
-                  declarations['fail_to_pass'], declarations['pass_to_pass'],
-                  baseline_exit=baseline['exit_code'], candidate_exit=candidate['exit_code'],
-                  baseline_collection_errors=b['collection_errors'], candidate_collection_errors=c['collection_errors'],
-                  guard_reason=baseline['guard_reason'] or candidate['guard_reason'])
+    try:
+        return assess(exact_outcomes(b['collected'], b['events']), exact_outcomes(c['collected'], c['events']),
+                      declarations['fail_to_pass'], declarations['pass_to_pass'],
+                      baseline_exit=baseline['exit_code'], candidate_exit=candidate['exit_code'],
+                      baseline_collection_errors=b['collection_errors'], candidate_collection_errors=c['collection_errors'],
+                      guard_reason=baseline['guard_reason'] or candidate['guard_reason'])
+    except ValueError as error:
+        # Preserve all raw reports even when the protocol rejects the evidence.
+        return {'baseline_admissible': False, 'resolved': False,
+                'reason': 'Evidence protocol rejected reports: ' + str(error),
+                'official_score': False, 'full_allowed': False}
 
 
 def execute(case, arm, output, image):

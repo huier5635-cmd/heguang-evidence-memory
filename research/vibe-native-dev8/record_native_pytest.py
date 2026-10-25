@@ -7,7 +7,13 @@ class Recorder:
     def __init__(self,output,command):
         self.output=output;self.command=command;self.events=[];self.collection_errors=0
     def pytest_runtest_logreport(self,report):
-        self.events.append({'nodeid':report.nodeid,'when':report.when,'outcome':report.outcome,'wasxfail':hasattr(report,'wasxfail')})
+        event={'nodeid':report.nodeid,'when':report.when,'outcome':report.outcome,'wasxfail':hasattr(report,'wasxfail'),
+               'report_type':type(report).__module__+'.'+type(report).__name__}
+        if type(report).__name__ in {'SubtestReport','SubTestReport'} and hasattr(report,'context'):
+            context=report.context
+            event['is_subtest']=True
+            event['subtest_context']=json.dumps({'msg':context.msg,'kwargs':context.kwargs},sort_keys=True,default=repr,ensure_ascii=True)
+        self.events.append(event)
     def pytest_collectreport(self,report):
         self.collection_errors+=int(report.failed)
     def pytest_sessionfinish(self,session,exitstatus):

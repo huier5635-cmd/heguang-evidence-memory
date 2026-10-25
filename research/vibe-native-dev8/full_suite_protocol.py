@@ -5,6 +5,7 @@ upstream score. Summary identity mirrors whitespace extraction, but pass checks
 require every concrete member and all original passing tests to stay passing.
 """
 from collections import defaultdict
+import hashlib
 
 
 def exact_outcomes(collected, events):
@@ -12,13 +13,20 @@ def exact_outcomes(collected, events):
         raise ValueError('Duplicate collected node identity')
     outcomes = {}
     grouped = defaultdict(list)
+    subtests = []
     known = set(collected)
     for event in events:
         if event['nodeid'] not in known:
             raise ValueError('Report refers to uncollected test')
         if event['when'] not in {'setup', 'call', 'teardown'} or event['outcome'] not in {'passed', 'failed', 'skipped'}:
             raise ValueError('Invalid test report phase or outcome')
-        grouped[event['nodeid']].append(event)
+        if event.get('is_subtest'):
+            if (event['when'] != 'call' or not isinstance(event.get('subtest_context'), str)
+                    or event.get('report_type', '').rsplit('.', 1)[-1] not in {'SubtestReport', 'SubTestReport'}):
+                raise ValueError('Invalid subtest report')
+            subtests.append(event)
+        else:
+            grouped[event['nodeid']].append(event)
     for node in collected:
         records = grouped[node]
         phases = [r['when'] for r in records]
@@ -38,6 +46,23 @@ def exact_outcomes(collected, events):
             outcomes[node] = 'passed'
         else:
             outcomes[node] = 'incomplete'
+    occurrences = defaultdict(int)
+    for event in subtests:
+        parent = event['nodeid']
+        context = hashlib.sha256(event['subtest_context'].encode()).hexdigest()
+        occurrences[(parent, context)] += 1
+        child = parent + '::_qianora_subtest:' + context + ':' + str(occurrences[(parent, context)])
+        if event['outcome'] == 'failed':
+            outcome = 'failed'
+        elif event.get('wasxfail'):
+            outcome = 'xfail' if event['outcome'] == 'skipped' else 'xpass'
+        else:
+            outcome = event['outcome']
+        outcomes[child] = outcome
+        # Keep the child evidence as well as the parent failure. A later parent
+        # pass can never overwrite an earlier failed subtest.
+        if outcome == 'failed' and outcomes[parent] not in {'error', 'incomplete'}:
+            outcomes[parent] = 'failed'
     return outcomes
 
 
@@ -46,7 +71,8 @@ def summary_groups(nodes):
     for node in nodes:
         if not isinstance(node, str) or not node.strip() or '\x00' in node:
             raise ValueError('Invalid concrete test node')
-        groups[node.split()[0]].append(node)
+        parent = node.split('::_qianora_subtest:', 1)[0]
+        groups[parent.split()[0]].append(node)
     return dict(groups)
 
 

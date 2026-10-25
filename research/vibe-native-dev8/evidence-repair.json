@@ -1,0 +1,13 @@
+{
+  "reason": "HDMF baseline rejected repeated phase reports before result transport; pytest9 builtin SubtestReport has the same parent nodeid as the main call. Preserve subtest identities and aggregate failed children without allowing ordinary retries.",
+  "after_oracle_access": true,
+  "solver_inputs_or_outputs_changed": false,
+  "target_test_patch_or_command_changed": false,
+  "old_failed_run": 40226841812,
+  "old_failed_job": 121269895363,
+  "repair_scope": "HDMF only; retain first-run mpmath and ongoing setuptools evidence",
+  "upstream_source": "https://github.com/pytest-dev/pytest/blob/9.0.2/src/_pytest/subtests.py",
+  "synthetic_protocol_check_passed": true,
+  "real_pytest9_subtest_check_passed": true,
+  "full_allowed": false
+}
