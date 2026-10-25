@@ -1,6 +1,7 @@
 """Container-only preparation of a fixed reviewed public proposal."""
 import argparse
 import hashlib
+import importlib.metadata
 import json
 from pathlib import Path
 import subprocess
@@ -29,4 +30,4 @@ if args.arm!='baseline':patches.append(folder/args.arm/'proposal.patch')
 for patch in patches:
  subprocess.run(['git','apply','--check',str(patch)],check=True)
  subprocess.run(['git','apply',str(patch)],check=True)
-(evidence/'preflight.json').write_text(json.dumps({'base_commit':head,'original_files_verified':len(expected),'arm':args.arm,'target_solution_read':False,'model_regenerated':False,'full_allowed':False},indent=2)+'\n')
+(evidence/'preflight.json').write_text(json.dumps({'base_commit':head,'original_files_verified':len(expected),'arm':args.arm,'python_executable':sys.executable,'python_version':sys.version,'pytest_version':importlib.metadata.version('pytest'),'target_solution_read':False,'model_regenerated':False,'full_allowed':False},indent=2)+'\n')

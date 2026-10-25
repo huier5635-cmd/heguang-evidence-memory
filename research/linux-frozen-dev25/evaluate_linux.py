@@ -22,15 +22,27 @@ def main():
  hashes=json.loads((KIT/'bundle-hashes.json').read_text())
  assert all(sha(KIT/name)==expected for name,expected in hashes.items())
  args.output.mkdir(parents=True,exist_ok=False)
- image='starryzhang/sweb.eval.x86_64.'+case['instance_id'].lower().replace('__','_1776_')+':latest'
+ execution_plan=json.loads((KIT/'execution-plan.json').read_text())
+ pinned=execution_plan['images'][case['instance_id']]
+ image=pinned['reference']
  subprocess.run(['docker','pull',image],check=True,timeout=900)
  info=json.loads(subprocess.run(['docker','image','inspect',image],check=True,capture_output=True,text=True).stdout)[0]
  image_id=info['Id'];assert re.fullmatch(r'sha256:[a-f0-9]{64}',image_id)
+ assert image_id==pinned['image_id'],'Resolved image differs from the diagnosed immutable image'
  arms=['baseline']+[a['arm'] for a in case['arms'] if a['status']=='frozen_reviewed']
+ declarations=json.loads((KIT/case['instance_id']/'declared-tests.json').read_text())
  reports={}
  for arm in arms:
+  if arm!='baseline':
+   baseline=reports['baseline'];events=baseline['events'];admissible=False
+   if baseline['preflight_passed'] and events and not baseline['guard_reason']:
+    exact=exact_outcomes(events['collected'],events['events'])
+    admissible=assess(exact,exact,declarations['fail_to_pass'],declarations['pass_to_pass'],baseline_exit=baseline['exit_code'],candidate_exit=baseline['exit_code'],baseline_collection_errors=events['collection_errors'])['baseline_admissible']
+   if not admissible:
+    reports[arm]={'exit_code':None,'guard_reason':'Baseline inadmissible; proposal not executed','seconds':0,'preflight_passed':False,'events':None,'log_tail':'','proposal_executed':False}
+    continue
   folder=args.output/arm;folder.mkdir()
-  command='source /opt/miniconda3/bin/activate && conda activate testbed && cd /testbed && python /kit/prepare_case.py '+case['instance_id']+' '+arm+' && python /kit/run_full_suite_evidence.py --output /evidence/run'
+  command='cd /testbed && python /kit/prepare_case.py '+case['instance_id']+' '+arm+' && python /kit/run_full_suite_evidence.py --output /evidence/run'
   create=['docker','create','--network=none','--cap-drop=ALL','--security-opt=no-new-privileges','--cpus=2','--memory=6g','--pids-limit=256','--mount','type=bind,src='+str(KIT.resolve())+',dst=/kit,readonly','--mount','type=bind,src='+str(folder.resolve())+',dst=/evidence','--entrypoint','/bin/bash',image_id,'-c',command]
   cid=subprocess.run(create,check=True,capture_output=True,text=True).stdout.strip();assert re.fullmatch(r'[a-f0-9]{64}',cid)
   started=time.monotonic();guard=None;exit_code=None

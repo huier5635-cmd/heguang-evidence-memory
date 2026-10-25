@@ -14,5 +14,19 @@
   "full_allowed": false,
   "expected_platform": "Linux",
   "budget_currency_units": 0,
-  "artifacts_upload_enabled": false
+  "artifacts_upload_enabled": false,
+  "images": {
+    "pydata__xarray-9498": {
+      "reference": "starryzhang/sweb.eval.x86_64.pydata_1776_xarray-9498@sha256:d916bfa95cdfb5292ac7e3dfe63dd9a1028dca24259b9278352094a897149a26",
+      "image_id": "sha256:50fa0c8d991904371ed0d1215a03a8a67a9a0636e78b5927f15e1a036fa4d6b0"
+    },
+    "pylint-dev__pylint-10275": {
+      "reference": "starryzhang/sweb.eval.x86_64.pylint-dev_1776_pylint-10275@sha256:d0034100201ca0a20060d4457c3273823c33e624febef8d12f3ef796a40975ef",
+      "image_id": "sha256:eed892503db820b1c24154f46f0705bce7324103f01f6023b63a1f3e400d9165"
+    },
+    "sphinx-doc__sphinx-13319": {
+      "reference": "starryzhang/sweb.eval.x86_64.sphinx-doc_1776_sphinx-13319@sha256:a948d37b250f6ebc73ae884be4e4c9f97943f201c5e0d24e5300b0193580adf1",
+      "image_id": "sha256:881bea9d24764abbb0d85a074e77ce2094c185ed5c62c64ad6c84196c876cd5c"
+    }
+  }
 }
