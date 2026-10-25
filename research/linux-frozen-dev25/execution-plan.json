@@ -1,5 +1,5 @@
 {
-  "protocol": "full-suite-evidence-dev25-v1",
+  "protocol": "full-suite-evidence-dev25-v2-xfail",
   "supersedes_exact_node_selection_for_execution_only": true,
   "input_manifest_preserved": "manifest.json",
   "command": [
@@ -28,5 +28,10 @@
       "reference": "starryzhang/sweb.eval.x86_64.sphinx-doc_1776_sphinx-13319@sha256:a948d37b250f6ebc73ae884be4e4c9f97943f201c5e0d24e5300b0193580adf1",
       "image_id": "sha256:881bea9d24764abbb0d85a074e77ce2094c185ed5c62c64ad6c84196c876cd5c"
     }
-  }
+  },
+  "prior_protocol_preserved_in_git": "full-suite-evidence-dev25-v1",
+  "protocol_amendments": [
+    "Record wasxfail attribute presence even when reason is empty; preserve distinct xfail/xpass outcomes.",
+    "For colliding maintained summary IDs require at least one maintained concrete member and no failures; every previously passing member remains protected and skips cannot expand."
+  ]
 }

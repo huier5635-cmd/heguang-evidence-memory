@@ -17,7 +17,7 @@ class Recorder:
 
     def pytest_runtest_logreport(self, report):
         self.events.append({'nodeid': report.nodeid, 'when': report.when,
-                            'outcome': report.outcome, 'wasxfail': bool(getattr(report, 'wasxfail', False))})
+                            'outcome': report.outcome, 'wasxfail': hasattr(report, 'wasxfail')})
 
     def pytest_collectreport(self, report):
         if report.failed:

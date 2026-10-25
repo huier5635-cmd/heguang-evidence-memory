@@ -62,7 +62,8 @@ def main():
    subprocess.run(['docker','rm','-f',cid],check=True,capture_output=True)
   path=folder/'run/full-suite-events.json'
   evidence=json.loads(path.read_text()) if path.exists() else None
-  reports[arm]={'exit_code':exit_code,'guard_reason':guard,'seconds':round(time.monotonic()-started,3),'preflight_passed':(folder/'preflight.json').exists(),'events':evidence,'log_sha256':sha(folder/'execution.log'),'log_tail':(folder/'execution.log').read_bytes()[-8000:].decode('utf-8',errors='replace')}
+  preflight=json.loads((folder/'preflight.json').read_text()) if (folder/'preflight.json').exists() else None
+  reports[arm]={'exit_code':exit_code,'guard_reason':guard,'seconds':round(time.monotonic()-started,3),'preflight_passed':preflight is not None,'preflight':preflight,'events':evidence,'log_sha256':sha(folder/'execution.log'),'log_tail':(folder/'execution.log').read_bytes()[-8000:].decode('utf-8',errors='replace')}
  declarations=json.loads((KIT/case['instance_id']/'declared-tests.json').read_text())
  baseline=reports['baseline'];evaluated={}
  for arm in arms[1:]:
@@ -70,7 +71,11 @@ def main():
   if not baseline['events'] or not row['events']:
    evaluated[arm]={'baseline_admissible':False,'resolved':False,'reason':'Missing full-suite evidence or failed preflight','full_allowed':False};continue
   evaluated[arm]=assess(exact_outcomes(baseline['events']['collected'],baseline['events']['events']),exact_outcomes(row['events']['collected'],row['events']['events']),declarations['fail_to_pass'],declarations['pass_to_pass'],baseline_exit=baseline['exit_code'],candidate_exit=row['exit_code'],baseline_collection_errors=baseline['events']['collection_errors'],candidate_collection_errors=row['events']['collection_errors'],guard_reason=baseline['guard_reason'] or row['guard_reason'])
- report={'case':case['instance_id'],'image_id':image_id,'repo_digests':info.get('RepoDigests',[]),'reports':reports,'evaluation':evaluated,'official_score':False,'target_solution_read':False,'model_regenerated':False,'full_allowed':False}
+ baseline_assessment=None
+ if baseline['events']:
+  events=baseline['events'];exact=exact_outcomes(events['collected'],events['events'])
+  baseline_assessment=assess(exact,exact,declarations['fail_to_pass'],declarations['pass_to_pass'],baseline_exit=baseline['exit_code'],candidate_exit=baseline['exit_code'],baseline_collection_errors=events['collection_errors'],guard_reason=baseline['guard_reason'])
+ report={'case':case['instance_id'],'image_id':image_id,'repo_digests':info.get('RepoDigests',[]),'reports':reports,'baseline_assessment':baseline_assessment,'evaluation':evaluated,'official_score':False,'target_solution_read':False,'model_regenerated':False,'full_allowed':False}
  path=args.output/'result.json';path.write_text(json.dumps(report,indent=2)+'\n')
  # Logs are free runner logs, not uploaded billable artifacts. Preserve the full
  # per-node evidence in bounded compressed chunks plus its checksum.
@@ -79,7 +84,7 @@ def main():
  print('QIANORA_RESULT_SHA256 '+sha(path))
  for off in range(0,len(encoded),12000):print('QIANORA_EVIDENCE '+str(off//12000)+' '+encoded[off:off+12000])
  print(json.dumps({'case':case['instance_id'],'evaluation':evaluated,'full_allowed':False},indent=2))
- if not baseline['preflight_passed'] or not baseline['events']:
+ if not baseline['preflight_passed'] or not baseline_assessment or not baseline_assessment['baseline_admissible']:
   raise SystemExit(2)
 
 if __name__=='__main__':main()

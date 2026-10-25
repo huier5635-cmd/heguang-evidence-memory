@@ -26,10 +26,12 @@ def exact_outcomes(collected, events):
             raise ValueError('Repeated phase report; retries cannot replace failures')
         if any(r['outcome'] == 'failed' and r['when'] != 'call' for r in records):
             outcomes[node] = 'error'
-        elif any(r.get('wasxfail') for r in records):
-            outcomes[node] = 'expected_failure_or_unexpected_pass'
         elif any(r['outcome'] == 'failed' for r in records):
             outcomes[node] = 'failed'
+        elif any(r.get('wasxfail') and r['outcome'] == 'skipped' for r in records):
+            outcomes[node] = 'xfail'
+        elif any(r.get('wasxfail') and r['outcome'] == 'passed' and r['when'] == 'call' for r in records):
+            outcomes[node] = 'xpass'
         elif any(r['outcome'] == 'skipped' for r in records):
             outcomes[node] = 'skipped'
         elif set(phases) == {'setup', 'call', 'teardown'}:
@@ -59,18 +61,23 @@ def assess(baseline, candidate, fail_to_pass, pass_to_pass, *, baseline_exit, ca
     baseline_ok = bool(not guard_reason and baseline_exit == 1 and not baseline_collection_errors and not missing)
     baseline_ok &= all(any(baseline[n] == 'failed' for n in groups.get(key, []))
                        and all(baseline[n] in {'failed', 'passed'} for n in groups.get(key, [])) for key in fail_to_pass)
-    baseline_ok &= all(all(baseline[n] == 'passed' for n in groups.get(key, [])) for key in pass_to_pass)
+    passlike = {'passed', 'xpass'}
+    maintained = passlike | {'xfail'}
+    baseline_ok &= all(any(baseline[n] in maintained for n in groups.get(key, []))
+                       and all(baseline[n] in maintained | {'skipped'} for n in groups.get(key, []))
+                       for key in pass_to_pass)
     # Baseline failures outside declared failing summary groups make this an
     # environment/protocol problem; do not silently ignore them.
     declared_failures = {n for key in fail_to_pass for n in groups.get(key, [])}
-    baseline_ok &= all(value in {'passed', 'skipped', 'expected_failure_or_unexpected_pass'} or (n in declared_failures and value == 'failed')
+    baseline_ok &= all(value in maintained | {'skipped'} or (n in declared_failures and value == 'failed')
                        for n, value in baseline.items())
     changed_collection = set(baseline) != set(candidate)
-    regressions = sorted(n for n, value in baseline.items() if value == 'passed' and candidate.get(n) != 'passed')
+    regressions = sorted(n for n, value in baseline.items() if value in passlike and candidate.get(n) not in passlike
+                         or value == 'xfail' and candidate.get(n) not in maintained)
     resolved = bool(baseline_ok and not changed_collection and not regressions
                     and candidate_exit == 0 and not candidate_collection_errors and not guard_reason
-                    and all(candidate.get(n) == 'passed' for n in declared_failures)
-                    and all(value == 'passed' or (value in {'skipped', 'expected_failure_or_unexpected_pass'}
+                    and all(candidate.get(n) in passlike for n in declared_failures)
+                    and all(value in passlike or (value in {'skipped', 'xfail'}
                                                  and baseline.get(n) == value)
                             for n, value in candidate.items()))
     return {'baseline_admissible': bool(baseline_ok), 'resolved': resolved,
