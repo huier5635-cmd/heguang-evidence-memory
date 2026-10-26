@@ -1,0 +1,1 @@
+Metadata-only source checks against fixed public image IDs. No target tests, project imports, solver execution, task statements, histories, generated patches or user credentials. Containers offline and bounded. Full disabled. Aiohttp test environment flag is recorded from solver-visible install instructions, before oracle access.
