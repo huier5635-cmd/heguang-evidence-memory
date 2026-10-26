@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0.dev6+obs1",
+  "base_version": "0.2.0.dev6",
+  "base_commit": "48ba53cbc2d7fb7a21b6ed3b10295b28319dfdda",
+  "base_files_sha256": {
+    "heguang_code/api.py": "86c60a007516c1a341af397e891c63c5eb95fc6b6431c1ca6e1e37912cbee517",
+    "heguang_code/config.py": "03b54aa8ea02e16066270fe013eac18e3c45e251d25d97c8f78854937158b8fd",
+    "heguang_code/features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "heguang_code/feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "heguang_code/normalize.py": "703d0be66569f05b143f53146646ba816962bda3f7ac3ce68d7726e27a4dda62",
+    "heguang_code/reranker.py": "f9c7a7e625aaf9abb7089c65ce344ddeedd99d16811e0272264eb503e02be7d0",
+    "heguang_code/schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "heguang_code/selection.py": "ba685e39f791643a5a5ff21f89b5471fd00b5f639fe4110f3be4343f236e290a",
+    "heguang_code/store.py": "8cf210d265bb2735bf9a7b1cc4d219f3ae1961008c612d78df3aa1c8c4fd6180",
+    "heguang_code/__init__.py": "c91c547a8636c6a5522fb27c0ec4d970055fc39269cdaad24ce254fed8a7026c"
+  },
+  "files_sha256": {
+    "heguang_code/__init__.py": "7b123192d8077d412e0c12a352ab55d882420bbe794de3de2cb00c4765da9490",
+    "heguang_code/api.py": "bc87892e8a9684f791b381a23608af426ca6dd60259c93e07dd367eb9aefaa7e",
+    "heguang_code/request_metadata.py": "8d79260a8ca96113258288567457d59238157d24d3888a54170ea17a90223d7f",
+    "pyproject.toml": "881b627e33f22fba5f8531b2b9bf7d30e6bd9b47c3a26990e9a111c90bf3cd1d"
+  },
+  "schema_or_retrieval_changed": false,
+  "real_pinned_model_parity": "results/real-model-parity-02/result.json",
+  "full_allowed": false,
+  "official_calls": 0
+}

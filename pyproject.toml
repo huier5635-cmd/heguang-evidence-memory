@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "heguang-coding-memory"
-version = "0.2.0.dev6"
+version = "0.2.0.dev6+obs1"
 description = "Independent coding-memory Add/Search development candidate"
 requires-python = ">=3.12"
 dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1"]

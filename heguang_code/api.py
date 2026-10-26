@@ -10,13 +10,14 @@ from fastapi.responses import JSONResponse
 
 from . import __version__
 from .config import Settings
+from .request_metadata import RequestMetadataMiddleware
 from .schema import AddRequest, SearchRequest
 from .reranker import MODEL_NAME, PairScorer, fit_budget, reorder
 from .selection import MAX_SPAN_CHARACTERS, coalesce
 from .store import ConflictingWrite, Store, digest
 
 
-def create_app(settings=None, scorer=None):
+def create_app(settings=None, scorer=None, metadata_sink=None):
     settings = settings or Settings.from_env()
     store = Store(settings)
     scorer = scorer or (PairScorer(settings.reranker_dir, threads=settings.reranker_threads) if settings.reranker_dir else None)
@@ -119,13 +120,14 @@ def create_app(settings=None, scorer=None):
         return locks[int(digest(user)[:8], 16) % len(locks)]
 
     @app.post("/add")
-    async def add(req: AddRequest):
+    async def add(req: AddRequest, request: Request):
+        request.state.qianora_counts = {"messages": len(req.messages)}
         async with lock(req.user_id):
             await asyncio.to_thread(store.add, req)
         return {"success": True, "request_id": req.request_id, "user_id": req.user_id, "session_id": req.session_id}
 
     @app.post("/search")
-    async def search(req: SearchRequest):
+    async def search(req: SearchRequest, request: Request):
         async with lock(req.user_id):
             pool = req.model_copy(update={"top_k": 100}) if scorer else req
             data = await asyncio.to_thread(store.search, pool, selection_pool=scorer is not None)
@@ -140,6 +142,8 @@ def create_app(settings=None, scorer=None):
                         ranked = coalesce(ranked)
                     return fit_budget(ranked, top_k=req.top_k, characters=settings.rerank_response_chars)
                 data = await asyncio.to_thread(rerank)
+        request.state.qianora_counts = {"rows": len(data), "characters": sum(len(row["content"]) for row in data)}
         return {"data": data}
 
+    app.add_middleware(RequestMetadataMiddleware, sink=metadata_sink)
     return app
