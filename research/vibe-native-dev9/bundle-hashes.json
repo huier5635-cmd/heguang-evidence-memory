@@ -30,5 +30,8 @@
   "xgcm__xgcm-558/without_memory/expected-originals.json": "02888672be895d9dbda88593a472ebca95a1fe3a742056c818cb45b504391743",
   "xgcm__xgcm-558/without_memory/proposal.patch": "d41ad184940549f16fb5a745f444d4a6d23ab99df7faaaa04c6579b3d0149230",
   "diagnose_baseline.py": "908b6405d84fdcad59c75fed848979e51113c062f7f40694d4b9154bae8f44ef",
-  "diagnostic-plan.json": "207fffe430262cf050c5cdb3cb3dcb8dfc023a510b0862b93aaed6416d2b8ffa"
+  "diagnostic-plan.json": "207fffe430262cf050c5cdb3cb3dcb8dfc023a510b0862b93aaed6416d2b8ffa",
+  "evaluate_dependency_repair.py": "d4d7675384595fa945730b7b5490baafa362bc4ff085e16eb837587f0c18ca3c",
+  "scipy-wheel.json": "3a2c656757e47900f4887973f1f8f7d3ef1986c623a8dab342cdb2131a0819f4",
+  "dependency-repair-plan.json": "582822f91fe0862900bdf931c25b9beab3e53fccfe598b180801aa32663bc5f9"
 }

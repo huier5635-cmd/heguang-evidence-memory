@@ -1,0 +1,23 @@
+name: Supplemental fixed xgcm dependency repair
+on:
+  push:
+    branches: [coding-vibe-dependency-repair-dev9]
+permissions: {}
+jobs:
+  frozen-dependency-repair:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - name: Fetch fixed public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Verify one dependency addition and run exact frozen offline tests
+        run: python3 checkout/research/vibe-native-dev9/evaluate_dependency_repair.py "$RUNNER_TEMP/qianora-dependency-repair"

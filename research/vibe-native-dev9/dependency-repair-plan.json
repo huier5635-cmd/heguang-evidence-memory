@@ -1,0 +1,11 @@
+{
+  "purpose": "Supplemental environment repair after opening tests; preserve original inadmissible result",
+  "baseline_diagnostic_run": 40306263444,
+  "original_run": 40303984116,
+  "change": "Install only pinned SciPy 1.15.3 wheel; require existing NumPy compatibility; no dependency upgrades",
+  "justification": "Frozen setup.py declares scipy in dev extras; actual original baseline raises ModuleNotFoundError scipy on an extra test",
+  "tests_and_proposals": "Exact original bytes and command; no target regeneration; all three frozen arms executed only if baseline passes strict gate",
+  "native_execution_network": false,
+  "full_allowed": false,
+  "official_calls": 0
+}
