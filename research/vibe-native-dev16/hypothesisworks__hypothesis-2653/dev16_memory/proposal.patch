@@ -1,0 +1,17 @@
+--- a/hypothesis-python/src/hypothesis/strategies/_internal/types.py
++++ b/hypothesis-python/src/hypothesis/strategies/_internal/types.py
+@@ -351,6 +351,14 @@
+     # which includes this... but we don't actually ever want to build one.
+     _global_type_lookup[os._Environ] = st.just(os.environ)
+ 
++    # Support for PEP 585 builtin generics
++    # These are handled by the generic type resolution code in resolve_generic_alias
++    # but we need to register them to avoid infinite recursion
++    _global_type_lookup[typing.List] = st.builds(list)
++    _global_type_lookup[typing.Set] = st.builds(set)
++    _global_type_lookup[typing.FrozenSet] = st.builds(frozenset)
++    _global_type_lookup[typing.Dict] = st.builds(dict)
++    _global_type_lookup[typing.Tuple] = st.builds(tuple)
+ 
+ try:  # pragma: no cover
+     import numpy as np

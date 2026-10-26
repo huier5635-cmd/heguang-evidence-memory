@@ -1,0 +1,56 @@
+{
+  "commands": {
+    "http-apis__hydrus-591": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/functional/test_app.py"
+      ],
+      "environment": {},
+      "source": "Exact solver-visible install_config.test_cmd; frozen before any generation or oracle access"
+    },
+    "hypothesisworks__hypothesis-2653": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "hypothesis-python/tests/conftest.py",
+        "hypothesis-python/tests/cover/test_lookup_py37.py"
+      ],
+      "environment": {},
+      "source": "Exact solver-visible install_config.test_cmd; frozen before any generation or oracle access"
+    },
+    "qiskit__qiskit-terra-8995": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "test/python/compiler/test_transpiler.py"
+      ],
+      "environment": {},
+      "source": "Exact solver-visible install_config.test_cmd; frozen before any generation or oracle access"
+    }
+  },
+  "frozen_before_generation": true,
+  "target_oracles_opened": false,
+  "full_allowed": false
+}

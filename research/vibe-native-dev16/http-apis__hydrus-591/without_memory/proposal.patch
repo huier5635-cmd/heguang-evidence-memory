@@ -1,0 +1,10 @@
+--- a/hydrus/data/crud.py
++++ b/hydrus/data/crud.py
+@@ -442,7 +442,6 @@
+     id_list = id_.split(',')
+     for member_id_ in id_list:
+         delete_member(collection_id_, member_id_, type_, session)
+-
+ 
+ def insert_modification_record(
+     method: str, resource_url: str, session: scoped_session
