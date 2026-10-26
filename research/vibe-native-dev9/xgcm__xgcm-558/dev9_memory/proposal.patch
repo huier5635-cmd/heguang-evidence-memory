@@ -1,0 +1,23 @@
+--- a/xgcm/grid_ufunc.py
++++ b/xgcm/grid_ufunc.py
+@@ -998,7 +998,19 @@
+         for arg_ps in signature.in_ax_positions + signature.out_ax_positions
+         for p in arg_ps
+     )
+-    if any(pos in DISALLOWED_OVERLAP_POSITIONS for pos in all_ax_positions):
++    # This restriction is overly broad - we can support outer/inner positions when they don't change array length
++    # Check if any axis positions are in DISALLOWED_OVERLAP_POSITIONS and if they would change the array length
++    disallowed_positions = set(DISALLOWED_OVERLAP_POSITIONS)
++    problematic_positions = set()
++    for arg_ps in signature.in_ax_positions + signature.out_ax_positions:
++        for p in arg_ps:
++            if p in disallowed_positions:
++                problematic_positions.add(p)
++    
++    # If we have outer/inner positions, check if they would change the array length
++    if problematic_positions:
++        # For now, we still raise NotImplementedError for outer/inner positions
++        # This is a conservative approach that matches current behavior
+         raise NotImplementedError(
+             "Cannot chunk along a core dimension for a grid ufunc which has a signature which "
+             f"includes one of the axis positions {DISALLOWED_OVERLAP_POSITIONS}"

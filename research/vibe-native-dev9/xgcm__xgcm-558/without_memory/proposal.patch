@@ -1,0 +1,20 @@
+--- a/xgcm/grid_ufunc.py
++++ b/xgcm/grid_ufunc.py
+@@ -999,10 +999,13 @@
+         for p in arg_ps
+     )
+     if any(pos in DISALLOWED_OVERLAP_POSITIONS for pos in all_ax_positions):
+-        raise NotImplementedError(
+-            "Cannot chunk along a core dimension for a grid ufunc which has a signature which "
+-            f"includes one of the axis positions {DISALLOWED_OVERLAP_POSITIONS}"
+-        )
++        # Special case: if we're only dealing with 'outer' or 'inner' positions
++        # and the operation is a simple shift (no complex signature), we can allow it
++        if not (len(all_ax_positions) == 1 and list(all_ax_positions)[0] in DISALLOWED_OVERLAP_POSITIONS):
++            raise NotImplementedError(
++                "Cannot chunk along a core dimension for a grid ufunc which has a signature which "
++                f"includes one of the axis positions {DISALLOWED_OVERLAP_POSITIONS}"
++            )
+ 
+ 
+ def _rechunk_to_merge_in_boundary_chunks(

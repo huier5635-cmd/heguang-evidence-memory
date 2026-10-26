@@ -1,0 +1,58 @@
+{
+  "commands": {
+    "neurodatawithoutborders__pynwb-998": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/unit/test_core.py"
+      ],
+      "original_command": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning tests/unit/test_core.py",
+      "parser": "parse_log_pytest"
+    },
+    "pyccel__pyccel-2019": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/epyccel/test_epyccel_sets.py"
+      ],
+      "original_command": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning tests/epyccel/test_epyccel_sets.py",
+      "parser": "parse_log_pytest"
+    },
+    "xgcm__xgcm-558": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "xgcm/test/test_grid_ufunc.py"
+      ],
+      "original_command": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning xgcm/test/test_grid_ufunc.py",
+      "parser": "parse_log_pytest"
+    }
+  },
+  "source_columns": [
+    "instance_id",
+    "install_config"
+  ],
+  "target_test_or_solution_columns_loaded": false,
+  "frozen_before_oracle_access": true
+}

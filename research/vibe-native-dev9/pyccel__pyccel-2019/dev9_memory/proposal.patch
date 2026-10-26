@@ -1,0 +1,19 @@
+--- a/pyccel/ast/builtin_methods/set_methods.py
++++ b/pyccel/ast/builtin_methods/set_methods.py
+@@ -103,6 +103,8 @@
+         super().__init__(set_variable)
+ 
+ #==============================================================================
++#==============================================================================
++
+ class SetCopy(SetMethod):
+     """
+     Represents a call to the .copy() method.
+@@ -122,7 +124,6 @@
+         self._shape = set_variable._shape
+         self._class_type = set_variable._class_type
+         super().__init__(set_variable)
+-
+ #==============================================================================
+ class SetPop(SetMethod):
+     """

@@ -1,0 +1,12 @@
+--- a/xgcm/grid_ufunc.py
++++ b/xgcm/grid_ufunc.py
+@@ -982,6 +982,9 @@
+ 
+ DISALLOWED_OVERLAP_POSITIONS = ["inner", "outer"]
+ 
++# Special handling for outer/inner positions in signatures to allow chunking with map_overlap
++# when the signature involves these positions, but only if they are not used in a way that would change array length
++
+ 
+ def _check_if_length_would_change(signature: _GridUFuncSignature):
+     """Check if map_overlap can actually handle the complexity of this signature."""

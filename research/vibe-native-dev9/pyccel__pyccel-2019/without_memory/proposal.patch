@@ -1,0 +1,10 @@
+--- a/pyccel/ast/builtin_methods/set_methods.py
++++ b/pyccel/ast/builtin_methods/set_methods.py
+@@ -122,7 +122,6 @@
+         self._shape = set_variable._shape
+         self._class_type = set_variable._class_type
+         super().__init__(set_variable)
+-
+ #==============================================================================
+ class SetPop(SetMethod):
+     """

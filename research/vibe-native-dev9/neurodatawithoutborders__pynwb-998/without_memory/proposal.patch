@@ -1,0 +1,16 @@
+--- a/src/pynwb/core.py
++++ b/src/pynwb/core.py
+@@ -162,9 +162,12 @@
+         cls.__nwbfields__ = tuple(new_nwbfields)
+ 
+     def __repr__(self):
+-        template = "\n{} {}\nFields:\n""".format(getattr(self, 'name'), type(self))
++        template = "\n{} {}\nFields:\n".format(getattr(self, 'name'), type(self))
+         for k in sorted(self.fields):  # sorted to enable tests
+             v = self.fields[k]
++            # Only print non-empty containers
++            if hasattr(v, '__len__') and len(v) == 0:
++                continue
+             template += "  {}: {}\n".format(k, self.__smart_str(v, 1))
+         return template
+ 

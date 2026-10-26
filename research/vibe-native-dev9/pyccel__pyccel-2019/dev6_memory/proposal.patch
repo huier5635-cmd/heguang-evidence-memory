@@ -1,0 +1,11 @@
+--- a/pyccel/ast/builtin_methods/set_methods.py
++++ b/pyccel/ast/builtin_methods/set_methods.py
+@@ -115,7 +115,7 @@
+     set_variable : TypedAstNode
+         The set on which the method will operate.
+     """
+-    __slots__ = ("_shape", "_class_type",)
++    __slots__ = ('_shape', '_class_type',)
+     name = 'copy'
+ 
+     def __init__(self, set_variable):
