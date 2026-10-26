@@ -21,3 +21,7 @@ An online 64 MiB limit is not changed here. The candidate uses 128 MiB and a
 fresh database. Even success is only Linux capacity evidence; protected cloud
 deployment, independent repair benefit, and a new official Smoke remain
 separate requirements. Full stays disabled.
+
+## Diagnostic-only amendment
+
+Original run 40391356164/job121812860988 failed before the application became ready. The original failure is retained. This version additionally records Docker versions/cgroup mode and the bounded stderr tail on failure. Candidate source, native input, model, memory/CPU/swap/process/deadline bounds are unchanged. The base Python image is pinned to the exact first-run digest. No target tests are opened.

@@ -1,7 +1,7 @@
-name: Qianora dev16 strict Linux service capacity
+name: Qianora dev16 capacity startup diagnostics
 on:
   push:
-    branches: [coding-memory-dev16-capacity]
+    branches: [coding-memory-dev16-capacity-logs]
 permissions: {}
 jobs:
   capacity:
@@ -26,8 +26,8 @@ jobs:
           "$RUNNER_TEMP/qianora-capacity-venv/bin/python" checkout/research/capacity-dev16/download_assets.py
       - name: Build and record the exact Linux application image
         run: |
-          docker pull python:3.12-slim
-          BASE_IMAGE="$(docker image inspect python:3.12-slim --format '{{index .RepoDigests 0}}')"
+          docker pull python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704
+          BASE_IMAGE="$(docker image inspect python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704 --format '{{index .RepoDigests 0}}')"
           docker build --build-arg "BASE_IMAGE=$BASE_IMAGE" -t qianora-capacity-dev16 checkout/research/capacity-dev16
           docker image inspect qianora-capacity-dev16 --format '{{.Id}}' > "$RUNNER_TEMP/qianora-capacity-image-id"
           echo "Base image: $BASE_IMAGE"

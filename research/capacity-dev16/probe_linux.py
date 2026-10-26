@@ -66,6 +66,12 @@ def main():
     image = os.environ['QIANORA_CAPACITY_IMAGE']
     assert image.startswith('sha256:') and len(image) == 71
     OUT.mkdir(exist_ok=False)
+    cli_version = docker('version','--format','{{.Client.Version}}').stdout.strip()
+    daemon_version = docker('version','--format','{{.Server.Version}}').stdout.strip()
+    cgroup_version = docker('info','--format','{{.CgroupVersion}}').stdout.strip()
+    cgroup_driver = docker('info','--format','{{.CgroupDriver}}').stdout.strip()
+    print(json.dumps({'docker_client':cli_version,'docker_server':daemon_version,'cgroup_version':cgroup_version,'cgroup_driver':cgroup_driver}),flush=True)
+    assert cgroup_version == '2'
     assets = json.loads((KIT/'inputs/result.json').read_text(encoding='utf-8'))
     row = assets['files'][0]
     original_path = KIT/'inputs'/row['local_path']
@@ -173,6 +179,12 @@ def main():
                 child.wait(5)
             inspected = docker('inspect',name,check=False)
             state = json.loads(inspected.stdout)[0]['State'] if inspected.returncode == 0 else None
+            log.flush()
+            worker_tail = (OUT/'worker.log').read_bytes()[-8192:].decode('utf-8',errors='replace')
+            if result['failure']:
+                result['worker_stderr_tail'] = worker_tail
+                result['docker_inspect_stderr'] = inspected.stderr[-2000:]
+                result['docker_client_returncode'] = child.returncode
             result['container_terminal_state'] = state
             result['service_reaped'] = bool(state and not state['Running'])
             result['sources_unchanged'] = all(sha(p)==h for p,h in sources.items()) and sha(original_path)==row['sha256']
