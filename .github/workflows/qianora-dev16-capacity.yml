@@ -1,7 +1,7 @@
-name: Qianora dev16 capacity startup diagnostics
+name: Qianora dev16 bounded Linux cgroup replay
 on:
   push:
-    branches: [coding-memory-dev16-capacity-logs]
+    branches: [coding-memory-dev16-capacity-cgroup]
 permissions: {}
 jobs:
   capacity:

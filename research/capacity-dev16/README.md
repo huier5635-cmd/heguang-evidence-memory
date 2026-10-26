@@ -25,3 +25,7 @@ separate requirements. Full stays disabled.
 ## Diagnostic-only amendment
 
 Original run 40391356164/job121812860988 failed before the application became ready. The original failure is retained. This version additionally records Docker versions/cgroup mode and the bounded stderr tail on failure. Candidate source, native input, model, memory/CPU/swap/process/deadline bounds are unchanged. The base Python image is pinned to the exact first-run digest. No target tests are opened.
+
+## Docker 28 cgroup configuration amendment
+
+Diagnostic run40392183896/job121815742699 proved Docker28.0.4 rejected --cgroup-conf before creating a container. This version keeps every hard limit from docker run, then uses a strictly scoped host helper to set memory.high on only this container before warming the model or sending Add. It first requires the startup memory peak to be below320MiB and verifies384MiB memory.max,512MiB memory.swap.max. The helper does not alter other groups or raise limits. All original failures remain failures. Kernel semantics: https://docs.kernel.org/admin-guide/cgroup-v2.html ; Docker total memory+swap semantics: https://docs.docker.com/engine/containers/resource_constraints/ .

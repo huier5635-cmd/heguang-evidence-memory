@@ -106,7 +106,7 @@ def main():
     name = 'qianora-dev16-capacity-'+sha(OUT/'frozen-plan.json')[:16]
     assert docker('inspect',name,check=False).returncode != 0
     command = ['docker','run','--name',name,'--read-only','--cap-drop=ALL','--security-opt=no-new-privileges',
-        '--cpus=1','--memory=384m','--memory-swap=896m','--cgroup-conf=memory.high=335544320','--pids-limit=64',
+        '--cpus=1','--memory=384m','--memory-swap=896m','--pids-limit=64',
         '--user',str(os.getuid())+':'+str(os.getgid()),'--tmpfs','/tmp:rw,nosuid,noexec,size=16m',
         '--publish',f'127.0.0.1:{port}:{port}','--mount','type=bind,src='+str(KIT)+',dst=/kit,readonly',
         '--mount','type=bind,src='+str(OUT)+',dst=/output','--workdir','/output',
@@ -139,6 +139,9 @@ def main():
                     time.sleep(.1)
                 else:
                     raise RuntimeError('Strict cgroup service not ready')
+                inspected_running = json.loads(docker('inspect',name).stdout)[0]
+                configured = subprocess.run(['sudo','-n','/usr/bin/python3',str(KIT/'configure_high.py'),'--pid',str(inspected_running['State']['Pid']),'--container-id',inspected_running['Id']],check=True,capture_output=True,text=True,timeout=15)
+                result['startup_high_configuration'] = json.loads(configured.stdout)
                 result['actual_initial_cgroup'] = snapshot(name)
                 warm = {'user_id':'warm','session_id':'synthetic','request_id':'warm',
                         'messages':[{'role':'user','content':'def warm_lifecycle_cache(key):\n    return key\n'*100}]}
