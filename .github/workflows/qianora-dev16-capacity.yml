@@ -1,7 +1,7 @@
-name: Qianora dev16 bounded Linux cgroup replay
+name: Qianora dev16 observed Linux cgroup replay
 on:
   push:
-    branches: [coding-memory-dev16-capacity-cgroup]
+    branches: [coding-memory-dev16-observed-capacity]
 permissions: {}
 jobs:
   capacity:

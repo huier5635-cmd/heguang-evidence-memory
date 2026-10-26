@@ -90,13 +90,14 @@ def main():
     del validated
     sources = {p:sha(p) for p in (KIT/'source/heguang_code').glob('*.py')}
     sources[Path(__file__)] = sha(__file__)
+    sources[KIT/'deployment/observed_api.py'] = sha(KIT/'deployment/observed_api.py')
     plan = {'scope':'Linux cgroup service capacity, not actual cloud deployment or repair score',
         'source_sha256':{str(p.relative_to(KIT)):h for p,h in sources.items()},'history_sha256':row['sha256'],
         'image':image,'request_bytes':len(body),'memory_max':384*1024**2,'memory_high':320*1024**2,
         'swap_max':512*1024**2,'cpu_cores':1,'pids_max':64,'parent_reference_data_outside_service_budget':True,
         'target_tests_or_solutions_read':False,'official_calls':0,'full_allowed':False}
     (OUT/'frozen-plan.json').write_text(json.dumps(plan,indent=2)+'\n',encoding='utf-8')
-    worker_source = ('from heguang_code.api import create_app\nfrom heguang_code.config import Settings\n'
+    worker_source = ('from observed_api import create_app\nfrom heguang_code.config import Settings\n'
         'from pathlib import Path\napp=create_app(Settings(data_dir=Path("/output/db"),api_key='+repr(KEY)+
         ',reranker_dir=Path("/kit/model"),reranker_threads=1,source_selection="coalesce",max_concurrency=1))\n')
     (OUT/'large_worker.py').write_text(worker_source,encoding='utf-8')
@@ -110,7 +111,7 @@ def main():
         '--user',str(os.getuid())+':'+str(os.getgid()),'--tmpfs','/tmp:rw,nosuid,noexec,size=16m',
         '--publish',f'127.0.0.1:{port}:{port}','--mount','type=bind,src='+str(KIT)+',dst=/kit,readonly',
         '--mount','type=bind,src='+str(OUT)+',dst=/output','--workdir','/output',
-        '--env','PYTHONPATH=/kit/source','--env','PYTHONDONTWRITEBYTECODE=1',
+        '--env','PYTHONPATH=/kit/source:/kit/deployment','--env','PYTHONDONTWRITEBYTECODE=1',
         '--env','TOKENIZERS_PARALLELISM=false','--env','OMP_NUM_THREADS=1','--env','OPENBLAS_NUM_THREADS=1',
         image,'python','-m','uvicorn','large_worker:app','--app-dir','/output','--host','0.0.0.0',
         '--port',str(port),'--workers','1','--no-access-log','--log-level','warning']
@@ -184,6 +185,18 @@ def main():
             state = json.loads(inspected.stdout)[0]['State'] if inspected.returncode == 0 else None
             log.flush()
             worker_tail = (OUT/'worker.log').read_bytes()[-8192:].decode('utf-8',errors='replace')
+            if result['complete']:
+                try:
+                    records = [json.loads(line.split('QIANORA_REQUEST ',1)[1]) for line in worker_tail.splitlines() if 'QIANORA_REQUEST ' in line]
+                    allowed = {'operation','status','completed','elapsed_ms','request_bytes','response_bytes','messages','rows','characters'}
+                    assert len(records)==4 and all(set(r)<=allowed and r['completed'] and r['status']==200 for r in records)
+                    assert sorted(r['messages'] for r in records if r['operation']=='add')==[1,87]
+                    assert len([r for r in records if r['operation']=='search' and r.get('rows',0)>0])==2
+                    result['only_counter_metadata_verified'] = True
+                    result['metadata_records'] = records
+                except Exception as error:
+                    result['complete'] = False
+                    result['failure'] = {'type':type(error).__name__,'message':'Metadata integration verification failed'}
             if result['failure']:
                 result['worker_stderr_tail'] = worker_tail
                 result['docker_inspect_stderr'] = inspected.stderr[-2000:]

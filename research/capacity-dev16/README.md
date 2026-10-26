@@ -29,3 +29,7 @@ Original run 40391356164/job121812860988 failed before the application became re
 ## Docker 28 cgroup configuration amendment
 
 Diagnostic run40392183896/job121815742699 proved Docker28.0.4 rejected --cgroup-conf before creating a container. This version keeps every hard limit from docker run, then uses a strictly scoped host helper to set memory.high on only this container before warming the model or sending Add. It first requires the startup memory peak to be below320MiB and verifies384MiB memory.max,512MiB memory.swap.max. The helper does not alter other groups or raise limits. All original failures remain failures. Kernel semantics: https://docs.kernel.org/admin-guide/cgroup-v2.html ; Docker total memory+swap semantics: https://docs.docker.com/engine/containers/resource_constraints/ .
+
+## Observed assembly replay
+
+This supplemental run adds the external observed_api.py counter layer. It keeps all17 frozen core modules, the native input, the model and every resource limit unchanged. Four real request records must contain only allowed counters and report validated Add counts1 and87 and two nonempty searches. It is not a new repair-generation trial or an official evaluation.
