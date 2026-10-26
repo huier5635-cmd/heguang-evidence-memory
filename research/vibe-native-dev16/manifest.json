@@ -1443,5 +1443,26 @@
   "evaluation_method_sha256": "9cba00d8b501795943ac7f6fc9b58fe527fb2ac0a287012bfefd01e4897205dd",
   "target_solution_read": false,
   "model_regenerated": false,
-  "full_allowed": false
+  "full_allowed": false,
+  "command_contract_metadata_amendment": {
+    "reason": "Original recorder CLI required frozen_before_oracle_access while the prospectively frozen dev15 contract used frozen_before_generation and target_oracles_opened=false. All three actual baseline jobs failed with KeyError before pytest; no native test execution or candidate execution occurred in all three jobs.",
+    "original_run_id": 40400766458,
+    "original_completed_failure_jobs": [
+      121845672232,
+      121845672317,
+      121845672399
+    ],
+    "original_contract_sha256": "2e48abb6a2c86e1722ad5cd053d031e12f3a53e80b79ed9654f57be975d08d89",
+    "amended_contract_sha256": "2156a1c49b9366df2228f4ad4a7c30be3fc61a8428c6eb8fc02d905eca6266d4",
+    "added_legacy_metadata_alias_only": true,
+    "metadata_added_after_test_oracle_access": true,
+    "no_claim_that_amended_file_itself_was_frozen_before_oracle_access": true,
+    "test_argv_environment_images_source_roots_scoring_and_proposals_unchanged": true,
+    "all_three_cases_and_all_frozen_arms_retained": true,
+    "model_regeneration_forbidden": true,
+    "gold_solution_read": false,
+    "official_calls": 0,
+    "full_allowed": false,
+    "real_recorder_cli_compatibility_check": "outputs/dev16-recorder-cli-compatibility-check.json"
+  }
 }

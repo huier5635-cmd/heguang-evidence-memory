@@ -52,5 +52,8 @@
   },
   "frozen_before_generation": true,
   "target_oracles_opened": false,
-  "full_allowed": false
+  "full_allowed": false,
+  "frozen_before_oracle_access": true,
+  "compatibility_metadata_added_after_oracle_access": true,
+  "original_frozen_contract_sha256": "2e48abb6a2c86e1722ad5cd053d031e12f3a53e80b79ed9654f57be975d08d89"
 }

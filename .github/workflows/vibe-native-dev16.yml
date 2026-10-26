@@ -1,7 +1,7 @@
-name: Frozen reviewed public Vibe native evaluation dev16
+name: Frozen reviewed public Vibe native evaluation dev16 contract compatibility
 on:
   push:
-    branches: [coding-vibe-native-dev16]
+    branches: [coding-vibe-native-dev16-contract]
 permissions: {}
 jobs:
   native-reviewed:
