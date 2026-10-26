@@ -5,7 +5,7 @@
   "manifest.json": "e35945d73b495c9a7aabab94632099d13e7a8df63cbd761174b1f231feec5acf",
   "native-test-commands.json": "a34a8789b87c8d7b0c603b9a43f8dd0ada34171a9ddb793faede2788fc5d3aed",
   "prepare_native_case.py": "6aa0ae3fbb86c2b8db2d91cb5dbd6e067b11040fd459ee5adb344f83372120ff",
-  "record_native_pytest.py": "6488b0e8517b8fbb5fe229998ed3398e8a5499c8740b7abcf7b2d2a9c891381d",
+  "record_native_pytest.py": "431f8d495d61c12a2659eb7d16fa2f5c0ab599db81978e08bd4d1c11c2120736",
   "assets/neurodatawithoutborders__pynwb-998--78fe9b6ead.py": "8a59f27a4e78935a0fede74a1267c540b6cb6e1fd3045624dc2e7134a9aa69fc",
   "neurodatawithoutborders__pynwb-998/declared-tests.json": "b1c292df8831524899f942b5e419b9ed62c1279a2f29ee23f057462da2636aa1",
   "neurodatawithoutborders__pynwb-998/test.patch": "f5307ca71dcdf17fd38cf23cab6714deff30e675b3c4c7a39db84e557236b3c5",
@@ -28,5 +28,7 @@
   "xgcm__xgcm-558/dev9_memory/expected-originals.json": "508762dec4a5a472cf7ae52ed62cf8632e3f6058c128ecc9c90780ad55f2fc90",
   "xgcm__xgcm-558/dev9_memory/proposal.patch": "ad7c41d2aafd8ffa7b945289a5ba1287e93cc44f8535ba3ebfb8c527dc89b38c",
   "xgcm__xgcm-558/without_memory/expected-originals.json": "02888672be895d9dbda88593a472ebca95a1fe3a742056c818cb45b504391743",
-  "xgcm__xgcm-558/without_memory/proposal.patch": "d41ad184940549f16fb5a745f444d4a6d23ab99df7faaaa04c6579b3d0149230"
+  "xgcm__xgcm-558/without_memory/proposal.patch": "d41ad184940549f16fb5a745f444d4a6d23ab99df7faaaa04c6579b3d0149230",
+  "diagnose_baseline.py": "908b6405d84fdcad59c75fed848979e51113c062f7f40694d4b9154bae8f44ef",
+  "diagnostic-plan.json": "207fffe430262cf050c5cdb3cb3dcb8dfc023a510b0862b93aaed6416d2b8ffa"
 }

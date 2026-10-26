@@ -5,7 +5,7 @@ import pytest
 
 class Recorder:
     def __init__(self,output,command):
-        self.output=output;self.command=command;self.events=[];self.collection_errors=0
+        self.output=output;self.command=command;self.events=[];self.collection_errors=0;self.diagnostic_bytes=0;self.collection_diagnostics=[]
     def pytest_runtest_logreport(self,report):
         event={'nodeid':report.nodeid,'when':report.when,'outcome':report.outcome,'wasxfail':hasattr(report,'wasxfail'),
                'report_type':type(report).__module__+'.'+type(report).__name__}
@@ -13,11 +13,20 @@ class Recorder:
             context=report.context
             event['is_subtest']=True
             event['subtest_context']=json.dumps({'msg':context.msg,'kwargs':context.kwargs},sort_keys=True,default=repr,ensure_ascii=True)
+        if report.failed:
+            detail=str(report.longrepr)
+            limit=max(0,min(12000,262144-self.diagnostic_bytes))
+            retained=detail.encode('utf-8')[:limit].decode('utf-8',errors='ignore')
+            self.diagnostic_bytes+=len(retained.encode('utf-8'))
+            event['failure_diagnostic']=retained
+            event['failure_diagnostic_truncated']=len(retained.encode('utf-8')) < len(detail.encode('utf-8'))
         self.events.append(event)
     def pytest_collectreport(self,report):
         self.collection_errors+=int(report.failed)
+        if report.failed:
+            self.collection_diagnostics.append(str(report.longrepr)[:12000])
     def pytest_sessionfinish(self,session,exitstatus):
-        record={'collected':[item.nodeid for item in session.items],'events':self.events,'collection_errors':self.collection_errors,'exit_code':int(exitstatus),'native_command':self.command,'test_selection_changed':False,'reporting_only_argument_added':True,'official_score':False,'full_allowed':False}
+        record={'collection_diagnostics':self.collection_diagnostics,'diagnostic_scope':'post-oracle baseline-only investigation; no test selection changes','collected':[item.nodeid for item in session.items],'events':self.events,'collection_errors':self.collection_errors,'exit_code':int(exitstatus),'native_command':self.command,'test_selection_changed':False,'reporting_only_argument_added':True,'official_score':False,'full_allowed':False}
         with (self.output/'native-events.json').open('x',encoding='utf-8') as stream:json.dump(record,stream,ensure_ascii=False,indent=2);stream.write('\n')
 
 def main():

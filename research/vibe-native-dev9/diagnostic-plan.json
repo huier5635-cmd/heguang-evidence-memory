@@ -1,0 +1,14 @@
+{
+  "purpose": "Diagnose the unexpected baseline failure without modifying tests, dependencies, commands, solver or candidate patches",
+  "original_run": 40303984116,
+  "original_commit": "391ee78059fdf9b0fc8d8dc5fa56696fceb9738f",
+  "case": "xgcm__xgcm-558",
+  "changes": [
+    "Retain bounded pytest failure longrepr in report events",
+    "Execute baseline only; never run or regenerate candidates"
+  ],
+  "gold_solution_read": false,
+  "model_regeneration": false,
+  "full_allowed": false,
+  "smoke_triggered": false
+}

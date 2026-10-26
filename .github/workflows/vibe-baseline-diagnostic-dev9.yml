@@ -1,0 +1,23 @@
+name: Frozen xgcm baseline diagnostics
+on:
+  push:
+    branches: [coding-vibe-baseline-diagnostic-dev9]
+permissions: {}
+jobs:
+  baseline-diagnostic:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Fetch fixed public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Diagnose exact original offline baseline only
+        run: python3 checkout/research/vibe-native-dev9/diagnose_baseline.py "$RUNNER_TEMP/qianora-baseline-diagnostic"
