@@ -1,0 +1,23 @@
+# Qianora dev16 bounded Linux replay
+
+This is one public-history ingestion and model lifecycle test. It does not run
+target tests, an agent repair task, an official Smoke, or Full. It uses a
+synthetic local credential and a standard free public GitHub runner.
+
+The parent verifies and sends all 87 messages from the fixed 81 MB historical
+trajectory. Reference parsing and audit verification occur outside the service
+budget. Only the application runs in the constrained container: one CPU,
+memory.high 320 MiB, memory.max 384 MiB, memory.swap.max 512 MiB, 64 processes,
+and a 300-second service deadline. The harness reads the actual cgroup limits
+and OOM counters before and after the request; a missing or different limit
+fails the test. Limits are never raised after a failure.
+
+The test warms the actual pinned MiniLM, performs the large Add, and requires
+the same original search result after model reload. It independently verifies
+the full largest original audit, all 87 sources, a bounded searchable visible
+observation, database integrity, unchanged inputs, and service cleanup.
+
+An online 64 MiB limit is not changed here. The candidate uses 128 MiB and a
+fresh database. Even success is only Linux capacity evidence; protected cloud
+deployment, independent repair benefit, and a new official Smoke remain
+separate requirements. Full stays disabled.
