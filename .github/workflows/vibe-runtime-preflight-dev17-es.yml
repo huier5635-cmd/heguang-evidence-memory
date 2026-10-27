@@ -1,0 +1,30 @@
+name: Public Vibe dev17 Elasticsearch prerequisite
+on:
+  push:
+    branches: [coding-vibe-preflight-dev17-es]
+permissions: {}
+jobs:
+  original-base-only:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        case: [elastic__curator-1437]
+    steps:
+      - name: Fetch exact public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Verify source and execute original BASE tests before model generation
+        env:
+          CASE_ID: ${{ matrix.case }}
+        run: python3 checkout/research/vibe-runtime-dev17-es/host.py --case "$CASE_ID"
