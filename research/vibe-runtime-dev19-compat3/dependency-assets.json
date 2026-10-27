@@ -1,0 +1,32 @@
+{
+  "case": "alteryx__woodwork-640",
+  "purpose": "Explicit before-generation local dependency overlay; does not implement target drop method. Previous12/2 failed BASE runs retained.",
+  "packages": [
+    {
+      "package": "pandas",
+      "version": "1.5.3",
+      "filename": "pandas-1.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/49/e2/79e46612dc25ebc7603dc11c560baa7266c90f9e48537ecf1a02a0dd6bff/pandas-1.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "bytes": 12062104,
+      "sha256": "7a0a56cef15fd1586726dace5616db75ebcfec9179a3a55e78f72c5639fa2a23",
+      "requires_python": ">=3.8",
+      "pypi_metadata_url": "https://pypi.org/pypi/pandas/1.5.3/json",
+      "local_path": "wheels/pandas-1.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+    },
+    {
+      "package": "numpy",
+      "version": "1.26.4",
+      "filename": "numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/4b/d7/ecf66c1cd12dc28b4040b15ab4d17b773b87fa9d29ca16125de01adb36cd/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "bytes": 18240889,
+      "sha256": "ffa75af20b44f8dba823498024771d5ac50620e6915abac414251bd971b4529f",
+      "requires_python": ">=3.9",
+      "pypi_metadata_url": "https://pypi.org/pypi/numpy/1.26.4/json",
+      "local_path": "wheels/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+    }
+  ],
+  "project_requirements_satisfied": "numpy>=1.15.4 and pandas>=1.1.1",
+  "installation_target": "/tmp/qianora-pinned-python",
+  "network_during_tests": false,
+  "full_allowed": false
+}
