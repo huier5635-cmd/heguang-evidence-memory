@@ -1,0 +1,55 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "purpose": "Exact dataset-declared native commands from whitelisted install_config metadata, before target generation. Separate synthetic protocol canaries disclosed.",
+  "full_allowed": false,
+  "commands": {
+    "alteryx__woodwork-640": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "woodwork/tests/accessor/test_table_accessor.py"
+      ],
+      "environment": {}
+    },
+    "brazilian-utils__brutils-python-125": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_cep.py"
+      ],
+      "environment": {}
+    },
+    "pennylaneai__pennylane-5439": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/optimize/test_adaptive.py",
+        "tests/optimize/test_qnspsa.py"
+      ],
+      "environment": {}
+    }
+  }
+}

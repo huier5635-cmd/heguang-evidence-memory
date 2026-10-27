@@ -1,0 +1,1 @@
+Original BASE environment preflight for dev19 public research. Fixed public images and BASE commits, original dataset-declared argv, no target test_patch, solution patch, generated proposal, private key, or memory content. Network-disabled containers; owned-container cleanup; no official evaluation or new spending.
