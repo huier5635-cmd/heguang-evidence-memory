@@ -1,0 +1,55 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "purpose": "Original dataset-declared native commands before any selected-target generation; earlier unrelated synthetic format canary is disclosed separately",
+  "full_allowed": false,
+  "commands": {
+    "vyperlang__vyper-3264": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/parser/syntax/test_enum.py"
+      ],
+      "environment": {}
+    },
+    "scikit-build__scikit-build-core-793": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_builder.py",
+        "tests/test_skbuild_settings.py"
+      ],
+      "environment": {}
+    },
+    "getmoto__moto-9005": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_dynamodb/exceptions/test_dynamodb_exceptions.py"
+      ],
+      "environment": {}
+    }
+  }
+}
