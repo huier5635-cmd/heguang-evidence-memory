@@ -1,0 +1,30 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "path": "history/python/Qiskit__qiskit-terra/qiskit__qiskit-terra-8741/qiskit__qiskit-terra-8741.traj.json",
+      "bytes": 81315087,
+      "sha256": "78b39bf8393b3e7be15084e36721ad8f36ee569f4b1685251a85c4618394a214",
+      "messages": 87,
+      "local_path": "large-history.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Qiskit__qiskit-terra/qiskit__qiskit-terra-8741/qiskit__qiskit-terra-8741.traj.json"
+    }
+  ],
+  "scope": "One original public non-target history, one isolated replay followed by16 concurrent copies in16 users; no target records or Full-scale claim",
+  "limits": {
+    "MemoryHigh": 335544320,
+    "MemoryMax": 402653184,
+    "MemorySwapMax": 536870912,
+    "CPUQuotaPerSecUSec": 1000000
+  },
+  "official_calls": 0,
+  "full_allowed": false,
+  "concurrency_phase": {
+    "clients": 16,
+    "service_processing_slots": 1,
+    "isolated_users": 16,
+    "per_user_messages": 87,
+    "request_timeout_seconds": 150,
+    "service_wall_guard_seconds": 300
+  }
+}
