@@ -1,0 +1,149 @@
+{
+  "selection_sha256": "4ac4767f3db3fa070d4740ae7c736394e9e814e66709cde69cda964e312cf524",
+  "native_test_contract_sha256": "ceb4c011b383ad6c37d149125790b32cee31ecc019806a95b3b073adc2eba8f7",
+  "source_receipt_sha256": "68f568d586ffdb6b3e7b5dac820932884c7e2bcb7047d12dbd05b5a0f1772a94",
+  "image_metadata_sha256": "09a950cd9e41246227444332f991d1924a24362b0a865876967f38c25bd16e56",
+  "cases": [
+    {
+      "case": "pallets__click-1915",
+      "repo": "pallets/click",
+      "base_commit": "329b1001755452c96dcefcf4a3c799a2463710e0",
+      "image": "docker.io/swerebenchv2/pallets-click@sha256:0f0434c582fd1c89647777b4250bb3c579e2d42577a3ca4d251f556445f9b666",
+      "image_id": "sha256:3e2c60a7a766caf75279d38dacd1101cc7f8dd6cadf1af3b8821c6c7976d970c",
+      "expected_source_files": {
+        "src/click/__init__.py": "772091a4b846dbd3e4808fc1ed1dc561673eef6e939973a8ec28627d703e20e9",
+        "src/click/_compat.py": "3f5e4a42e980642d85d8c15efc94916ef54e25c368b107cc0eb759ab445e08b3",
+        "src/click/_termui_impl.py": "dc805cfb047c6abb7b70e20ddf2e2f4377edc82b3818d2cc8c372b49a9540fd7",
+        "src/click/_textwrap.py": "d747d0eb839c05432e2bb985be1f37eb7feea0ec4f95122d64198acd12438286",
+        "src/click/_unicodefun.py": "24a4a1d684b01bfcdb8c0bb84c109af6d41d7b63fd16261c7f83017f2e4d753f",
+        "src/click/_winconsole.py": "e63bb78d091c643d16dbb584306aa610fe32fdcad45733c2aac5ff1586fb04ed",
+        "src/click/core.py": "904406c6b82164857226fbda4f406ab29964b7db3fe88f64ebc945bbbf1e68ec",
+        "src/click/decorators.py": "bbf121768dcf0369f30a8b9df73e9f1a1c70b4c23cbd5346fd22fc065f65b276",
+        "src/click/exceptions.py": "ee00da2c6b8564178237063d11132c176f99dd1f45bead3d65ce886522a3b1ea",
+        "src/click/formatting.py": "16b7f4fb95b7dfe968c98fe2f6aaf05d1f3e4939d6de6e60bf2c4b554772c729",
+        "src/click/globals.py": "f6972668d7c64b56c95790e815885fbf9d413de1cff1d59ac9aeeb3f791cad8e",
+        "src/click/parser.py": "c790db9c157d3bc91788c74901db697533b6791517c3669be4f44c2f1a34a68e",
+        "src/click/shell_completion.py": "1740871c538fe2e943b18a2a4cc9bd1578a1fce54ab20de6cc3f9707330defd7",
+        "src/click/termui.py": "309364127b5188d66fc1ad33f5254ad1de97f41bd470586fc4a932e4cfa40466",
+        "src/click/testing.py": "90b47941c9f2d4e960c5a181de0c1e4ebd2041ed725659a04119f67ac036173e",
+        "src/click/types.py": "9e09f7a8e687703bf278c176513e5024d369240015ac0f41463e2df31d713993",
+        "src/click/utils.py": "abbc544e579b027204368d94bfe44402b5bf7aba86166ffcc8c5b6e3598c8f34"
+      },
+      "native_argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_commands.py"
+      ],
+      "original_test_roots": [
+        "tests"
+      ],
+      "test_environment": {}
+    },
+    {
+      "case": "stac-utils__pystac-607",
+      "repo": "stac-utils/pystac",
+      "base_commit": "6cbdd88f09940b44fe1a308b529e24ffd0356c35",
+      "image": "docker.io/swerebenchv2/stac-utils-pystac@sha256:f55249823e513a07fea49f168c3865bda50d09474b8efe2b36e760cb20fe5ac3",
+      "image_id": "sha256:8009d5f5b5b0974fa647a3a36d93f578c854412dd2bea27a3b0ddaac931544d6",
+      "expected_source_files": {
+        "pystac/__init__.py": "7a4bf250929631d8bd85627e84d1788cd5543762ba17614a756327b5b2420336",
+        "pystac/asset.py": "8b898d01b985b4c7be1d3e0e093a22a4595fc408abdd0d529594008182b8de36",
+        "pystac/cache.py": "d5fc2635e2f92e61a2f8dfd3bbc43e5003478d73c230c2f832fff86d048e04e3",
+        "pystac/catalog.py": "8b3bc652805f97dc90281c07af99cdb956ebeb6dd44536e8cfbe075500c04d82",
+        "pystac/collection.py": "17530f2d597f40b0436749a513e927e4aba4ef44aae8b6776d648b6bb84aa7c6",
+        "pystac/common_metadata.py": "c5ecd7efe063f35fd4913cfec192fbf92a6c675230c285232e496ed388c114a4",
+        "pystac/errors.py": "0c086cff842bd0ab4a85e34727421c4913bbb5542657699f71aa1a602d755ab9",
+        "pystac/extensions/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pystac/extensions/base.py": "abaf91ce3ee00e262c85789a4661ca78e176afaa7fbe1fc3907b51af228dc6d5",
+        "pystac/extensions/datacube.py": "b4ff85a4dfdfbc1c2a107cf3269da1fc9c412206fc76f1e886d01209742ccc8b",
+        "pystac/extensions/eo.py": "6a990918b8927b59794dd359ba8706ab9635897ddd834dfbc33758c7b78021d8",
+        "pystac/extensions/file.py": "6acca23aad71ae654079efc28d33d7169b65499cd44205066efa3b0eaf5def37",
+        "pystac/extensions/hooks.py": "876854a7d53bb87098e2a773d72e2f8654ef70e3c9ad648f02f2dc4b742a93c1",
+        "pystac/extensions/item_assets.py": "c078949108f403c02c6f823b0239b699b412078aba20fa017bcecafd228c15f1",
+        "pystac/extensions/label.py": "e1d8bd36c5461ea8f2b04e1cd392757b60a2f200615f0e2f8ef68d851b4666cb",
+        "pystac/extensions/pointcloud.py": "ce485ae50330db1bcecab8be2d0c38187e469807b246f165cdcf95bd1963d4a6",
+        "pystac/extensions/projection.py": "d56ea9a18b40717e2f284233178dc8300a62c80cb65cb583769453c55f1cd88c",
+        "pystac/extensions/raster.py": "3b103ffc3cf511928d3113f7a2eb09efa6cb144f7093ba4ca844afee45503da7",
+        "pystac/extensions/sar.py": "d53d863f23534066d39267d7efafc393887d1ea65e857fbeb92b6c3bcb46c9f0",
+        "pystac/extensions/sat.py": "ff2a8a3c9a203bea54ed8111f986ba4549ac9fc569e7c17ef5b8ae243a8a6d77",
+        "pystac/extensions/scientific.py": "109eaf3c3ddea105a17bb61d2f5cae5b60486e31ad8acb6599beb90c1261b859",
+        "pystac/extensions/timestamps.py": "02681162289e28778da4dafab5d321d97a01ac007f687dbf3c78e3d5f05a8290",
+        "pystac/extensions/version.py": "c449d1640691c22b36b73697fe4eff073058b5d23b7a8dffffdbb744b7be9631",
+        "pystac/extensions/view.py": "f6c225aaa3e2de8c9fafc18e74a845dc9acffc0da0f16f81f0ecd54b60288681",
+        "pystac/item.py": "2bb0973265484efb6b853879a29541890e899b59f9b81510cf472c2ac6045504",
+        "pystac/item_collection.py": "bb8f1ca7b9c61e91d50f71089073f6b1f3908a13cb15c7b51f3bc7cd25f7e80d",
+        "pystac/layout.py": "ad0cfba2ff824903485d8e678e04948a00abef57668ae7fe54d0bb942c15c92a",
+        "pystac/link.py": "d4e4d155bf989c6f14930af4c73e449546c1a4cb360b68d6c82fc1bae851be91",
+        "pystac/media_type.py": "0fecf80074438dcd9a7011a6e5e519935ad887a1eef73a78a8452fa59addd12c",
+        "pystac/provider.py": "506ed737f0b9755ab53fcc00d978341767b206c7fecf7c2079de6eaaf45c852f",
+        "pystac/rel_type.py": "45c42b2bece931b34268b423a42d3f1afd335b6ea1fa111661e2e4e9077b3328",
+        "pystac/serialization/__init__.py": "91f6c43128a00787f388fd8d0d8e6785d41348034cb39d0e48ab27f78a63b23d",
+        "pystac/serialization/common_properties.py": "a03c5aa5d121a6afbc97dc2c10a9e43ff3b998785457a6992b6977155e0ab30e",
+        "pystac/serialization/identify.py": "0219f421d93bd31a5618658a25dd946211beec5f59f67260c369d8cde2349e46",
+        "pystac/serialization/migrate.py": "e86a654e95534065bad89c401bfa6236fc0fa7f6a9e1d8cf223514bfa48ae04c",
+        "pystac/stac_io.py": "3a3ce4efdeb894af21c6de2fd053604e8add4a5f158960243e3adaf66329389c",
+        "pystac/stac_object.py": "c40ff8b3f36980c87915146adeefe8eef51872dde8c7441004efaa32d0e578c5",
+        "pystac/summaries.py": "e3b0db0e922a99e375a06c2dee284283b213513975e8e4a8270e5e5677827ead",
+        "pystac/utils.py": "ae92e84f3e299d2b5b165103a4d0c6869f8f2fb079ff14a19d74a2460141dd8a",
+        "pystac/validation/__init__.py": "f7ab00aaa2861817ec8b04d7118a80ad0d77a5ea9e65c12c871bcca3a0b27a6b",
+        "pystac/validation/schema_uri_map.py": "0e916a391d4bb4a38098e42a5237592efc4279fdc2b03a685ee5ccaa3df9d9d1",
+        "pystac/validation/stac_validator.py": "11cd69315b5b72320e0fb16f72faf18719ce5f9fea04dfb0f0035111c3312cfb",
+        "pystac/version.py": "01b1d303614f13b1e3a2a60c93d1fc5eb9ed2d4126baf8bf4a21e2d904783c67"
+      },
+      "native_argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_link.py"
+      ],
+      "original_test_roots": [
+        "tests"
+      ],
+      "test_environment": {}
+    },
+    {
+      "case": "s-knibbs__dataclasses-jsonschema-64",
+      "repo": "s-knibbs/dataclasses-jsonschema",
+      "base_commit": "dad240edc81fc6138d26f3248539d876a777f45d",
+      "image": "docker.io/swerebenchv2/s-knibbs-dataclasses-jsonschema@sha256:ada38c582a98d3d67910e7c942404d25b9625e5731d56fa2c9cc683bd38249b0",
+      "image_id": "sha256:2c73a40099599fb325bb11acc1f3c2069a2666fea31f717c9ca97785206ed522",
+      "expected_source_files": {
+        "dataclasses_jsonschema/__init__.py": "14be509710bbe38e71f4dff4d9add94e43bdbde4db6ea98f990073cb287d0038",
+        "dataclasses_jsonschema/field_types.py": "3481a95c671ba02bdd21cea5367c7ee84f512a6c1503629909704a0d26971285",
+        "dataclasses_jsonschema/type_defs.py": "2b3424fa18c86b8a93674cb7d77a8632f7a24d9812839d30b4c30e8ac2038366"
+      },
+      "native_argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_all.py"
+      ],
+      "original_test_roots": [
+        "tests"
+      ],
+      "test_environment": {}
+    }
+  ],
+  "dataset_target_test_patch_loaded": false,
+  "generation_started": false,
+  "full_allowed": false
+}

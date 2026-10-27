@@ -1,0 +1,54 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "purpose": "Exact dataset-declared pytest argv. No extra dependencies or compatibility overrides declared for this cohort.",
+  "commands": {
+    "pallets__click-1915": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_commands.py"
+      ],
+      "environment": {}
+    },
+    "stac-utils__pystac-607": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_link.py"
+      ],
+      "environment": {}
+    },
+    "s-knibbs__dataclasses-jsonschema-64": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_all.py"
+      ],
+      "environment": {}
+    }
+  },
+  "full_allowed": false
+}

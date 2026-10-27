@@ -1,0 +1,1 @@
+Public BASE-only source/image/argv preflight. Same original source and tracked tests, pinned images, network-disabled owned containers, no target test patch, gold, memory, credential or generated code. No environment override. Standard free public runners only. Full remains closed.
