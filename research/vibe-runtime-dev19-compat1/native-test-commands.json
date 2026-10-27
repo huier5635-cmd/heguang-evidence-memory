@@ -1,0 +1,70 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "purpose": "Exact native argv, with one explicit before-generation legacy stdlib alias on Woodwork only. Original unmodified-runtime failure is retained.",
+  "full_allowed": false,
+  "commands": {
+    "alteryx__woodwork-640": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "woodwork/tests/accessor/test_table_accessor.py"
+      ],
+      "environment": {
+        "PYTHONPATH": "/kit/compat"
+      },
+      "compatibility_file": "compat/sitecustomize.py",
+      "compatibility_sha256": "36fd5b9df22a9f8a7e1f05e7609aae9d899ec1fbd33046c7573fdf5612ae0c0f"
+    },
+    "brazilian-utils__brutils-python-125": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_cep.py"
+      ],
+      "environment": {}
+    },
+    "pennylaneai__pennylane-5439": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/optimize/test_adaptive.py",
+        "tests/optimize/test_qnspsa.py"
+      ],
+      "environment": {}
+    }
+  },
+  "original_runtime_unmodified": false,
+  "environment_amendment": {
+    "case": "alteryx__woodwork-640",
+    "alias": "collections.Hashable is collections.abc.Hashable",
+    "reason": "CPython3.10 removed the same-object alias present in project-classified Python3.6--3.9",
+    "target_problem": "Add WoodworkTableAccessor.drop; alias does not implement this requested method",
+    "project_or_test_files_modified": false,
+    "same_for_unpatched_baseline_and_all_arms": true,
+    "primary_source": "https://github.com/python/cpython/blob/v3.9.0/Lib/collections/__init__.py",
+    "initial_failure_receipt": "outputs/dev19-vibe-runtime-preflight.json"
+  }
+}
