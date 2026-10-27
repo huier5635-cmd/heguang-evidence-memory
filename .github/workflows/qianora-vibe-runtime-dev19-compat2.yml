@@ -1,0 +1,30 @@
+name: Public dev19 BASE preflight with declared fixed legacy Python dependencies
+on:
+  push:
+    branches: [coding-vibe-preflight-dev19-compat2]
+permissions: {}
+jobs:
+  original-base-only:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      max-parallel: 2
+      fail-fast: false
+      matrix:
+        case: [alteryx__woodwork-640, brazilian-utils__brutils-python-125, pennylaneai__pennylane-5439]
+    steps:
+      - name: Fetch exact public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Verify production hashes and run only original BASE tests
+        env:
+          CASE_ID: ${{ matrix.case }}
+        run: python3 checkout/research/vibe-runtime-dev19-compat2/host.py --case "$CASE_ID"
