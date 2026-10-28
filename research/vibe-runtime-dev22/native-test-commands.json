@@ -1,0 +1,55 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "purpose": "Exact dataset-declared pytest argv. No extra dependencies or compatibility overrides declared for this cohort.",
+  "commands": {
+    "systemd__mkosi-3346": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_json.py"
+      ],
+      "environment": {}
+    },
+    "cs-si__eodag-1717": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/__init__.py",
+        "tests/units/test_download_plugins.py"
+      ],
+      "environment": {}
+    },
+    "adamchainz__flake8-comprehensions-553": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_flake8_comprehensions.py"
+      ],
+      "environment": {}
+    }
+  },
+  "full_allowed": false
+}
