@@ -1,0 +1,57 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "path": "history/python/Qiskit__qiskit-terra/qiskit__qiskit-terra-8741/qiskit__qiskit-terra-8741.traj.json",
+      "bytes": 81315087,
+      "sha256": "78b39bf8393b3e7be15084e36721ad8f36ee569f4b1685251a85c4618394a214",
+      "messages": 87,
+      "local_path": "large-history.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Qiskit__qiskit-terra/qiskit__qiskit-terra-8741/qiskit__qiskit-terra-8741.traj.json"
+    }
+  ],
+  "scope": "Same pinned public non-target 81MB history, one isolated Add and16concurrent isolated users, exact dev20 candidate; capacity only",
+  "limits": {
+    "MemoryHigh": 335544320,
+    "MemoryMax": 402653184,
+    "MemorySwapMax": 536870912,
+    "CPUQuotaPerSecUSec": 1000000
+  },
+  "official_calls": 0,
+  "full_allowed": false,
+  "concurrency_phase": {
+    "clients": 16,
+    "service_processing_slots": 1,
+    "isolated_users": 16,
+    "per_user_messages": 87,
+    "request_timeout_seconds": 285,
+    "service_wall_guard_seconds": 300
+  },
+  "supplemental_amendment": {
+    "original_failed_run": 40440874698,
+    "original_failed_job": 121980648529,
+    "original_client_timeout_seconds": 150,
+    "supplemental_client_timeout_seconds": 285,
+    "service_wall_seconds_unchanged": 300,
+    "application_source_or_resources_changed": false,
+    "source": "https://agentmemoryleaderboard.ai/api-guide",
+    "official_request_timeout_seconds": 1800,
+    "justification": "Keep16same81MB inputs; original150second socket write timeout interrupted queued requests. New deadline remains below unchanged300second service guard and official30minute bound. Original failure remains primary evidence."
+  },
+  "lifecycle_experiment": {
+    "parent_failed_run": 40442424725,
+    "parent_failed_job": 121985637326,
+    "hypothesis_only_before_run": true,
+    "change": "Serialize the whole large Add ASGI call, then collect completed unreachable cycles before next admission. Instrument bounded counts and seconds only.",
+    "core_18_modules_changed": false,
+    "ranking_or_storage_signature_changed": false,
+    "resources_inputs_deadlines_unchanged": true,
+    "expected_large_completed_boundaries": 17,
+    "new_official_or_model_calls": 0,
+    "deployment_eligible": false,
+    "reason_not_deployable": "Underlyingdev17repaircandidatewasrejectedinstaticsourcereview;thisisindependentcapacityresearchonly"
+  },
+  "prior_18_module_result": "outputs/dev17-cycle1-result.json",
+  "current_candidate_modules": 19,
+  "deployment_eligible": false
+}

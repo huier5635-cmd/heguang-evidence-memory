@@ -1,0 +1,39 @@
+name: Qianora dev20 complete request lifecycle cgroup replay
+on:
+  push:
+    branches: [coding-memory-dev20-capacity-cycle1]
+permissions: {}
+jobs:
+  capacity:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Fetch exact public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Prepare pinned Python dependencies and public inputs
+        run: |
+          python3 -m venv "$RUNNER_TEMP/qianora-capacity-venv"
+          "$RUNNER_TEMP/qianora-capacity-venv/bin/python" -m pip install -r checkout/research/capacity-dev20-cycle1/requirements.txt
+          "$RUNNER_TEMP/qianora-capacity-venv/bin/python" checkout/research/capacity-dev20-cycle1/download_assets.py
+      - name: Build and record the exact Linux application image
+        run: |
+          docker pull python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704
+          BASE_IMAGE="$(docker image inspect python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704 --format '{{index .RepoDigests 0}}')"
+          docker build --build-arg "BASE_IMAGE=$BASE_IMAGE" -t qianora-capacity-dev20 checkout/research/capacity-dev20-cycle1
+          docker image inspect qianora-capacity-dev20 --format '{{.Id}}' > "$RUNNER_TEMP/qianora-capacity-image-id"
+          echo "Base image: $BASE_IMAGE"
+          cat "$RUNNER_TEMP/qianora-capacity-image-id"
+          swapon --show --bytes
+      - name: Replay full history against the service under original resource limits
+        run: |
+          export QIANORA_CAPACITY_IMAGE="$(cat "$RUNNER_TEMP/qianora-capacity-image-id")"
+          "$RUNNER_TEMP/qianora-capacity-venv/bin/python" checkout/research/capacity-dev20-cycle1/probe_linux.py
