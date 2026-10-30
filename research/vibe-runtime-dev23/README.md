@@ -1,0 +1,1 @@
+Original BASE tests only. Exact native argv and package-nested test roots; no target test_patch, gold, memories, generated code, credentials or environment overrides. Network-disabled bounded owned containers; free public runners. Full remains closed.
