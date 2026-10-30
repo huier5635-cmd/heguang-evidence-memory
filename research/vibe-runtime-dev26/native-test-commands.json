@@ -1,0 +1,63 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "commands": {
+    "codezonediitj__pydatastructs-253": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "pydatastructs/graphs/tests/test_algorithms.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "pydatastructs/graphs/tests"
+      ]
+    },
+    "pybamm-team__pybamm-4267": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/unit/test_util.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    },
+    "pandas-dev__pandas-59080": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "pandas/tests/io/parser/common/test_iterator.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "pandas/tests"
+      ]
+    }
+  },
+  "full_allowed": false,
+  "purpose": "Exact dataset native argv and original test roots; complete original BASE events recorded before target generation; no dependency or environment overrides"
+}
