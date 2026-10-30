@@ -1,0 +1,11 @@
+--- a/rdt/transformers/numerical.py
++++ b/rdt/transformers/numerical.py
+@@ -236,7 +236,7 @@
+             self._min_value = min(min_max_values)
+             self._max_value = max(min_max_values)
+ 
+-        if rounding_digits:
++        if rounding_digits is not None:
+             self._rounding_digits = rounding_digits
+ 
+         if self.null_transformer.models_missing_values():

@@ -1,0 +1,30 @@
+name: Frozen reviewed public Vibe native evaluation dev23
+on:
+  push:
+    branches: [coding-vibe-native-dev23]
+permissions: {}
+jobs:
+  native-reviewed:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        case: [pyqtgraph__pyqtgraph-2648, fatiando__harmonica-478, sdv-dev__rdt-875]
+    steps:
+      - name: Fetch immutable public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Run fixed offline native tests against frozen reviewed proposals
+        env:
+          CASE_ID: ${{ matrix.case }}
+        run: python3 checkout/research/vibe-native-dev23/evaluate_native_linux.py --case "$CASE_ID" --output "$RUNNER_TEMP/qianora-native-$CASE_ID"

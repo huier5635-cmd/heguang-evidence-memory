@@ -1,0 +1,49 @@
+--- a/harmonica/_transformations.py
++++ b/harmonica/_transformations.py
+@@ -339,6 +339,46 @@
+     )
+ 
+ 
++def total_gradient_amplitude(grid):
++    """
++    Calculate the total gradient amplitude (analytic signal) of a potential field grid
++
++    Compute the total gradient amplitude of regular gridded data using finite differences.
++
++    Parameters
++    ----------
++    grid : :class:`xarray.DataArray`
++        A two dimensional :class:`xarray.DataArray` whose coordinates are
++        evenly spaced (regular grid). Its dimensions should be in the following
++        order: *northing*, *easting*. Its coordinates should be defined in the
++        same units.
++
++    Returns
++    -------
++    total_gradient_amplitude : :class:`xarray.DataArray`
++        A :class:`xarray.DataArray` with the total gradient amplitude of the passed
++        ``grid``. Its units are the same units of the ``grid`` per units of its
++        coordinates.
++
++    References
++    ----------
++    Roest, W., Verhoef, J., & Pilkington, M. (1992). Magnetic interpretation using 3-D analytic signal.
++    GEOPHYSICS, 57(1), 116-125. https://doi.org/10.1190/1.1443174
++
++    See also
++    --------
++    harmonica.derivative_easting
++    harmonica.derivative_northing
++    harmonica.derivative_upward
++    """
++    # Compute partial derivatives in all three directions
++    dx = derivative_easting(grid, order=1, method="finite-diff")
++    dy = derivative_northing(grid, order=1, method="finite-diff")
++    dz = derivative_upward(grid, order=1)
++    
++    # Calculate the total gradient amplitude: sqrt(dx^2 + dy^2 + dz^2)
++    return (dx**2 + dy**2 + dz**2)**0.5
++
+ def _get_dataarray_coordinate(grid, dimension_index):
+     """
+     Return the name of the easting or northing coordinate in the grid

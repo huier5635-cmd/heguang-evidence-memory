@@ -1,0 +1,13 @@
+--- a/pyqtgraph/colormap.py
++++ b/pyqtgraph/colormap.py
+@@ -622,7 +622,9 @@
+ 
+     def getByIndex(self, idx):
+         """Retrieve a QColor by the index of the stop it is assigned to."""
+-        return QtGui.QColor( *self.color[idx] )
++        # Convert float RGB values (0.0-1.0) to integer RGB values (0-255) for QColor
++        color_int = [int(c * 255) for c in self.color[idx]]
++        return QtGui.QColor(*color_int)
+ 
+     def getGradient(self, p1=None, p2=None):
+         """

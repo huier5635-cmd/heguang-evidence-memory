@@ -1,0 +1,11 @@
+{
+  "fail_to_pass": [
+    "tests/test_colormap.py::test_ColorMap_getByIndex"
+  ],
+  "pass_to_pass": [
+    "tests/test_colormap.py::test_ColorMap_getStops[color_list0]",
+    "tests/test_colormap.py::test_ColorMap_getStops[color_list1]",
+    "tests/test_colormap.py::test_ColorMap_getColors[color_list0]",
+    "tests/test_colormap.py::test_ColorMap_getColors[color_list1]"
+  ]
+}

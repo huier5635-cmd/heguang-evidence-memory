@@ -1,0 +1,64 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "commands": {
+    "pyqtgraph__pyqtgraph-2648": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_colormap.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    },
+    "fatiando__harmonica-478": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "harmonica/tests/test_transformations.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "harmonica/tests"
+      ]
+    },
+    "sdv-dev__rdt-875": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/integration/transformers/test_numerical.py",
+        "tests/unit/transformers/test_numerical.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    }
+  },
+  "full_allowed": false,
+  "purpose": "All exact dataset-declared argv paths preserved, including harmonica/tests. No dependency or environment overrides."
+}

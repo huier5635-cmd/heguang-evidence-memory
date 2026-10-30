@@ -1,0 +1,47 @@
+--- a/rdt/transformers/numerical.py
++++ b/rdt/transformers/numerical.py
+@@ -202,13 +202,27 @@
+         return data.astype(self._dtype if not np_integer_with_nans else 'float64')
+ 
+     def _set_fitted_parameters(
+-        self,
+-        column_name,
+-        null_transformer,
+-        rounding_digits=None,
+-        min_max_values=None,
+-        dtype='object',
+-    ):
++        self, column_name, min_max_values, null_transformer, rounding_digits, dtype='float64'):
++        """Manually set the parameters on the transformer to get it into a fitted state.
++
++        Args:
++            column_name (str):
++                The name of the column to use for the transformer. Used to set ``self.columns``
++                and ``self.output_columns``.
++            min_max_values (tuple or None):
++                ``None`` or a tuple containing the (min, max) values for the transformer.
++                Used to set ``self._min_value`` and ``self._max_value``.
++                If ``self.enforce_min_max_values`` is ``True``, it cannot be ``None``.
++            null_transformer (NullTransformer):
++                A *fitted* ``NullTransformer`` instance that can be used to generate null
++                values for the column.
++            rounding_digits (None or int):
++                The number of digits to round to. Used to set ``self._rounding_digits``.
++                If ``None`` then ``self.learn_rounding_scheme`` must be ``False``.
++            dtype (str):
++                The pandas dtype the reversed data should be converted to.
++                Used to set ``self._dtype``. Defaults to ``'float64'``.
++        """
+         """Manually set the parameters on the transformer to get it into a fitted state.
+ 
+         Args:
+@@ -236,7 +250,8 @@
+             self._min_value = min(min_max_values)
+             self._max_value = max(min_max_values)
+ 
+-        if rounding_digits:
++        if rounding_digits is not None:
++            self._rounding_digits = rounding_digits
+             self._rounding_digits = rounding_digits
+ 
+         if self.null_transformer.models_missing_values():
