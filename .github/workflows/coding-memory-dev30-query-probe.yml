@@ -1,0 +1,36 @@
+name: Qianora dev30 owned query-token MiniLM probe
+on:
+  push:
+    branches: [coding-memory-dev30-query-probe]
+permissions: {}
+jobs:
+  owned-probe:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Fetch the exact public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Run thirteen owned invariant checks without loading a model
+        run: python3 checkout/research/query-token-dev30/run_unit.py
+      - name: Install pinned dependencies and acquire the pinned public model only
+        run: |
+          python3 -m venv "$RUNNER_TEMP/qianora-dev30-venv"
+          PY="$RUNNER_TEMP/qianora-dev30-venv/bin/python"
+          "$PY" -m pip install -r checkout/research/query-token-dev30/requirements.txt
+          "$PY" checkout/research/query-token-dev30/download_model.py
+      - name: Compare the two frozen variants on self-authored relevance inputs
+        run: "$RUNNER_TEMP/qianora-dev30-venv/bin/python" checkout/research/query-token-dev30/probe.py
