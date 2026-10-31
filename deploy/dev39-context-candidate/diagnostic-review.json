@@ -1,0 +1,16 @@
+{
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-31T06:23:29.986063+00:00",
+  "decision": "allow_changed_profile_public_diagnostic_and_authorized_smoke_only",
+  "public_manifest_sha256": "a96585eb235296aa62126ff994785395a1d21ec6ca00dbd497b53ceda419bc65",
+  "authorization_basis": "User expressly allows application and Smoke with Full closed, up to10Smoke/day without repeated questions; respect official1/hour30/edition limits",
+  "actual_cloud_profile_16add_and16search_passed": true,
+  "private_own_unit_cleanup_verified": true,
+  "owned_public_entry_checks_passed": 17,
+  "whole_record_adapter_checks_passed": 9,
+  "private_stage_checks_passed": 8,
+  "actual_native_evidence_status": "native_measurement_unavailable_baseline_infrastructure_failed",
+  "no_native_failure_reinterpreted_as_gain": true,
+  "no_formal_full_evaluation_authorized": true,
+  "full_allowed": false
+}

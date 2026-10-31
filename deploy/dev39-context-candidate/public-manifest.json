@@ -1,0 +1,72 @@
+{
+  "version": "0.2.0.dev25+ctx6x16k",
+  "system": "Qianora（千绪）",
+  "scope": "official_smoke_diagnostic_only",
+  "parent_manifest_sha256": "5b9c1a7ef61d2840421d04df271f53666b970ce767a9f810f6438e05ddfbcf80",
+  "parent_review_sha256": "a1cba07bcedab9d426620b5c649d19c30941ad3e442cc39192b0d8a3688b5026",
+  "files_sha256": {
+    "public_manifest.py": "06b7ae982241995e72e8ede60c1ae346e85b37df03ece32406e7e2d18f91f740",
+    "public_runner.py": "90020a2b122528171f958c21e8698e37f354c14d5aa6cebde268ad28c212fcc9",
+    "public_unit.py": "7b297baa681e31abba8c0881669388ad004b263639154dbd5737908ac7dc2a45",
+    "routing.py": "9fdd1b2a89f2d586f51d2df7635a931bbbb2980abfa097360a9e2b4f9ada103a"
+  },
+  "actual_cloud_profile_preflight_passed": true,
+  "full_parallel_history_capacity_passed": true,
+  "full_scale_capacity_proven": false,
+  "cloud_profile_receipt_sha256": "41a2ad1c5c4dc81ebc400259a1e61c085cad6595824eba66b75cb5e8fd437563",
+  "local_cloud_wrapper_receipt_sha256": "fd35591c4e049bf86de20cb8f0d67047def8bad3867c18dc7712da8a5af71066",
+  "validated_cloud_assessment_sha256": "ffceaf18cd9719ddce0a9647d7305ba0242f6b59d204d74383227632d89a3fca",
+  "terminal_source_attestation_sha256": "c81f6be1886aee6810312fc882e91e18ccbf3505ac9af8fcdb65d1b995359aa6",
+  "ssh_observation_failed_but_complete_server_probe_and_cleanup_independently_recovered": true,
+  "cloud_profile_validation_directory": "/opt/heguang-coding/validation/dev25ctx-ttl2-78f43280aec7",
+  "original_dev37_failed_receipt_sha256": "5bc162728d6cd5b1f3ea52971609c68bcb6cda58d814f689d6fe38fec3d30e19",
+  "extended_raw_retention_fixture_corrected_without_core_change": true,
+  "public_entry_check_sha256": "e75dfb3750fef0c91add83de5dde0771624c543841266625954d316f4529bdfb",
+  "whole_record_budget_source_sha256": "3dd4366ecd908ae9df13948b899a1268dd8469f7d3c9318f9680193447b2ca42",
+  "model_input_context_budget": {
+    "records": 6,
+    "characters": 16000
+  },
+  "candidate_core_modules": 20,
+  "candidate_core_sha256": {
+    "api.py": "62606259f9972c80c76de32b70f453e5acab3cea6ef8b02ec5914a5654563c2a",
+    "call_compatibility.py": "cb693c6dcee7393e4fb7e83191f526d2335b036bfa5a93996d1a85831331db4f",
+    "config.py": "8273a5f74a34162710e414451262e5f889a661d6cf305be8482007e9a9102671",
+    "episode_context.py": "53dc855b23e22b5a19384a55efdea34419ef7050d8bdde3ef4a40fa9941dd2e0",
+    "episode_index.py": "9737b3f93533646f183519c23ac8ad8479a0f7a1f9e6d7fbb457de88f787c72a",
+    "evidence.py": "3d2bc8f4b7bdabe60ea12049e6cb1ac7322da771fca53912b55e04917b63960e",
+    "features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+    "feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+    "history_links.py": "dd29d0b1dc03534c07aedfbc5fbb173fe2cfca17382bd79bb02a94462ffb7e24",
+    "normalize.py": "4b022e45a9cd3f4e91ee888fc7168098f954398e2eb8769543690bde0aed764a",
+    "patch_projection.py": "4803e443ec426f72e3d5387e72dd313ecb7eeea7bb007c72a4ecdec7c53b113c",
+    "query_focus.py": "b841d512e1e9cf5664c3a910afc8a1b704a697def4a3edb415a6b4bc1c019982",
+    "reranker.py": "c0116586b974ddc60d593be3754a04e597cfcc3c7402744f2191692c7a4ca7c7",
+    "schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+    "selection.py": "ba685e39f791643a5a5ff21f89b5471fd00b5f639fe4110f3be4343f236e290a",
+    "store.py": "b5f236298b7e0da28a2dbae57092b909c382b8a84186eacae90b5c68a94d0e02",
+    "streaming_json.py": "0ce466a1e51d3ac561c1622f7cc614f8828fa0c1bc6f6d4fe16b07f908a5f6fb",
+    "task_projection.py": "f501d840c301d4b775026d390c5776da2e9e67dfa2e3277e44105b1f5efa0910",
+    "visible_output.py": "c7de663ea88f0b36fba317270f523f7330d5ed40515d6ff57256fcad14941a8e",
+    "__init__.py": "151edd171735455c9612ab0aa77ad1e50ef2cb20f087d4d2a99c4834da8a597a"
+  },
+  "repair_benefit_demonstrated": false,
+  "native_repair_receipt_sha256": "1727683ea221048146c0098b7d8c0403666349abd7ff297b08618818a621141c",
+  "native_evidence_status": "native_measurement_unavailable_baseline_infrastructure_failed",
+  "native_generation_terminal_sha256": "4edc70f228553cbd4d3f650d21c0871b7d9e8f75a279bc17e43d1ef28b9fe837",
+  "native_result_summary": {
+    "resolved_counts": {
+      "without_memory": 0,
+      "dev6_memory": 0,
+      "dev25_memory": 0
+    },
+    "all_three_baselines_admissible": false,
+    "same_case_wins_over_both_controls": [],
+    "tasks_solved_by_controls_lost": []
+  },
+  "native_gain_if_present_is_whole_candidate_proxy_not_isolated_budget_effect": true,
+  "original_285second_cloud_failures_preserved": true,
+  "actual_cloud_request_contract_seconds": 1800,
+  "new_paid_services": false,
+  "full_allowed": false
+}
