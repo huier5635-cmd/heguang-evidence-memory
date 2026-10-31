@@ -1,0 +1,7 @@
+# Stable reviewed endpoints during pre-Full diagnosis
+
+The evaluation site rejected changing the approved Add/Search URL with `endpoint is immutable for this leaderboard key`. Before any Coding Full evaluation, the existing `/coding/` paths were therefore routed to the separately validated dev25 runtime. The legacy dev6 service, code and data remain available through `/coding/dev6/`; `/coding/dev25/` is an alias of the same dev25 runtime. The textual service is unchanged.
+
+`stable_endpoint_adapter.py` transforms exactly one known configuration block and requires the full previous configuration SHA-256. It retains the legacy 64 MiB request limit, uses the already validated 128 MiB limit for dev25, and rejects an unexpected or already adapted configuration. The accompanying tests check route preservation and refusal of a wrong input. The actual root operation additionally backed up the old configuration, validated Caddy, reloaded it, and checked TLS, authorization and identical Search bytes across the stable and diagnostic aliases.
+
+The dev25 runtime is published at commit `961fa754f464b66d28602890a3b2868b56aa7c6a`, under `operations/public-dev25-diagnostic`. Its manifest is `1a0842f025c6e6228cc8e684afb4a55721bb217a47c16bddd2f8cc8d96fdf660`. This routing note does not assert repair gains or Full capacity. No credentials or server access material are included. The runtime and routing must remain unchanged during an active official Smoke.
