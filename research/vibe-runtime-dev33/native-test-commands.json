@@ -1,0 +1,65 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "commands": {
+    "bashtage__arch-752": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "arch/tests/univariate/test_forecast.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "arch/tests"
+      ]
+    },
+    "scille__umongo-245": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_data_proxy.py",
+        "tests/test_fields.py",
+        "tests/test_marshmallow.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    },
+    "sinaptik-ai__pandas-ai-1099": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/unit_tests/responses/test_response_serializer.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    }
+  },
+  "purpose": "Exact solver install_config native argv and tracked BASE tests; no target test or gold",
+  "full_allowed": false
+}
