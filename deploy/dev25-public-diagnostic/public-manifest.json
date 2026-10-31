@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0.dev25",
+  "system": "Qianora（千绪）",
+  "scope": "official_smoke_diagnostic_only",
+  "parent_manifest_sha256": "ccfbdab44d05222f8a04c89b7851894b4abc88a634837e31680829c740fbaa08",
+  "files_sha256": {
+    "public_manifest.py": "64bfbdcfde84faea46ef5392919e03abd1edf12c3db033b6374b7b147eabdc8d",
+    "public_runner.py": "d5f897907dd1519a3eb2c6fd7b980b0d68d59024fc35c41ed12b074e2781a43c",
+    "public_unit.py": "ff74750fa85544828d3b8c90bd43ec0d0d73d15197fffe993a3cad2df800bfda",
+    "routing.py": "f2a070271959cbbd861cf55a94f5c93665ac1098f1cc44036650e3ea0d129578"
+  },
+  "actual_cloud_diagnostic_preflight_passed": true,
+  "diagnostic_preflight_scope": "single_81mb_auth_conflict_source_audit_restart_only",
+  "actual_cloud_diagnostic_receipt_sha256": "00285776c901d4ec8f7892b07946c97e7aa8322dbc48e61a9232b15126486da9",
+  "local_cloud_receipt_sha256": "d7fc5fcbcf40ddfa4e6da30335f004abc502ef110f56eecdeaf451f09d31435c",
+  "public_entry_check_sha256": "989a33bc44d8974059dfa133eb1224743151665be82c8af4b99ddbb5d5891eb4",
+  "failed_full_parallel_cloud_receipt_sha256": "795ec8a752e15ce527b7f8faf5bdcaac37b1e746967c22cb738727fdaf8667a5",
+  "full_parallel_history_capacity_passed": false,
+  "repair_benefit_demonstrated": false,
+  "full_allowed": false,
+  "new_paid_services": false
+}

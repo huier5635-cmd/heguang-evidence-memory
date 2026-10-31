@@ -1,0 +1,13 @@
+{
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-31T00:35:40.288027+00:00",
+  "decision": "allow_separate_public_diagnostic_endpoint_and_authorized_smoke",
+  "public_manifest_sha256": "1a0842f025c6e6228cc8e684afb4a55721bb217a47c16bddd2f8cc8d96fdf660",
+  "user_authorization": "Explicit diagnostic Smoke approval, subsequently up to ten Smoke per day without repeated confirmation",
+  "actual_single_history_cloud_result_passed": true,
+  "public_entry_checks_passed": 12,
+  "prior_16_maximum_history_stress_failure_retained": true,
+  "full_parallel_history_capacity_passed": false,
+  "incremental_repair_benefit_demonstrated": false,
+  "full_allowed": false
+}
