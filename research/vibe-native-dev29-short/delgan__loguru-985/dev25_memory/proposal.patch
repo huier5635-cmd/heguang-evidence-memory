@@ -1,0 +1,18 @@
+--- a/loguru/_handler.py
++++ b/loguru/_handler.py
+@@ -56,6 +56,15 @@
+         self._serialize = serialize
+         self._enqueue = enqueue
+         self._multiprocessing_context = multiprocessing_context
++        
++        # Handle case where multiprocessing context has already been set
++        if self._enqueue and self._multiprocessing_context is None:
++            try:
++                import multiprocessing
++                self._multiprocessing_context = multiprocessing
++            except Exception:
++                # Fallback to default multiprocessing if needed
++                pass
+         self._error_interceptor = error_interceptor
+         self._exception_formatter = exception_formatter
+         self._id = id_

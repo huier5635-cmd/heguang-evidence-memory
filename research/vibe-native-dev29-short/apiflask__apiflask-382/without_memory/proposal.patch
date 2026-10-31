@@ -1,0 +1,21 @@
+--- a/src/apiflask/route.py
++++ b/src/apiflask/route.py
+@@ -86,6 +86,18 @@
+             if endpoint is None:
+                 endpoint = view_class.__name__
+             view_func = view_class.as_view(endpoint)
++        elif hasattr(view_func, 'view_class') and hasattr(view_func.view_class, '__bases__'):
++            # Check if this is a View class (not MethodView) - skip spec recording
++            view_class = view_func.view_class
++            if any(base.__name__ == 'View' for base in view_class.__mro__):
++                # This is a View class, not a MethodView - don't process specs
++                is_view_class = False
++            else:
++                # Regular MethodView case
++                is_view_class = True
++                if endpoint is None:
++                    endpoint = view_class.__name__
++                view_func = view_class.as_view(endpoint)
+ 
+         if is_view_class and hasattr(self, 'enable_openapi') and self.enable_openapi:
+             view_func = record_spec_for_view_class(view_func, view_class)  # type: ignore

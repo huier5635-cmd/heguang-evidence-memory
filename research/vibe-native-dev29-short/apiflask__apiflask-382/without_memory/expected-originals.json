@@ -1,0 +1,5 @@
+{
+  "src/apiflask/openapi.py": "e9cacde7ee6b534532518a01778ad230a7d995ee22388daa26bd7e9a2f5d1900",
+  "src/apiflask/route.py": "842a16b63d4ad14c8f699f3067caeb8b1d812eef1bc0e216050d4b5a0ae7471c",
+  "src/apiflask/types.py": "40d743c7364b3f831675a5c7cf58b9f5e66278d12ea22251dc6399e0a810edd2"
+}

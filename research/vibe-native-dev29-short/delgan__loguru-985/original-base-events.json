@@ -1,0 +1,269 @@
+{
+  "collection_diagnostics": [],
+  "diagnostic_scope": "bounded failure diagnostics frozen before oracle access; no test selection changes",
+  "collected": [
+    "tests/test_add_option_context.py::test_default_context",
+    "tests/test_add_option_context.py::test_fork_context_as_string[fork]",
+    "tests/test_add_option_context.py::test_fork_context_as_string[forkserver]",
+    "tests/test_add_option_context.py::test_spawn_context_as_string",
+    "tests/test_add_option_context.py::test_fork_context_as_object[fork]",
+    "tests/test_add_option_context.py::test_fork_context_as_object[forkserver]",
+    "tests/test_add_option_context.py::test_spawn_context_as_object",
+    "tests/test_add_option_context.py::test_context_effectively_used",
+    "tests/test_add_option_context.py::test_invalid_context_name",
+    "tests/test_add_option_context.py::test_invalid_context_object[42]",
+    "tests/test_add_option_context.py::test_invalid_context_object[context1]"
+  ],
+  "distributed_worker_collections_verified": [],
+  "events": [
+    {
+      "nodeid": "tests/test_add_option_context.py::test_default_context",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_default_context",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_default_context",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_string[fork]",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_string[fork]",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_string[fork]",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_string[forkserver]",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_string[forkserver]",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_string[forkserver]",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_spawn_context_as_string",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_spawn_context_as_string",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_spawn_context_as_string",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_object[fork]",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_object[fork]",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_object[fork]",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_object[forkserver]",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_object[forkserver]",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_fork_context_as_object[forkserver]",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_spawn_context_as_object",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_spawn_context_as_object",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_spawn_context_as_object",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_context_effectively_used",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_context_effectively_used",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_context_effectively_used",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_name",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_name",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_name",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_object[42]",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_object[42]",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_object[42]",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_object[context1]",
+      "when": "setup",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_object[context1]",
+      "when": "call",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    },
+    {
+      "nodeid": "tests/test_add_option_context.py::test_invalid_context_object[context1]",
+      "when": "teardown",
+      "outcome": "passed",
+      "wasxfail": false,
+      "report_type": "_pytest.reports.TestReport"
+    }
+  ],
+  "collection_errors": 0,
+  "exit_code": 0,
+  "native_command": [
+    "pytest",
+    "--no-header",
+    "-rA",
+    "--tb=line",
+    "--color=no",
+    "-p",
+    "no:cacheprovider",
+    "-W",
+    "ignore::DeprecationWarning",
+    "tests/test_add_option_context.py"
+  ],
+  "test_selection_changed": false,
+  "reporting_only_argument_added": true,
+  "official_score": false,
+  "full_allowed": false
+}

@@ -1,0 +1,14 @@
+--- a/src/apiflask/route.py
++++ b/src/apiflask/route.py
+@@ -35,6 +35,11 @@
+         if not hasattr(view_func, '_spec'):
+             view_func._spec = {}
+         for method_name in view_class.methods:  # type: ignore
++            # method_name: ['GET', 'POST', ...]
++            # Skip if this is a regular View class (not MethodView) that doesn't have the method in __dict__
++            if not hasattr(view_class, '__dict__') or method_name.lower() not in view_class.__dict__:
++                continue
++            method = view_class.__dict__[method_name.lower()]
+             # method_name: ['GET', 'POST', ...]
+             method = view_class.__dict__[method_name.lower()]
+             # collect spec info from class attribute "decorators"

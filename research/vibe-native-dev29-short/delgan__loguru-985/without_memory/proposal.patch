@@ -1,0 +1,16 @@
+--- a/loguru/_contextvars.py
++++ b/loguru/_contextvars.py
+@@ -3,7 +3,12 @@
+ 
+ def load_contextvar_class():
+     if sys.version_info >= (3, 7):
+-        from contextvars import ContextVar
++        try:
++            from contextvars import ContextVar
++        except RuntimeError:
++            # Handle case where context is already set (e.g., by Sanic)
++            import contextvars
++            ContextVar = getattr(contextvars, 'ContextVar')
+     elif sys.version_info >= (3, 5, 3):
+         from aiocontextvars import ContextVar
+     else:

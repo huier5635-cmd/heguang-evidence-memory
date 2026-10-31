@@ -1,0 +1,40 @@
+--- a/loguru/_handler.py
++++ b/loguru/_handler.py
+@@ -88,11 +88,34 @@
+                 self._decolorized_format = self._formatter.strip()
+ 
+         if self._enqueue:
+-            self._queue = self._multiprocessing_context.SimpleQueue()
++            # Use the multiprocessing context for queue creation
++            if hasattr(self._multiprocessing_context, 'SimpleQueue'):
++                self._queue = self._multiprocessing_context.SimpleQueue()
++            else:
++                # Fallback to default context if needed
++                import multiprocessing
++                self._queue = multiprocessing.SimpleQueue()
++            
+             self._queue_lock = create_handler_lock()
+-            self._confirmation_event = self._multiprocessing_context.Event()
+-            self._confirmation_lock = self._multiprocessing_context.Lock()
++            
++            # Use the multiprocessing context for event creation
++            if hasattr(self._multiprocessing_context, 'Event'):
++                self._confirmation_event = self._multiprocessing_context.Event()
++            else:
++                import multiprocessing
++                self._confirmation_event = multiprocessing.Event()
++            
++            if hasattr(self._multiprocessing_context, 'Lock'):
++                self._confirmation_lock = self._multiprocessing_context.Lock()
++            else:
++                import multiprocessing
++                self._confirmation_lock = multiprocessing.Lock()
++            
+             self._owner_process_pid = os.getpid()
++            self._thread = Thread(
++                target=self._queued_writer, daemon=True, name="loguru-writer-%d" % self._id
++            )
++            self._thread.start()
+             self._thread = Thread(
+                 target=self._queued_writer, daemon=True, name="loguru-writer-%d" % self._id
+             )

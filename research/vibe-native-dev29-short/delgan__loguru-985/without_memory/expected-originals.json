@@ -1,0 +1,5 @@
+{
+  "loguru/_asyncio_loop.py": "2daf17ccb8ef458a4d8b295990e1702ca81df9644c5f34d9640a04ce52faf306",
+  "loguru/_contextvars.py": "2e7b3817163f065daa9cb7772e657b087fedd69d34e728e40ffcec740776bf96",
+  "loguru/_logger.py": "ecbca35e95b0c2321be5f0e48204a4e3a91d47b2b17a7cabef2e153626e3e36d"
+}

@@ -1,0 +1,17 @@
+{
+  "fail_to_pass": [
+    "tests/test_add_option_context.py::test_global_start_method_is_none_if_enqueue_is_false"
+  ],
+  "pass_to_pass": [
+    "tests/test_add_option_context.py::test_using_multiprocessing_directly_if_context_is_none",
+    "tests/test_add_option_context.py::test_fork_context_as_string[fork]",
+    "tests/test_add_option_context.py::test_fork_context_as_string[forkserver]",
+    "tests/test_add_option_context.py::test_spawn_context_as_string",
+    "tests/test_add_option_context.py::test_fork_context_as_object[fork]",
+    "tests/test_add_option_context.py::test_fork_context_as_object[forkserver]",
+    "tests/test_add_option_context.py::test_spawn_context_as_object",
+    "tests/test_add_option_context.py::test_invalid_context_name",
+    "tests/test_add_option_context.py::test_invalid_context_object[42]",
+    "tests/test_add_option_context.py::test_invalid_context_object[context1]"
+  ]
+}

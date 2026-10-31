@@ -1,0 +1,181 @@
+{
+  "cases": [
+    {
+      "instance_id": "apiflask__apiflask-382",
+      "repo": "apiflask/apiflask",
+      "base_commit": "fc902cfd325aea37d20ea4f6a1b203e6f18fc49b",
+      "image": "docker.io/swerebenchv2/apiflask-apiflask@sha256:0dee168ed975c5cc1acfe378dabd9bc9dbbc58b89a6d8f495884abcf217970f8",
+      "image_id": "sha256:788f84eb5cf79e0672a31df03b12c1ae1743352c39df2e112849cc721e1112e4",
+      "working_dir": "/apiflask",
+      "expected_source_files": {
+        "src/apiflask/__init__.py": "e68da9c3458dfedcb45971b19827785b87e6dc056af882ed395be762f0ff42da",
+        "src/apiflask/app.py": "c8bdcc7938cb66f093395898916b9f8986e72c5ec540937974ea8b76e79f7b5f",
+        "src/apiflask/blueprint.py": "95517cf720e977b015a9801dae60db478e579bbbb8a7b8c506fff49a6a8b8f64",
+        "src/apiflask/commands.py": "096d2975a2a9cdbd629a4ba7d68211297e59bc2afe198893c62abeadffe46e86",
+        "src/apiflask/exceptions.py": "713cec86f4e2e7d248c774c712cd6ee5951494c41a54ab5a9568f0a928921f3d",
+        "src/apiflask/fields.py": "72dc867c21dda35f01853320a93c4e02298dcaf7c691c8e526e5f65f1016c13a",
+        "src/apiflask/helpers.py": "866a8968e32c74fa3dc24e561d834583c1d5b516dd45f7f9a095b11279d10daf",
+        "src/apiflask/openapi.py": "e9cacde7ee6b534532518a01778ad230a7d995ee22388daa26bd7e9a2f5d1900",
+        "src/apiflask/route.py": "842a16b63d4ad14c8f699f3067caeb8b1d812eef1bc0e216050d4b5a0ae7471c",
+        "src/apiflask/scaffold.py": "a11459d0e0797410e38bf609975f7d31fcafcfac032888792e760f327debee7e",
+        "src/apiflask/schemas.py": "6e965bb3f662d76e6c0f272d15a04795aacd479aa82ad4158c173c5348dfaca1",
+        "src/apiflask/security.py": "c95367c9a36d0acbcf43a8d031d406d4a9fc73a768dd41c7ecd4de653778e3a1",
+        "src/apiflask/settings.py": "c258038719445a24ea17c84e269f10dcb63877e2ff237c797e82e20691900c32",
+        "src/apiflask/types.py": "40d743c7364b3f831675a5c7cf58b9f5e66278d12ea22251dc6399e0a810edd2",
+        "src/apiflask/ui_templates.py": "14dc9a816f86a9973883425fb8166cde1522281316612593e12427a4fd24e9d0",
+        "src/apiflask/validators.py": "8b838caeafc89b10cc2bf2d44537b227031d8289879a26203375e3a6d708ee76"
+      },
+      "canonical_sources": {},
+      "dependencies": [],
+      "original_test_roots": [
+        "tests"
+      ],
+      "elasticsearch_dependency": null,
+      "test_environment": {},
+      "arms": [
+        {
+          "arm": "without_memory",
+          "proposal_sha256": "91c793cf5cfcc3007264dfee624ee3d20180e94ad9a31af9ab6553cb87b196e3",
+          "status": "frozen_reviewed"
+        },
+        {
+          "arm": "dev6_memory",
+          "proposal_sha256": "c8c6d32e556b833e939b3f03980c451f89e488260f0126242e6d0a5f95ca841b",
+          "status": "invalid_proposal"
+        },
+        {
+          "arm": "dev25_memory",
+          "proposal_sha256": "64423d31a0f89a268b0b1e4419663bdc197c97860ab663e1a69d725c086a2f9c",
+          "status": "frozen_reviewed"
+        }
+      ],
+      "target_test_paths": [
+        "tests/test_route.py"
+      ],
+      "original_base_events_sha256": "543ec8691143c2c6a2b5cd8c213c2467075414167d640b85041e37ebe10b98d7",
+      "original_base_runtime": {
+        "python_version": "3.10.19 (main, Dec 30 2025, 00:42:16) [GCC 14.2.0]",
+        "python_executable": "/usr/local/bin/python"
+      }
+    },
+    {
+      "instance_id": "dbt-labs__dbt-redshift-420",
+      "repo": "dbt-labs/dbt-redshift",
+      "base_commit": "aa98c958981fe112079e55b5831daf32b45b39f4",
+      "image": "docker.io/swerebenchv2/dbt-labs-dbt-redshift@sha256:a68cb08006f8f7ba67519348f74c6da9c212761e2a162ae524340adf829e5275",
+      "image_id": "sha256:34c612fbbc41308f02a551c9a9986d93f6d1ec8d36468866df120d9df1bac57c",
+      "working_dir": "/dbt-redshift",
+      "expected_source_files": {
+        "dbt/__init__.py": "a8415eab7cae7f7950295b1e00b98bf1a3ccf1fa424b9e01ff9a6bcb4d0cde19",
+        "dbt/adapters/redshift/__init__.py": "77b765ec501409226dd8d94edb454c816be2088fc0cdbc11e1908b91354cdf09",
+        "dbt/adapters/redshift/__version__.py": "1f82a90ce7f592c2880109b15cf381101602ad898d2454b209734e0102852520",
+        "dbt/adapters/redshift/column.py": "2c4b0fc7e29ecc341261fff0320e3348be86e03f8acd7f892cd98fa32433d64c",
+        "dbt/adapters/redshift/connections.py": "443ecc39a0db3374a0537b111599a5739b07d14d0d03c9a01c73928eca97935a",
+        "dbt/adapters/redshift/impl.py": "6220057d0f9dfd7922002791994fe6390128d0fbd408702d62b2c8f4b291f9ed",
+        "dbt/adapters/redshift/relation.py": "bea5d4aae464288586dbcfb9e5aaad2fa800e31833e6bac8926e2d576f8e16c7",
+        "dbt/include/redshift/__init__.py": "bc1196786f9d1c792299f9d7f1ac41278220028c05c3cc400e6a3a02ece7db17"
+      },
+      "canonical_sources": {},
+      "dependencies": [],
+      "original_test_roots": [
+        "tests"
+      ],
+      "elasticsearch_dependency": null,
+      "test_environment": {},
+      "arms": [
+        {
+          "arm": "dev6_memory",
+          "proposal_sha256": "a772527dd4e9dc8b1ad925da7b67db9716121b1dfff70dfaadda8cedf46452b9",
+          "status": "invalid_proposal"
+        },
+        {
+          "arm": "dev25_memory",
+          "proposal_sha256": "374b50bb7f220bf5512e46e2577f6788629b37c9586dec7c39e827ca51090532",
+          "status": "invalid_proposal"
+        },
+        {
+          "arm": "without_memory",
+          "proposal_sha256": "1a78bf9a7194d54da1d0d4d9f9b15f5ecf17feb748ea48d9382bbd011c7d8c45",
+          "status": "frozen_reviewed"
+        }
+      ],
+      "target_test_paths": [
+        "tests/unit/test_redshift_adapter.py"
+      ],
+      "original_base_events_sha256": "d36a44985ad673f59e1d39970fd3c288546d5aea7d847a69e82f1cbcd3abc51d",
+      "original_base_runtime": {
+        "python_version": "3.10.19 (main, Dec 30 2025, 00:42:16) [GCC 14.2.0]",
+        "python_executable": "/usr/local/bin/python"
+      }
+    },
+    {
+      "instance_id": "delgan__loguru-985",
+      "repo": "Delgan/loguru",
+      "base_commit": "14fa062bdb4388d77250b1f7224024fea3c84bbf",
+      "image": "docker.io/swerebenchv2/delgan-loguru@sha256:e2e45cf70d3b83ac58b7c0d75a5122feed2317c5d23ad196a90f28f8270172b2",
+      "image_id": "sha256:08a2a094805c107f400bc51e710fee25a09866437287aa65186c1d5c456df3e7",
+      "working_dir": "/loguru",
+      "expected_source_files": {
+        "loguru/__init__.py": "2d5c373837967e472534c4dd82653d398ed91ec4fbc161e8dd7140a477c66ee0",
+        "loguru/__init__.pyi": "fc0741e0086a7faa2cae23b96460998f176a2a1a49c7ca654b62419ea93c5251",
+        "loguru/_asyncio_loop.py": "2daf17ccb8ef458a4d8b295990e1702ca81df9644c5f34d9640a04ce52faf306",
+        "loguru/_better_exceptions.py": "20eed7a59c4d2e80b6fe61db111b3df13a3e4a7c1a35c32d4027f5ee90a97301",
+        "loguru/_colorama.py": "39c8e4020ef5ab0532364977146f83946b069bda315c95fca40f3b3cd98bc60e",
+        "loguru/_colorizer.py": "6386a9ff0146445553a98d7c517ba958ffb64da8790ff797cc003744e88f8dc5",
+        "loguru/_contextvars.py": "2e7b3817163f065daa9cb7772e657b087fedd69d34e728e40ffcec740776bf96",
+        "loguru/_ctime_functions.py": "db45b0cdfa9a2bd80277c895252e8e83e66745b1a051bd46b0b3a9e926b56ae5",
+        "loguru/_datetime.py": "5e4700088c16a67a28ae6cabd46dc7a4d6dd296cf098ec9298e6c5c920a6db91",
+        "loguru/_defaults.py": "7b8da4868c87dc4ffe6fa714c1d3447e3dc836e6e6182517256b9d5a05698e56",
+        "loguru/_error_interceptor.py": "1d19bd1317d956b149fae26bd6e18abdbb1469ba4a0a3d2bb2d39f826ec2e418",
+        "loguru/_file_sink.py": "617dea4ed11508faf45c030bc4cefd03ab7d3eda454e99173ba67bae4aa87e19",
+        "loguru/_filters.py": "cffff6abc93f5c03b5a8b7f739ea9b377518378b195af7a5dbfe6c8db9179fb8",
+        "loguru/_get_frame.py": "51c4cc5e379297722187559eb0be1e965e1330364df4f5be48f772895610b658",
+        "loguru/_handler.py": "7136e23dd51f20f363d34247e852866d7f4ab5e14f09406b05bbafa8e79e6fc5",
+        "loguru/_locks_machinery.py": "00f105834631ee98e708b8a0e58327052652c39c9ff31c9b9b6a5de2e1b8e2bc",
+        "loguru/_logger.py": "ecbca35e95b0c2321be5f0e48204a4e3a91d47b2b17a7cabef2e153626e3e36d",
+        "loguru/_recattrs.py": "8f1484935daa38c275496bbfc6b77200f5131d6c3a52fdf402d77ab2d6fa90e2",
+        "loguru/_simple_sinks.py": "59709c2ca4117712196e1391c78488c91e4313b77f2e83e089e64bc2693aa8a3",
+        "loguru/_string_parsers.py": "7a32fe3be799ade5023b4357259032f35d878539fb75980c9a03cd75e4f9dd99"
+      },
+      "canonical_sources": {},
+      "dependencies": [],
+      "original_test_roots": [
+        "tests"
+      ],
+      "elasticsearch_dependency": null,
+      "test_environment": {},
+      "arms": [
+        {
+          "arm": "dev25_memory",
+          "proposal_sha256": "16a2d6546c314e40a8113d0e49149c11facd442e605206cf37ff44b613f7d1dd",
+          "status": "frozen_reviewed"
+        },
+        {
+          "arm": "without_memory",
+          "proposal_sha256": "980ba2a10a2333c0fc9c6e14c0a5b8411ba1aa14efea07a6eb4d4a2757d59e8f",
+          "status": "frozen_reviewed"
+        },
+        {
+          "arm": "dev6_memory",
+          "proposal_sha256": "efeda61c9219721c04ea71e0612a30de58dd0cfcfc42cae5f5ab67f7e6dfda39",
+          "status": "frozen_reviewed"
+        }
+      ],
+      "target_test_paths": [
+        "tests/test_add_option_context.py"
+      ],
+      "original_base_events_sha256": "88f81fd1aad4cad4f6b7c13eabb81e085df39e925bf41d06217c3d25642daba3",
+      "original_base_runtime": {
+        "python_version": "3.10.19 (main, Dec 30 2025, 00:42:16) [GCC 14.2.0]",
+        "python_executable": "/usr/local/bin/python"
+      }
+    }
+  ],
+  "study_plan_sha256": "ca378a07e207ccb6fd957c4f7e70c64314dd8b788f8068a64e5e87ffb41b0c3c",
+  "review_sha256": "214dca42fb838c36d064fa3e169c54c2808f3ff8ebd498815203ac10efb43578",
+  "oracle_sha256": "69f9d2ed6fe027e0a400da155105d41275df144c0e99565e5d9f54578f9f9e0c",
+  "evaluation_method_sha256": "e8d214d8e35692f5707c025f22d66865ac1a9e2da6f7497ced687b5a0428dc28",
+  "target_solution_read": false,
+  "model_regenerated": false,
+  "full_allowed": false
+}
