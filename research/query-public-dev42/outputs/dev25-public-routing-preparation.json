@@ -1,0 +1,5 @@
+{
+  "redacted_caddyfile": "{\n\tacme_ca https://acme-v02.api.letsencrypt.org/directory\n}\nheguang-8-208-30-48.sslip.io {\n\n# Insert inside the existing heguang-8-208-30-48.sslip.io site,\n# before its fallback handle. Preserve the Textual handlers byte for byte.\n# Do not put an API key in Caddy configuration.\nhandle_path /coding/* {\n    @coding_api path /health /add /search\n    handle @coding_api {\n        request_body {\n            max_size 67108864\n        }\n        reverse_proxy 127.0.0.1:8752 {\n            transport http {\n                response_header_timeout 30m\n            }\n        }\n    }\n    handle {\n        respond \"Not found\" 404\n    }\n}\n\n\t@memory path /health /add /search\n\thandle @memory {\n\t\trequest_body {\n\t\t\tmax_size 67108864\n\t\t}\n\t\treverse_proxy 127.0.0.1:8751 {\n\t\t\ttransport http {\n\t\t\t\tresponse_header_timeout 30m\n\t\t\t}\n\t\t}\n\t}\n\thandle {\n\t\trespond \"Not found\" 404\n\t}\n}\n",
+  "sha256": "e5a2d7cb3a650bf0a6c6af1278897d9b9ce1effbf0e24510ed534490bdd19aa2",
+  "owned_routing_fixture_only": true
+}

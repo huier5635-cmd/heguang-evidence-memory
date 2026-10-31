@@ -1,0 +1,34 @@
+name: Qianora dev42 owned public context activation checks
+on:
+  push:
+    branches: [coding-memory-dev42-query-wiring]
+permissions: {}
+jobs:
+  owned-wiring:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - name: Fetch exact public commit without credentials
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git init checkout
+          cd checkout
+          git remote add origin https://github.com/huier5635-cmd/heguang-evidence-memory.git
+          git fetch --depth=1 origin "$COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$COMMIT_SHA"
+      - name: Install pinned test dependencies without model downloads
+        run: |
+          python3 -m venv "$RUNNER_TEMP/qianora-dev42-venv"
+          "$RUNNER_TEMP/qianora-dev42-venv/bin/python" -m pip install -r checkout/research/query-public-dev42/requirements.txt
+      - name: Test owned activation gates routing and actual bounded ASGI entry
+        run: |
+          "$RUNNER_TEMP/qianora-dev42-venv/bin/python" checkout/research/query-public-dev42/run_checks.py
