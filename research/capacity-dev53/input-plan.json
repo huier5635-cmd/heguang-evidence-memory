@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "files": [
+    {
+      "path": "history/python/Qiskit__qiskit-terra/qiskit__qiskit-terra-8741/qiskit__qiskit-terra-8741.traj.json",
+      "bytes": 81315087,
+      "sha256": "78b39bf8393b3e7be15084e36721ad8f36ee569f4b1685251a85c4618394a214",
+      "messages": 87,
+      "local_path": "large-history.json",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Qiskit__qiskit-terra/qiskit__qiskit-terra-8741/qiskit__qiskit-terra-8741.traj.json"
+    }
+  ],
+  "limits": {
+    "MemoryHigh": 335544320,
+    "MemoryMax": 402653184,
+    "MemorySwapMax": 536870912,
+    "CPUQuotaPerSecUSec": 1000000
+  },
+  "concurrency_phase": {
+    "clients": 16,
+    "service_processing_slots": 1,
+    "isolated_users": 16,
+    "per_user_messages": 87,
+    "request_timeout_seconds": 285,
+    "service_wall_guard_seconds": 300
+  },
+  "scope": "Exact dev25 candidate: same pinned public 81MB history,16 isolated concurrent Add calls followed by16 concurrent synthetic Search calls; capacity only",
+  "candidate_modules": 20,
+  "official_calls": 0,
+  "full_allowed": false,
+  "deployment_eligible": false,
+  "parent_input_plan_sha256": "e7f69e4e09e261198b40be3fbd78b084b97f60866edbeea99e9f043cf30258b2",
+  "parallel_search": {
+    "clients": 16,
+    "query_characters": 19900,
+    "parsed_calls": 32,
+    "same_user_read_only": true,
+    "request_timeout_seconds": 285,
+    "service_wall_guard_seconds": 300,
+    "purpose": "Separate self-owned input exercises32static calls and a19900character query"
+  },
+  "parallel_history_search": {
+    "clients": 16,
+    "independent_users": 16,
+    "query": "Qiskit QuantumCircuit circuit append",
+    "top_k": 100,
+    "returned_source_spans_audited": true,
+    "read_only_databases": true,
+    "request_timeout_seconds": 285
+  },
+  "fixture_correction": {
+    "prior_run": 41118358578,
+    "prior_overall_passed": false,
+    "failure_audit_sha256": "f56787556f1c85d625aeac2d8bef701b2ab17f67b4177050cd56d42fabc0da0a",
+    "change": "First synthetic code message role tool -> user, so the fixture actually creates the one episode record still required by the unchanged probe. Second code message remains tool. Real81MB history,20core,resources,deadlines,16Add and32Search counts unchanged.",
+    "relaxed_assertions": false,
+    "earlier_failure_retained": true
+  }
+}
