@@ -1,0 +1,150 @@
+{
+  "targets": [
+    {
+      "instance_id": "bashtage__arch-752",
+      "repo": "bashtage/arch",
+      "base_commit": "2c8e9ef56ece657f741e187c0149683280503350",
+      "problem_statement": "ARX with exogenous variable forecasts residual variance is not as expected\n```\r\nimport numpy as np\r\nimport pandas as pd\r\nimport arch\r\nfrom arch.univariate import Normal as ARCHNormal\r\n\r\nseed = 42\r\nnp.set_printoptions(precision=3, suppress=True, linewidth=100, floatmode='fixed')\r\n\r\ntest_df = pd.DataFrame({'y':np.array([0,7,2,5,9,3,8]).astype(float), 'x':np.arange(7).astype(float)})\r\ny = test_df['y'].values\r\nx = test_df['x'].values\r\n\r\ntest_model = arch.arch_model(y=test_df['y'], x=test_df['x'], mean='ARX', vol='GARCH', lags=1, p=1, q=0, rescale=False)\r\ny_coeff = 0.3   # lag 1 coefficient for AR(1) process\r\nx_coeff = 0.2   # coefficient for exogenous variable\r\nres_coeff = 0.5 # lag 1 coefficient for volatility process\r\nstart = 1       # start from second observation\r\ntest_model.distribution = ARCHNormal(seed=seed)\r\ntest_res = test_model.fix([0., y_coeff, x_coeff, 0., res_coeff]) # constants set to zero\r\nsims = test_res.forecast(horizon=1, start=start, method='simulation', simulations=1, x=x[:,np.newaxis], align='origin')\r\nmeans = sims.mean.values.squeeze()\r\nvars = sims.variance.values.squeeze()\r\nexpected_means = y_coeff*y + x_coeff*x # calculate expected means\r\neps = y[start:] - expected_means[start-1:-1] if start > 0 else y[1:] - expected_means[:-1] # calculate residuals\r\n\r\n# eps = eps - x_coeff # NOTE: adding this line aligns the residuals with the variance otherwise, it does not match\r\n\r\nvalues = sims.simulations.values.squeeze()\r\nprint(f'y:              {y[start:]}')\r\nprint(f'x:              {x[start:]}')\r\nprint(f'Expected means: {expected_means[start:]}')\r\nprint(f'Actual means:   {means}')\r\nprint(f'Residuals:      {eps}')\r\nprint(f'Expected vars:  {res_coeff*(eps**2)}')\r\nprint(f'Actual vars:    {vars}')\r\n```\r\nThe above code tries to simulate a AR(1) with 1 exogenous variable with a GARCH(1,0) volatility process with horizon=1 and start=1. Unexpectedly, the residual variance does not align with expectations unless the coefficient for the exogenous variable is subtracted from the residual from the previous time step i.e. eps = eps - x_coeff."
+    },
+    {
+      "instance_id": "scille__umongo-245",
+      "repo": "Scille/umongo",
+      "base_commit": "9485f028b253fdf82f01bcdeae81e2fec6c4f39d",
+      "problem_statement": "DictField limitations\n`DictField` suffers from a few limitations.\r\n\r\n- Must be marked as modified manually\r\n- Does not deserialize values into objects (no Schema)\r\n- Can't use non-string keys\r\n\r\nIt might be useful to have a schema-less structure, but sometimes, I'd like to have `DictField` enforce a schema. Maybe we could add it extra features or create a `TypedDictField` (or `StrcturedDictField`, I don't know about the naming).\r\n\r\nSee [this discussion](https://github.com/marshmallow-code/marshmallow/issues/483) in Marshmallow about nesting a `Schema` into a `Dict`.\r\n\r\n[This comment](https://github.com/marshmallow-code/marshmallow/issues/483#issuecomment-285936314) illustrates the limits of `DictField`.\r\n\r\nThe enhancement proposal is to add the possibility to do this:\r\n\r\n```python\r\n    fields.Dict(keys=fields.Str(), values=fields.Nested(SomeSchema))\r\n```\r\n\r\nBenefits:\r\n\r\n- Serialization/deserialization of keys and values\r\n- Allows to use non-string keys (hashable and serializable)\r\n- Keep track of is_modified, no need to mark the field as modified manually\r\n\r\nNote: uMongo does not complain if a Dict is passed non-string key, but pymongo will raise an `Exception` at commit time. This could be protected by a validator at assignment time in current `DictField`. Obviously, adding the feature described above would solve this by allowing non-string keys.\r\n\r\nNot sure which approach would be best. Try to solve upstream https://github.com/marshmallow-code/marshmallow/issues/483 and ultimately if rejected implement `TypedDictField` as a marshmallow-bonus field, or create `TypedDictField` here as a proof-of-concept and try to have it integrated upstream. The more we can provide upstream, the best, and I saw no objection to the idea, there."
+    },
+    {
+      "instance_id": "sinaptik-ai__pandas-ai-1099",
+      "repo": "Sinaptik-AI/pandas-ai",
+      "base_commit": "ad67fc66da24f4587c072b13bdaade357eeb6022",
+      "problem_statement": "Code generation crash on question \"Give me full names  of people was in class 3 grouped by second name\"\n### System Info\r\n\r\npandas AI 1.5.17\r\n\r\n### 🐛 Describe the bug\r\n\r\nI have a table with column Name and ask question \"Give me full names  of people was in class 3 grouped by second name\". And I see this crash. \r\n\r\nData is Titanik data set.\r\n[titanic.csv](https://github.com/gventuri/pandas-ai/files/14113732/titanic.csv)\r\n\r\n\r\nLog:\r\n\r\n```\r\nQuestion: Give me full names  of people was in class 3 grouped by second name\r\nRunning PandasAI with openai LLM...\r\nPrompt ID: 388d3d15-3cbc-43be-b26b-c59b1b56fa9c\r\n<class 'pandasai.helpers.output_types._output_types.DefaultOutputType'> is going to be used.\r\n<class 'pandasai.helpers.viz_library_types._viz_library_types.NoVizLibraryType'> is going to be used.\r\nExecuting Step 0: CacheLookup\r\nExecuting Step 1: PromptGeneration\r\nUsing prompt: <dataframe>\r\ndfs[0]:891x12\r\nPassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked\r\n3,1,3,\"Heikkinen, Miss. Laina\",female,26.0,0,0,STON/O2. 3101282,7.925,,S\r\n2,1,1,\"Cumings, Mrs. John Bradley (Florence Briggs Thayer)\",female,38.0,1,0,PC 17599,71.2833,C85,C\r\n1,0,3,\"Braund, Mr. Owen Harris\",male,22.0,1,0,A/5 21171,7.25,,S\r\n</dataframe>\r\n\r\n\r\n\r\n\r\nUpdate this initial code:\r\npython\r\n# TODO: import the required dependencies\r\nimport pandas as pd\r\n\r\n# Write code here\r\n\r\n# Declare result var: type (possible values \"string\", \"number\", \"dataframe\", \"plot\"). Examples: { \"type\": \"string\", \"value\": f\"The highest salary is {highest_salary}.\" } or { \"type\": \"number\", \"value\": 125 } or { \"type\": \"dataframe\", \"value\": pd.DataFrame({...}) } or { \"type\": \"plot\", \"value\": \"temp_chart.png\" }\r\n\r\nQ: Give me full names  of people was in class 3 grouped by second name\r\nVariable `dfs: list[pd.DataFrame]` is already declared.\r\n\r\nAt the end, declare \"result\" variable as a dictionary of type and value.\r\n\r\n\r\n\r\nGenerate python code and return full updated code:\r\nExecuting Step 2: CodeGenerator\r\nCode generated:\r\n            \r\n            # TODO: import the required dependencies\r\nimport pandas as pd\r\n\r\n# Write code here\r\ndf = dfs[0]\r\nclass_3_names = df[df['Pclass'] == 3]['Name']\r\nfull_names = class_3_names.apply(lambda x: x.split(',')[1].strip())\r\ngrouped_names = full_names.groupby(full_names).apply(lambda x: ', '.join(x))\r\nresult = {\"type\": \"dataframe\", \"value\": grouped_names}\r\n\r\nresult\r\n            \r\n\r\nExecuting Step 3: CachePopulation\r\nExecuting Step 4: CodeExecution\r\n\r\nCode running:\r\n\r\ndf = dfs[0]\r\nclass_3_names = df[df['Pclass'] == 3]['Name']\r\nfull_names = class_3_names.apply(lambda x: x.split(',')[1].strip())\r\ngrouped_names = full_names.groupby(full_names).apply(lambda x: ', '.join(x))\r\nresult = {'type': 'dataframe', 'value': grouped_names}\r\nresult\r\n        \r\nFailed to execute code with a correction framework [retry number: 1]\r\nFailed with error: Traceback (most recent call last):\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/pipelines/smart_datalake_chat/code_execution.py\", line 53, in execute\r\n    result = pipeline_context.query_exec_tracker.execute_func(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 134, in execute_func\r\n    step_data = self._generate_exec_step(tag, result)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 183, in _generate_exec_step\r\n    self._response = self._format_response(result)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 198, in _format_response\r\n    df_dict = self.convert_dataframe_to_dict(result[\"value\"])\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 93, in convert_dataframe_to_dict\r\n    return {\"headers\": json_data[\"columns\"], \"rows\": json_data[\"data\"]}\r\nKeyError: 'columns'\r\n. Retrying\r\nUsing prompt: <dataframe>\r\ndfs[0]:891x12\r\nPassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked\r\n3,1,3,\"Heikkinen, Miss. Laina\",female,26.0,0,0,STON/O2. 3101282,7.925,,S\r\n2,1,1,\"Cumings, Mrs. John Bradley (Florence Briggs Thayer)\",female,38.0,1,0,PC 17599,71.2833,C85,C\r\n1,0,3,\"Braund, Mr. Owen Harris\",male,22.0,1,0,A/5 21171,7.25,,S\r\n</dataframe>\r\n\r\nThe user asked the following question:\r\nQ: Give me full names  of people was in class 3 grouped by second name\r\n\r\nYou generated this python code:\r\n# TODO: import the required dependencies\r\nimport pandas as pd\r\n\r\n# Write code here\r\ndf = dfs[0]\r\nclass_3_names = df[df['Pclass'] == 3]['Name']\r\nfull_names = class_3_names.apply(lambda x: x.split(',')[1].strip())\r\ngrouped_names = full_names.groupby(full_names).apply(lambda x: ', '.join(x))\r\nresult = {\"type\": \"dataframe\", \"value\": grouped_names}\r\n\r\nresult\r\n\r\nIt fails with the following error:\r\nTraceback (most recent call last):\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/pipelines/smart_datalake_chat/code_execution.py\", line 53, in execute\r\n    result = pipeline_context.query_exec_tracker.execute_func(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 134, in execute_func\r\n    step_data = self._generate_exec_step(tag, result)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 183, in _generate_exec_step\r\n    self._response = self._format_response(result)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 198, in _format_response\r\n    df_dict = self.convert_dataframe_to_dict(result[\"value\"])\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 93, in convert_dataframe_to_dict\r\n    return {\"headers\": json_data[\"columns\"], \"rows\": json_data[\"data\"]}\r\nKeyError: 'columns'\r\n\r\n\r\nFix the python code above and return the new python code:\r\n\r\nCode running:\r\n\r\ndf = dfs[0]\r\nclass_3_names = df[df['Pclass'] == 3]['Name']\r\nfull_names = class_3_names.apply(lambda x: x.split(',')[1].strip())\r\ngrouped_names = full_names.groupby(full_names).apply(lambda x: ', '.join(x))\r\nresult = {'type': 'dataframe', 'value': grouped_names.reset_index()}\r\nresult\r\n        \r\nFailed to execute code with a correction framework [retry number: 2]\r\nFailed with error: Traceback (most recent call last):\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/pipelines/smart_datalake_chat/code_execution.py\", line 53, in execute\r\n    result = pipeline_context.query_exec_tracker.execute_func(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 128, in execute_func\r\n    result = function(*args, **kwargs)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/code_manager.py\", line 212, in execute_code\r\n    exec(code_to_run, environment)\r\n  File \"<string>\", line 5, in <module>\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/util/_decorators.py\", line 331, in wrapper\r\n    return func(*args, **kwargs)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/core/series.py\", line 1581, in reset_index\r\n    return df.reset_index(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/util/_decorators.py\", line 331, in wrapper\r\n    return func(*args, **kwargs)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/core/frame.py\", line 6361, in reset_index\r\n    new_obj.insert(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/core/frame.py\", line 4817, in insert\r\n    raise ValueError(f\"cannot insert {column}, already exists\")\r\nValueError: cannot insert Name, already exists\r\n. Retrying\r\nUsing prompt: <dataframe>\r\ndfs[0]:891x12\r\nPassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked\r\n3,1,3,\"Heikkinen, Miss. Laina\",female,26.0,0,0,STON/O2. 3101282,7.925,,S\r\n2,1,1,\"Cumings, Mrs. John Bradley (Florence Briggs Thayer)\",female,38.0,1,0,PC 17599,71.2833,C85,C\r\n1,0,3,\"Braund, Mr. Owen Harris\",male,22.0,1,0,A/5 21171,7.25,,S\r\n</dataframe>\r\n\r\nThe user asked the following question:\r\nQ: Give me full names  of people was in class 3 grouped by second name\r\n\r\nYou generated this python code:\r\n# TODO: import the required dependencies\r\nimport pandas as pd\r\n\r\n# Write code here\r\ndf = dfs[0]\r\nclass_3_names = df[df['Pclass'] == 3]['Name']\r\nfull_names = class_3_names.apply(lambda x: x.split(',')[1].strip())\r\ngrouped_names = full_names.groupby(full_names).apply(lambda x: ', '.join(x))\r\nresult = {\"type\": \"dataframe\", \"value\": grouped_names}\r\n\r\nresult\r\n\r\nIt fails with the following error:\r\nTraceback (most recent call last):\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/pipelines/smart_datalake_chat/code_execution.py\", line 53, in execute\r\n    result = pipeline_context.query_exec_tracker.execute_func(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py\", line 128, in execute_func\r\n    result = function(*args, **kwargs)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandasai/helpers/code_manager.py\", line 212, in execute_code\r\n    exec(code_to_run, environment)\r\n  File \"<string>\", line 5, in <module>\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/util/_decorators.py\", line 331, in wrapper\r\n    return func(*args, **kwargs)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/core/series.py\", line 1581, in reset_index\r\n    return df.reset_index(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/util/_decorators.py\", line 331, in wrapper\r\n    return func(*args, **kwargs)\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/core/frame.py\", line 6361, in reset_index\r\n    new_obj.insert(\r\n  File \"/home/adminuser/venv/lib/python3.9/site-packages/pandas/core/frame.py\", line 4817, in insert\r\n    raise ValueError(f\"cannot insert {column}, already exists\")\r\nValueError: cannot insert Name, already exists\r\n\r\n\r\nFix the python code above and return the new python code:\r\n\r\nCode running:\r\n\r\ndf = dfs[0]\r\nclass_3_names = df[df['Pclass'] == 3]['Name']\r\nfull_names = class_3_names.apply(lambda x: x.split(',')[1].strip())\r\ngrouped_names = full_names.groupby(full_names).apply(lambda x: ', '.join(x)).reset_index()\r\nresult = {'type': 'dataframe', 'value': grouped_names}\r\nresult\r\n        \r\nPipeline failed on step 4: cannot insert Name, already exists\r\n```"
+    }
+  ],
+  "history_files": [
+    {
+      "target_id": "bashtage__arch-752",
+      "path": "history/python/bashtage__arch/bashtage__arch-741/bashtage__arch-741.traj.json",
+      "bytes": 600756,
+      "sha256": "608309e8a3ece9426e480328f0757c23d189ec0eed9f3559c175869801435080",
+      "messages": 169,
+      "local_name": "d7da7fb8e971dd548c6a7e3f.json",
+      "session_id": "bashtage__arch-741",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/bashtage__arch/bashtage__arch-741/bashtage__arch-741.traj.json"
+    },
+    {
+      "target_id": "bashtage__arch-752",
+      "path": "history/python/bashtage__arch/bashtage__arch-750/bashtage__arch-750.traj.json",
+      "bytes": 1959340,
+      "sha256": "8a3c5a670b0e62a06fc31f3e3141d9cf427ef5cfd0b75c611287e08707000076",
+      "messages": 215,
+      "local_name": "06f7320d05878842321f5239.json",
+      "session_id": "bashtage__arch-750",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/bashtage__arch/bashtage__arch-750/bashtage__arch-750.traj.json"
+    },
+    {
+      "target_id": "scille__umongo-245",
+      "path": "history/python/Scille__umongo/scille__umongo-170/scille__umongo-170.traj.json",
+      "bytes": 161198,
+      "sha256": "848a3933f2c817cd51fe0252937f5893156300551c81ae3f6d997b1dbea1ed93",
+      "messages": 43,
+      "local_name": "74edbe35ccedb4abf3cda517.json",
+      "session_id": "scille__umongo-170",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Scille__umongo/scille__umongo-170/scille__umongo-170.traj.json"
+    },
+    {
+      "target_id": "scille__umongo-245",
+      "path": "history/python/Scille__umongo/scille__umongo-190/scille__umongo-190.traj.json",
+      "bytes": 192470,
+      "sha256": "cdabb7f82599762759708d14fda3fce902b7d74da5db6e6fa477ce4a36c620d0",
+      "messages": 45,
+      "local_name": "21a6582aaeae196ba318bfd2.json",
+      "session_id": "scille__umongo-190",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Scille__umongo/scille__umongo-190/scille__umongo-190.traj.json"
+    },
+    {
+      "target_id": "scille__umongo-245",
+      "path": "history/python/Scille__umongo/scille__umongo-191/scille__umongo-191.traj.json",
+      "bytes": 167037,
+      "sha256": "09cb85ab4f6b5026800be30cd7b7880f9b78e9b1861ccfff98185cffb9cb1934",
+      "messages": 47,
+      "local_name": "213abb62d968bcac60460a6f.json",
+      "session_id": "scille__umongo-191",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Scille__umongo/scille__umongo-191/scille__umongo-191.traj.json"
+    },
+    {
+      "target_id": "scille__umongo-245",
+      "path": "history/python/Scille__umongo/scille__umongo-231/scille__umongo-231.traj.json",
+      "bytes": 603087,
+      "sha256": "a0f5d016f0cbe86ca369552fa3a5976d3635c5127954356d07d381e6ba973f70",
+      "messages": 116,
+      "local_name": "064bfa37cb8a6e6c987d18d8.json",
+      "session_id": "scille__umongo-231",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Scille__umongo/scille__umongo-231/scille__umongo-231.traj.json"
+    },
+    {
+      "target_id": "sinaptik-ai__pandas-ai-1099",
+      "path": "history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1012/sinaptik-ai__pandas-ai-1012.traj.json",
+      "bytes": 317723,
+      "sha256": "747584801b64cec78248c4504d164222efb34799c08e7411f8b08bca94256daf",
+      "messages": 83,
+      "local_name": "214cada5f54d9296f7bcbb4f.json",
+      "session_id": "sinaptik-ai__pandas-ai-1012",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1012/sinaptik-ai__pandas-ai-1012.traj.json"
+    },
+    {
+      "target_id": "sinaptik-ai__pandas-ai-1099",
+      "path": "history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1019/sinaptik-ai__pandas-ai-1019.traj.json",
+      "bytes": 561278,
+      "sha256": "3e10ec352b93cd06814708b82537819733f9153bbf7eaab55e750bfab77326db",
+      "messages": 111,
+      "local_name": "f6c14dde4ae9879fb7942847.json",
+      "session_id": "sinaptik-ai__pandas-ai-1019",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1019/sinaptik-ai__pandas-ai-1019.traj.json"
+    },
+    {
+      "target_id": "sinaptik-ai__pandas-ai-1099",
+      "path": "history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1048/sinaptik-ai__pandas-ai-1048.traj.json",
+      "bytes": 207320,
+      "sha256": "17f54528446b7af499905023f1876ce397ee31ba9e924b89faa8fd750cfaa964",
+      "messages": 48,
+      "local_name": "bbf5c4d2c2e9cdd7c5116b09.json",
+      "session_id": "sinaptik-ai__pandas-ai-1048",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1048/sinaptik-ai__pandas-ai-1048.traj.json"
+    },
+    {
+      "target_id": "sinaptik-ai__pandas-ai-1099",
+      "path": "history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1071/sinaptik-ai__pandas-ai-1071.traj.json",
+      "bytes": 265594,
+      "sha256": "5902d43c9ae0b9305377b50dc0d832a99d14489a34dfedbc0f05497a83344414",
+      "messages": 62,
+      "local_name": "baba7c235a3dc3e9a8201d72.json",
+      "session_id": "sinaptik-ai__pandas-ai-1071",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1071/sinaptik-ai__pandas-ai-1071.traj.json"
+    },
+    {
+      "target_id": "sinaptik-ai__pandas-ai-1099",
+      "path": "history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1084/sinaptik-ai__pandas-ai-1084.traj.json",
+      "bytes": 403987,
+      "sha256": "f094c943fcb2e0e672c92911b40765d76da1103d3ecb8688bd1f9b8615490685",
+      "messages": 108,
+      "local_name": "33c840621db54481bb0b97fa.json",
+      "session_id": "sinaptik-ai__pandas-ai-1084",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1084/sinaptik-ai__pandas-ai-1084.traj.json"
+    },
+    {
+      "target_id": "sinaptik-ai__pandas-ai-1099",
+      "path": "history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1097/sinaptik-ai__pandas-ai-1097.traj.json",
+      "bytes": 1055367,
+      "sha256": "9a21f823026a76fd9ad45ffcfa2aa1b91f4135907c45ca7d96960378dc1b303e",
+      "messages": 234,
+      "local_name": "37f00e6ead9166454bfe12f9.json",
+      "session_id": "sinaptik-ai__pandas-ai-1097",
+      "url": "https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/resolve/11164976b4f920cdb0d0cd570ca572e49acea1e8/history/python/Sinaptik-AI__pandas-ai/sinaptik-ai__pandas-ai-1097/sinaptik-ai__pandas-ai-1097.traj.json"
+    }
+  ],
+  "history_revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+  "history_files_count": 12,
+  "messages": 1281,
+  "selection_sha256": "f44484c1e8de975ef1517fc8109e8ce3897edc0603c380d7aa75bcc48b3d37f6",
+  "history_receipt_sha256": "eb9f26b517e82f36cc765070a9dc172447dc5d9521d61bf6682934f14d1c738e",
+  "target_tests_or_gold_loaded": false
+}

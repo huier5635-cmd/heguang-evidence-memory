@@ -1,0 +1,73 @@
+{
+  "created_at_utc": "2026-10-31T03:12:02.892457+00:00",
+  "versions": [
+    "dev25",
+    "dev32"
+  ],
+  "candidate_frozen_before_selection_sha256": "657613d019fc420a168d7f2c67a6b4267696164512de021f51a34ccf941ce8d5",
+  "prospective_policy_sha256": "e6c44375076e533aa50dd61f5de8453c4bf9ed47326449904c015ba646ffb21a",
+  "source_sha256": {
+    "baseline20_sha256": {
+      "__init__.py": "151edd171735455c9612ab0aa77ad1e50ef2cb20f087d4d2a99c4834da8a597a",
+      "api.py": "62606259f9972c80c76de32b70f453e5acab3cea6ef8b02ec5914a5654563c2a",
+      "call_compatibility.py": "cb693c6dcee7393e4fb7e83191f526d2335b036bfa5a93996d1a85831331db4f",
+      "config.py": "8273a5f74a34162710e414451262e5f889a661d6cf305be8482007e9a9102671",
+      "episode_context.py": "53dc855b23e22b5a19384a55efdea34419ef7050d8bdde3ef4a40fa9941dd2e0",
+      "episode_index.py": "9737b3f93533646f183519c23ac8ad8479a0f7a1f9e6d7fbb457de88f787c72a",
+      "evidence.py": "3d2bc8f4b7bdabe60ea12049e6cb1ac7322da771fca53912b55e04917b63960e",
+      "feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+      "features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+      "history_links.py": "dd29d0b1dc03534c07aedfbc5fbb173fe2cfca17382bd79bb02a94462ffb7e24",
+      "normalize.py": "4b022e45a9cd3f4e91ee888fc7168098f954398e2eb8769543690bde0aed764a",
+      "patch_projection.py": "4803e443ec426f72e3d5387e72dd313ecb7eeea7bb007c72a4ecdec7c53b113c",
+      "query_focus.py": "b841d512e1e9cf5664c3a910afc8a1b704a697def4a3edb415a6b4bc1c019982",
+      "reranker.py": "c0116586b974ddc60d593be3754a04e597cfcc3c7402744f2191692c7a4ca7c7",
+      "schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+      "selection.py": "ba685e39f791643a5a5ff21f89b5471fd00b5f639fe4110f3be4343f236e290a",
+      "store.py": "b5f236298b7e0da28a2dbae57092b909c382b8a84186eacae90b5c68a94d0e02",
+      "streaming_json.py": "0ce466a1e51d3ac561c1622f7cc614f8828fa0c1bc6f6d4fe16b07f908a5f6fb",
+      "task_projection.py": "f501d840c301d4b775026d390c5776da2e9e67dfa2e3277e44105b1f5efa0910",
+      "visible_output.py": "c7de663ea88f0b36fba317270f523f7330d5ed40515d6ff57256fcad14941a8e"
+    },
+    "candidate21_sha256": {
+      "__init__.py": "50c3f2461c27286841bfb1bf7991310ca5d9e92b1eeb3e5e90070753f9decf2e",
+      "api.py": "62606259f9972c80c76de32b70f453e5acab3cea6ef8b02ec5914a5654563c2a",
+      "call_compatibility.py": "cb693c6dcee7393e4fb7e83191f526d2335b036bfa5a93996d1a85831331db4f",
+      "config.py": "8273a5f74a34162710e414451262e5f889a661d6cf305be8482007e9a9102671",
+      "episode_context.py": "53dc855b23e22b5a19384a55efdea34419ef7050d8bdde3ef4a40fa9941dd2e0",
+      "episode_index.py": "9737b3f93533646f183519c23ac8ad8479a0f7a1f9e6d7fbb457de88f787c72a",
+      "evidence.py": "3d2bc8f4b7bdabe60ea12049e6cb1ac7322da771fca53912b55e04917b63960e",
+      "feature_storage.py": "12afacdac8708c84d18950620c5efde2746c0cf523cbca44081a67aee324cecc",
+      "features.py": "aa11028f1a856e6459d9cf65139049cdc64fd561f7af2e13fda6b3ee93ee2796",
+      "history_links.py": "dd29d0b1dc03534c07aedfbc5fbb173fe2cfca17382bd79bb02a94462ffb7e24",
+      "normalize.py": "4b022e45a9cd3f4e91ee888fc7168098f954398e2eb8769543690bde0aed764a",
+      "patch_projection.py": "4803e443ec426f72e3d5387e72dd313ecb7eeea7bb007c72a4ecdec7c53b113c",
+      "query_anchors.py": "1651096427c0f18a5116792ef2555cb0a06bbeee6bfe1edbe2f558c087a3d50f",
+      "query_focus.py": "b841d512e1e9cf5664c3a910afc8a1b704a697def4a3edb415a6b4bc1c019982",
+      "reranker.py": "b163148fc2a7483a841bc5dd54666ab05b8fe20ee0ffde39afa2bd7671a37a18",
+      "schema.py": "cf75b2cb685142ac0267e33a2b809844d1404b7d1d19f272e3d389a2c5626820",
+      "selection.py": "ba685e39f791643a5a5ff21f89b5471fd00b5f639fe4110f3be4343f236e290a",
+      "store.py": "b5f236298b7e0da28a2dbae57092b909c382b8a84186eacae90b5c68a94d0e02",
+      "streaming_json.py": "0ce466a1e51d3ac561c1622f7cc614f8828fa0c1bc6f6d4fe16b07f908a5f6fb",
+      "task_projection.py": "f501d840c301d4b775026d390c5776da2e9e67dfa2e3277e44105b1f5efa0910",
+      "visible_output.py": "c7de663ea88f0b36fba317270f523f7330d5ed40515d6ff57256fcad14941a8e"
+    }
+  },
+  "actual_add_and_search_api": true,
+  "full_source_and_raw_message_audits": true,
+  "score_cache_used": false,
+  "variant_scorers_independent": true,
+  "budget": {
+    "reranker_pairs": 16,
+    "model_query_tokens": 192,
+    "sequence_tokens": 512,
+    "windows_per_document": 3,
+    "response_characters": 128000,
+    "memory_rows": 6,
+    "memory_characters": 16000
+  },
+  "zero_online_and_current_study_changes": true,
+  "official_calls": 0,
+  "paid_api_calls": 0,
+  "full_allowed": false
+}
