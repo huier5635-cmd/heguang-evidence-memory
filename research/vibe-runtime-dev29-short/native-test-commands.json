@@ -1,0 +1,63 @@
+{
+  "frozen_before_generation": true,
+  "frozen_before_oracle_access": true,
+  "target_oracles_opened": false,
+  "commands": {
+    "apiflask__apiflask-382": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_route.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    },
+    "dbt-labs__dbt-redshift-420": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/unit/test_redshift_adapter.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    },
+    "delgan__loguru-985": {
+      "argv": [
+        "pytest",
+        "--no-header",
+        "-rA",
+        "--tb=line",
+        "--color=no",
+        "-p",
+        "no:cacheprovider",
+        "-W",
+        "ignore::DeprecationWarning",
+        "tests/test_add_option_context.py"
+      ],
+      "environment": {},
+      "original_test_roots": [
+        "tests"
+      ]
+    }
+  },
+  "purpose": "Exact dataset native argv and original BASE tests; no target test patches or gold",
+  "full_allowed": false
+}
