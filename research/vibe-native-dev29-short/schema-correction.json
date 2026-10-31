@@ -1,0 +1,101 @@
+{
+  "prepared_at_utc": "2026-10-31T06:04:33.505053+00:00",
+  "reason": "Original exporter omitted production_prefix; container preparation raised KeyError before pytest or proposals ran.",
+  "only_case_field_added": "production_prefix",
+  "existing_source_hash_map_already_present": true,
+  "frozen_input_bindings": [
+    {
+      "instance_id": "apiflask__apiflask-382",
+      "arm": "without_memory",
+      "input_sha256": "f1551c405ea82f9f750358f64b6ca698b8c11155c5e78d420f22b4e4a9367da6",
+      "production_prefix": [
+        "src/apiflask"
+      ]
+    },
+    {
+      "instance_id": "apiflask__apiflask-382",
+      "arm": "dev6_memory",
+      "input_sha256": "6b8a853c4d29079f5608bdaf77ab06a3bc55608f69faca13941bb5656284c2de",
+      "production_prefix": [
+        "src/apiflask"
+      ]
+    },
+    {
+      "instance_id": "apiflask__apiflask-382",
+      "arm": "dev25_memory",
+      "input_sha256": "93ad0408361fc2d646cae3c74345ceba6ab965e58f5f2f97ee942f0ed02fd774",
+      "production_prefix": [
+        "src/apiflask"
+      ]
+    },
+    {
+      "instance_id": "dbt-labs__dbt-redshift-420",
+      "arm": "dev6_memory",
+      "input_sha256": "6d5c8bf1448c63e959df81054dcb96d950f4e2ca5f0d458e8768a3f812d37c32",
+      "production_prefix": [
+        "dbt"
+      ]
+    },
+    {
+      "instance_id": "dbt-labs__dbt-redshift-420",
+      "arm": "dev25_memory",
+      "input_sha256": "89c997168c102cb566bee2de342dbc419a68c7479501b50141757c94091c94a8",
+      "production_prefix": [
+        "dbt"
+      ]
+    },
+    {
+      "instance_id": "dbt-labs__dbt-redshift-420",
+      "arm": "without_memory",
+      "input_sha256": "0e65075ddb899648456f75a32c42ffd85acb001a3eddc3dc3daf62829be63f81",
+      "production_prefix": [
+        "dbt"
+      ]
+    },
+    {
+      "instance_id": "delgan__loguru-985",
+      "arm": "dev25_memory",
+      "input_sha256": "b712fc011c31443acedf4679a216ae2243eb052fb111b7f81b505b40b7e23dd4",
+      "production_prefix": [
+        "loguru"
+      ]
+    },
+    {
+      "instance_id": "delgan__loguru-985",
+      "arm": "without_memory",
+      "input_sha256": "b1ce919deffa08ac974354ed63601ee89eb2adf5e53263421addd8ffa90e2fbf",
+      "production_prefix": [
+        "loguru"
+      ]
+    },
+    {
+      "instance_id": "delgan__loguru-985",
+      "arm": "dev6_memory",
+      "input_sha256": "72f0e4aece6706c3ed4ea85779eba4cfe361a5b9e340e4aeadb67c7d4531ad8b",
+      "production_prefix": [
+        "loguru"
+      ]
+    }
+  ],
+  "unchanged_original_bundle_files": 33,
+  "all_direct_container_manifest_keys_present": [
+    "arms",
+    "base_commit",
+    "expected_source_files",
+    "instance_id",
+    "production_prefix",
+    "target_test_paths",
+    "working_dir"
+  ],
+  "old_manifest_sha256": "18f8465ced47e97bdbf9ed0fdd6228f46fcfc0aba30bc9eff287d59f6973db1c",
+  "new_manifest_sha256": "0ba70d749e82520937e75345332a62ef41056c8cfc98dc5e3b9ee3e7324d1b33",
+  "new_bundle_hashes_sha256": "de8da0de6a5124279b7f2caebe1a2be648126176b210d8cb4c83c9866e5b264d",
+  "original_failed_run_preserved": 41172803136,
+  "no_test_outcome_used_to_choose_change": true,
+  "same_original_images_base_sources_tests_commands_proposals_and_scoring": true,
+  "frozen_generation_or_evaluation_files_modified": false,
+  "target_answer_patch_read": false,
+  "model_regenerated": false,
+  "official_calls": 0,
+  "full_allowed": false
+}

@@ -56,7 +56,10 @@
       "original_base_runtime": {
         "python_version": "3.10.19 (main, Dec 30 2025, 00:42:16) [GCC 14.2.0]",
         "python_executable": "/usr/local/bin/python"
-      }
+      },
+      "production_prefix": [
+        "src/apiflask"
+      ]
     },
     {
       "instance_id": "dbt-labs__dbt-redshift-420",
@@ -106,7 +109,10 @@
       "original_base_runtime": {
         "python_version": "3.10.19 (main, Dec 30 2025, 00:42:16) [GCC 14.2.0]",
         "python_executable": "/usr/local/bin/python"
-      }
+      },
+      "production_prefix": [
+        "dbt"
+      ]
     },
     {
       "instance_id": "delgan__loguru-985",
@@ -168,7 +174,10 @@
       "original_base_runtime": {
         "python_version": "3.10.19 (main, Dec 30 2025, 00:42:16) [GCC 14.2.0]",
         "python_executable": "/usr/local/bin/python"
-      }
+      },
+      "production_prefix": [
+        "loguru"
+      ]
     }
   ],
   "study_plan_sha256": "ca378a07e207ccb6fd957c4f7e70c64314dd8b788f8068a64e5e87ffb41b0c3c",
