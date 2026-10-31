@@ -1,0 +1,211 @@
+{
+  "self_authored": true,
+  "benchmark_data_used": false,
+  "case_count": 12,
+  "cases": [
+    {
+      "id": "lease_cache",
+      "query": "lease_cache must reuse the same key during a retry.",
+      "documents": [
+        {
+          "id": "right",
+          "text": "The earlier change made lease_cache keep the original request key across retries."
+        },
+        {
+          "id": "distractor",
+          "text": "The earlier change updated the terminal color defaults."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "short_unchanged",
+      "middle_anchor": null
+    },
+    {
+      "id": "packet-order",
+      "query": "PacketLedger.commit_batch should preserve record ordering when a flush retries.",
+      "documents": [
+        {
+          "id": "right",
+          "text": "The PacketLedger.commit_batch change retained original record order after retrying a flush."
+        },
+        {
+          "id": "distractor",
+          "text": "A formatting change adjusted the indentation in a status report."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "short_unchanged",
+      "middle_anchor": null
+    },
+    {
+      "id": "profile-reload",
+      "query": "config_router should reload profiles without clearing active leases.",
+      "documents": [
+        {
+          "id": "right",
+          "text": "The config_router reload now leaves active leases intact and swaps only the profile configuration."
+        },
+        {
+          "id": "distractor",
+          "text": "The worker pool changed its logging timestamp format."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "short_unchanged",
+      "middle_anchor": null
+    },
+    {
+      "id": "plain-long-0",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. preserve the order of buffered records. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "An earlier change explained how to preserve the order of buffered records."
+        },
+        {
+          "id": "distractor",
+          "text": "The environment checklist describes multiple machines and ordinary execution."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_without_technical_anchor",
+      "middle_anchor": null
+    },
+    {
+      "id": "plain-long-1",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. reuse an open connection after a retry. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "An earlier change explained how to reuse an open connection after a retry."
+        },
+        {
+          "id": "distractor",
+          "text": "The environment checklist describes multiple machines and ordinary execution."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_without_technical_anchor",
+      "middle_anchor": null
+    },
+    {
+      "id": "plain-long-2",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. reject a missing value without resetting unrelated state. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "An earlier change explained how to reject a missing value without resetting unrelated state."
+        },
+        {
+          "id": "distractor",
+          "text": "The environment checklist describes multiple machines and ordinary execution."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_without_technical_anchor",
+      "middle_anchor": null
+    },
+    {
+      "id": "token-budget",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. The technical location is `TokenBudgeter.reserve_frame`. This operation should preserve its existing state after a failed attempt. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "The earlier change corrected TokenBudgeter.reserve_frame so a failed reservation restores its previous budget."
+        },
+        {
+          "id": "distractor",
+          "text": "The report describes reproducibility, ordinary execution on several machines, and an environment checklist."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_middle_technical_anchor",
+      "middle_anchor": "TokenBudgeter.reserve_frame"
+    },
+    {
+      "id": "lease-file",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. The technical location is `src/lease_queue.py`. This operation should preserve its existing state after a failed attempt. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "The src/lease_queue.py change preserved active leases when retrying a renewal."
+        },
+        {
+          "id": "distractor",
+          "text": "The report describes reproducibility, ordinary execution on several machines, and an environment checklist."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_middle_technical_anchor",
+      "middle_anchor": "src/lease_queue.py"
+    },
+    {
+      "id": "frame-flush",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. The technical location is `FrameMux.flush_batch`. This operation should preserve its existing state after a failed attempt. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "FrameMux.flush_batch was changed to retain the original record order through a retry."
+        },
+        {
+          "id": "distractor",
+          "text": "The report describes reproducibility, ordinary execution on several machines, and an environment checklist."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_middle_technical_anchor",
+      "middle_anchor": "FrameMux.flush_batch"
+    },
+    {
+      "id": "codec-guard",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. The technical location is `decode_envelope`. This operation should preserve its existing state after a failed attempt. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "The decode_envelope change rejected a missing payload without altering unrelated state."
+        },
+        {
+          "id": "distractor",
+          "text": "The report describes reproducibility, ordinary execution on several machines, and an environment checklist."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_middle_technical_anchor",
+      "middle_anchor": "decode_envelope"
+    },
+    {
+      "id": "watch-map",
+      "query": "This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. The technical location is `WatchRegistry.refresh_map`. This operation should preserve its existing state after a failed attempt. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "WatchRegistry.refresh_map now replaces the changed entry while retaining existing registrations."
+        },
+        {
+          "id": "distractor",
+          "text": "The report describes reproducibility, ordinary execution on several machines, and an environment checklist."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_middle_technical_anchor",
+      "middle_anchor": "WatchRegistry.refresh_map"
+    },
+    {
+      "id": "unicode-route",
+      "query": "背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 背景信息🙂。 This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. This paragraph supplies general background to explain a recurring observation in a reproducible report. The technical location is `RouteLedger.resolve_path`. This operation should preserve its existing state after a failed attempt. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. The remaining report compares ordinary execution on several machines and includes an environment checklist. ",
+      "documents": [
+        {
+          "id": "right",
+          "text": "RouteLedger.resolve_path preserves the original route when a fallback path is absent."
+        },
+        {
+          "id": "distractor",
+          "text": "The report describes reproducibility, ordinary execution on several machines, and an environment checklist."
+        }
+      ],
+      "expected_document": "right",
+      "scope": "long_middle_technical_anchor",
+      "middle_anchor": "RouteLedger.resolve_path"
+    }
+  ]
+}
