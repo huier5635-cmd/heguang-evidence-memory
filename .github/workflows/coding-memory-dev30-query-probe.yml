@@ -33,4 +33,5 @@ jobs:
           "$PY" -m pip install -r checkout/research/query-token-dev30/requirements.txt
           "$PY" checkout/research/query-token-dev30/download_model.py
       - name: Compare the two frozen variants on self-authored relevance inputs
-        run: "$RUNNER_TEMP/qianora-dev30-venv/bin/python" checkout/research/query-token-dev30/probe.py
+        run: |
+          "$RUNNER_TEMP/qianora-dev30-venv/bin/python" checkout/research/query-token-dev30/probe.py
